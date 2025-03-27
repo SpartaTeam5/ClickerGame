@@ -1,0 +1,34 @@
+{
+    "name": "ClickAttack",
+    "maps": [
+        {
+            "name": "Attack",
+            "id": "b303cb0b-c378-47ab-91f9-9b1be6926695",
+            "actions": [
+                {
+                    "name": "ClickAtt",
+                    "type": "Button",
+                    "id": "e6a32f59-04e2-4602-ace7-dabe8bd97a88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2c82fcc7-be40-4958-9d3e-a300f801065f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickAtt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
