@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 151d934edc2ab5e42b6fb0aa673d3a87, type: 3}
-  m_Name: Monster_Bulbasaur
+  m_Name: Monster Venusaur
   m_EditorClassIdentifier: 
-  _name: "\uC774\uC0C1\uD574\uC528"
-  sprite: {fileID: 21300000, guid: 7e378f5e0976a694e876cc39d7d1c479, type: 3}
+  _name: "\uC774\uC0C1\uD574\uAF43"
+  health: 150
+  maxhealth: 150
+  sprite: {fileID: 21300000, guid: 2c47f24dcf132d94ea33298b884d7744, type: 3}
   monsterStaDatas:
   - stat: 0
-    value: 100
+    value: 150
