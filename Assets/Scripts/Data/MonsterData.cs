@@ -25,17 +25,20 @@ public class MonsterData : ScriptableObject
     public string MonsterName;
     public float health;
     public float maxhealth;
+    public float money;
+
     public Sprite sprite;
 
     //[Header("StatData")]
     //public MonsterStatData[] monsterStatDatas;
 
     // 몬스터 데이터 생성자 
-    public MonsterData(string name, float health, float maxhealth, Sprite sprite)
+    public MonsterData(string name, float health, float maxhealth, float money, Sprite sprite)
     {
         MonsterName = name;
         this.health = health;
         this.maxhealth = maxhealth;
+        this.money = money;
 
         this.sprite = sprite; 
         //this.monsterStatDatas = monsterStatDatas;
