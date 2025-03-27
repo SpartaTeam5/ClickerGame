@@ -24,6 +24,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
+    - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
     - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}

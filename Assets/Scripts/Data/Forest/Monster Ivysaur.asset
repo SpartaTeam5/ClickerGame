@@ -15,7 +15,5 @@ MonoBehaviour:
   MonsterName: "\uC774\uC0C1\uD574\uD480"
   health: 120
   maxhealth: 120
+  money: 85
   sprite: {fileID: 21300000, guid: 31aa74f4bbec70547a2e4ab1ddb6e8df, type: 3}
-  monsterStatDatas:
-  - stat: 0
-    value: 120
