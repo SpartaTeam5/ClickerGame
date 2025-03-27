@@ -10,7 +10,7 @@ public class ClickAttack : MonoBehaviour
     [SerializeField] float click_Damage = 1.0f;
     [SerializeField] float autoAttackInterval = 1.0f;
     [SerializeField] bool isAutoAttackEnabled = true;
-    [SerializeField] Monster pokemonMonster;
+    [SerializeField] MonsterData pokemonMonster;
 
     private Camera mainCamera;
     public InputAction _clickAtt;
@@ -48,7 +48,7 @@ public class ClickAttack : MonoBehaviour
 
         if (hit.collider != null )
         {
-            Monster monster = hit.collider.GetComponent<Monster>();
+            MonsterData monster = hit.collider.GetComponent<MonsterData>();
 
             if (monster != null)
             {
@@ -82,7 +82,7 @@ public class ClickAttack : MonoBehaviour
         if (pokemonMonster != null)
         {
             // 데미지 받음
-            Debug.Log($"몬스터 {pokemonMonster.gameObject.name}를 공격!");
+            Debug.Log($"몬스터 {pokemonMonster.name}를 공격!");
         }
     }
 }
