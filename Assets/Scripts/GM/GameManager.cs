@@ -9,11 +9,10 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Elements")]
     public Text goldText;//골드 표시
-    public GameObject warningMessage;// 재화 부족 시 경고 메시지 UI (Text 혹은 Panel에 Text 컴포넌트가 포함되어 있을 수 있음)
+    public GameObject warningMessage;// 골드 부족 시 경고
 
     private void Awake()
     {
-        // 싱글턴 패턴 적용: 하나의 인스턴스만 존재하도록 함
         if (Instance == null)
         {
             Instance = this;
@@ -23,7 +22,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        // 씬 전환 시에도 삭제되지 않도록 설정
+        // 씬 전환 시에도 삭제X
         DontDestroyOnLoad(gameObject);
     }
 
