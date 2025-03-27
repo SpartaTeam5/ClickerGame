@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
-        statTable.GenerateData(10);
+        statTable.GenerateData(100);
         UpdateUI();
 
         //Check();
