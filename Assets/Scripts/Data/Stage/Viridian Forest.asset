@@ -30,3 +30,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: ae942a475d2ca584fb0e724b3562d766, type: 2}
+  curKillCount: 0
