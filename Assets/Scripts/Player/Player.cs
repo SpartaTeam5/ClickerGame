@@ -22,10 +22,13 @@ public class Player : MonoBehaviour
 
     public TextMeshProUGUI critLevelText;
     public TextMeshProUGUI critDamageText;
+    public TextMeshProUGUI critCostText;
     public TextMeshProUGUI autoLevelText;
     public TextMeshProUGUI autoCycleText;
+    public TextMeshProUGUI autoCostText;
     public TextMeshProUGUI goldLevelText;
     public TextMeshProUGUI goldAmountText;
+    public TextMeshProUGUI goldCostText;
 
     public void Start()
     {
@@ -61,12 +64,15 @@ public class Player : MonoBehaviour
         var crit = statTable.crit[critLevel - 1];
         critLevelText.text = crit.level.ToString();
         critDamageText.text = crit.critDamage.ToString() + "%";
+        critCostText.text = crit.cost_c.ToString();
         var auto = statTable.auto[autoLevel - 1];
         autoLevelText.text = auto.level.ToString();
         autoCycleText.text = auto.autoAttackCycle.ToString();
+        autoCostText.text = auto.cost_a.ToString();
         var gold = statTable.gold[goldLevel - 1];
         goldLevelText.text = gold.level.ToString();
         goldAmountText.text = gold.getGoldAmount.ToString() + "%";
+        goldCostText.text = gold.cost_g.ToString();
     }
 
     public void OnClickCrit() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
