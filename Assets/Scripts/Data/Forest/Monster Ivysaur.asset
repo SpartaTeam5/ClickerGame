@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151d934edc2ab5e42b6fb0aa673d3a87, type: 3}
   m_Name: Monster Ivysaur
   m_EditorClassIdentifier: 
-  _name: "\uC774\uC0C1\uD574\uD480"
+  MonsterName: "\uC774\uC0C1\uD574\uD480"
   health: 120
   maxhealth: 120
   sprite: {fileID: 21300000, guid: 31aa74f4bbec70547a2e4ab1ddb6e8df, type: 3}
-  monsterStaDatas:
+  monsterStatDatas:
   - stat: 0
     value: 120

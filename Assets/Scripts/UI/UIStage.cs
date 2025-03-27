@@ -16,8 +16,11 @@ public class UIStage : MonoBehaviour
     private float curValue;
     private float maxValue;
 
-    private MonsterData monsterData;
-    private StageData   stageData;
+    //임시용 인덱스
+    public int stageIndex = 0;
+    public int waveIndex = 0;
+
+    public StageData   stageData;
     void Start()
     {
         UpdataUI();
@@ -29,15 +32,21 @@ public class UIStage : MonoBehaviour
 
     private void UpdataUI()
     {
-        stageName.text = stageData.name;
-        monsterName.text = monsterData.name;
-        monsterImage.sprite = monsterData.sprite;
+        SetMonster(stageData.monsters[stageIndex].MonsterData[waveIndex]);
+        stageName.text = stageData.stageName;
+        monsterName.text = stageData.monsters[stageIndex].MonsterData[waveIndex].MonsterName; // 몇번째 몬스터가 필요하지 인덱스 값이 필요함
+        monsterImage.sprite = stageData.monsters[stageIndex].MonsterData[waveIndex].sprite;   // 몇번째 몬스터가 필요하지 인덱스 값이 필요함
     }
 
     public void SetMonster(MonsterData monsterData)
     {
         maxValue = monsterData.maxhealth;
         curValue = monsterData.health;
+    }
+
+    private void OnValidate()
+    {
+        UpdataUI();
     }
     public float GetPercentage()
     {

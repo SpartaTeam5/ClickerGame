@@ -3,8 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class StageMonster
 {
-    public MonsterData MonsterData;
-    public int count;
+    public MonsterData[] MonsterData;
 }
 
 [CreateAssetMenu(fileName = "Stage", menuName = "GameData/Stage")]

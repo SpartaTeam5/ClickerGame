@@ -298,7 +298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e378f5e0976a694e876cc39d7d1c479, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c47f24dcf132d94ea33298b884d7744, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -604,6 +604,9 @@ MonoBehaviour:
   monsterName: {fileID: 917828901}
   healthSlider: {fileID: 109551731}
   monsterImage: {fileID: 88240781}
+  stageIndex: 4
+  waveIndex: 0
+  stageData: {fileID: 11400000, guid: 124a82b4c7c2b6348b22295d90596be2, type: 2}
 --- !u!114 &182470489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBBF8\uC2F1\uB18D"
+  m_text: "\uC774\uC0C1\uD574\uAF43"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0adae490b91541e4cb59d0bae7a81cdf, type: 2}
   m_sharedMaterial: {fileID: 5410439483936413879, guid: 0adae490b91541e4cb59d0bae7a81cdf, type: 2}
@@ -1211,7 +1214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Viridian Forest
+  m_text: "\uC0C1\uB85D \uC232"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cf147f77ae8d1ed4f887f3700890dc55, type: 2}
   m_sharedMaterial: {fileID: 3712691562007591523, guid: cf147f77ae8d1ed4f887f3700890dc55, type: 2}
