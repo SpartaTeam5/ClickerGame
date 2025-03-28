@@ -977,6 +977,7 @@ GameObject:
   - component: {fileID: 6971759129633197917}
   - component: {fileID: 156286706536721553}
   - component: {fileID: 3385604461231103511}
+  - component: {fileID: 6971759129633197918}
   m_Layer: 5
   m_Name: AutoBtn
   m_TagString: Untagged
@@ -1979,7 +1980,7 @@ MonoBehaviour:
   goldLevelText: {fileID: 5812092614936099296}
   goldAmountText: {fileID: 8645157241381867944}
   goldCostText: {fileID: 434345105576398800}
-  curgold: 100
+  curgold: 1000
 --- !u!1 &3151848713643078730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,6 +2135,7 @@ GameObject:
   - component: {fileID: 3036911652253949517}
   - component: {fileID: 731496057827097026}
   - component: {fileID: 5248581344790815278}
+  - component: {fileID: 7979372796205412726}
   m_Layer: 5
   m_Name: 'GoldBtn '
   m_TagString: Untagged
@@ -2378,6 +2380,7 @@ GameObject:
   - component: {fileID: 5252067909439162165}
   - component: {fileID: 9191519081261506305}
   - component: {fileID: 4176894728719375143}
+  - component: {fileID: 9191519081261506306}
   m_Layer: 5
   m_Name: CritBtn
   m_TagString: Untagged
@@ -3063,7 +3066,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.81596375, w: 0}
+  m_margin: {x: -3.7905579, y: 0, z: 0.81596375, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3152,7 +3155,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.5778656, w: 0}
+  m_margin: {x: -2.418213, y: 0, z: -0.5778656, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3388,7 +3391,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 1.1878815, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.2303619, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3546,6 +3549,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480625928767454925}
   m_CullTransparentMesh: 1
+--- !u!114 &6971759129633197918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480625928767454925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d1513ac6895614e800560a1a42ab93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetbtn: {fileID: 3385604461231103511}
+  holdInterval: 0.2
 --- !u!224 &6977555986806929767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3698,6 +3715,20 @@ RectTransform:
   m_AnchoredPosition: {x: 69.5, y: -72.3}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7979372796205412726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3501096793000258760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d1513ac6895614e800560a1a42ab93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetbtn: {fileID: 5248581344790815278}
+  holdInterval: 0.2
 --- !u!222 &7984341778207029333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4433,6 +4464,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9191519081261506306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552842040306879326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d1513ac6895614e800560a1a42ab93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetbtn: {fileID: 4176894728719375143}
+  holdInterval: 0.2
 --- !u!222 &9202899417615509979
 CanvasRenderer:
   m_ObjectHideFlags: 0
