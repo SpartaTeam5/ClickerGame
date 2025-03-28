@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe1a183abea1574db96712c7cbdcdb9, type: 3}
-  m_Name: PlayerStatTable
+  m_Script: {fileID: 11500000, guid: 151d934edc2ab5e42b6fb0aa673d3a87, type: 3}
+  m_Name: Monster Numel
   m_EditorClassIdentifier: 
-  crit: []
-  auto: []
-  gold: []
+  MonsterName: "\uB454\uD0C0"
+  health: 200
+  maxhealth: 200
+  money: 200
+  sprite: {fileID: 21300000, guid: c6a2a0cac22156c40b7bae4354817104, type: 3}

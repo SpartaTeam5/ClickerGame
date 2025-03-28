@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIStage : MonoBehaviour
 {
     [Header("Stage Info")]
+    public Image backGround;
     public TextMeshProUGUI stageKillCount;  // 각 스테이지에서 죽은 적 카운트
     public TextMeshProUGUI stageName;       // 스테이지 이름
     public TextMeshProUGUI monsterName;     // 몬스터 이름
@@ -42,6 +43,7 @@ public class UIStage : MonoBehaviour
         MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];
         SetMonster(monsterData);
 
+        backGround.sprite = stageData.backGround;
         stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
         stageName.text = $"{stageData.stageName} - {waveIndex + 1}";
         monsterName.text = monsterData.MonsterName;
@@ -69,6 +71,10 @@ public class UIStage : MonoBehaviour
         curValue -= damage;
         if (curValue < 0) curValue = 0;
         healthSlider.value = curValue;
+
+        //DamageText damageText = DamageTextPool.Instance.GetFromPool();
+        //damageText.transform.position = Camera.main.WorldToScreenPoint(monsterImage.transform.position);
+        //damageText.SetText(damage);
 
         if (curValue == 0)
         {

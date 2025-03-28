@@ -20,7 +20,8 @@ public class StatManager : MonoBehaviour
     // 최종 치명타 확률
     public float GetCriticalChance()
     {
-        return GameManager.Instance.playerData.criticalChance;
+        int level = GameManager.Instance.playerData.stage; // 현재 레벨
+        return GameManager.Instance.playerStatTable.crit[level - 1].critChance;
     }
 
     // 최종 치명타 배율
