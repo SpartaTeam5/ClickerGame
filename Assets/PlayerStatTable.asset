@@ -12,14 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe1a183abea1574db96712c7cbdcdb9, type: 3}
   m_Name: PlayerStatTable
   m_EditorClassIdentifier: 
-  critlevel:
-  - level: 1
-    critDamage: 50
-  - level: 0
-    critDamage: 0
-  autoAttackLevel:
-  - level: 0
-    AutoAttack: 0
-  goldLevel:
-  - level: 0
-    GetGold: 0
+  crit: []
+  auto: []
+  gold: []

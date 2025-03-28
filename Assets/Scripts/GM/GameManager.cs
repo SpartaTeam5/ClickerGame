@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     public Text goldText;//골드 표시
     public GameObject warningMessage;// 골드 부족 시 경고
+    public PlayerStatTable playerStatTable;
 
     private void Awake()
     {
