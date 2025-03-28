@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class DamageTextPool : MonoBehaviour
 {
-    public static DamageTextPool Instance {  get; private set; }
+    public static DamageTextPool Instance { get; private set; }
+
     [SerializeField] private DamageText damageTextPrefab;
     private Queue<DamageText> pool = new Queue<DamageText>();
 
+    public Transform parents;
+
     private void Awake()
     {
-        if(Instance == null) { Instance = this; }
-        else Destroy(gameObject);       // ? 이거 쓰면 재 사용 못하는 거 아닌가?
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public DamageText GetFromPool()
@@ -24,13 +34,13 @@ public class DamageTextPool : MonoBehaviour
         }
         else
         {
-            return Instantiate(damageTextPrefab);  // 풀이 비었으면 새로 생성
+            return Instantiate(damageTextPrefab, parents);
         }
     }
+
     public void ReturnToPool(DamageText damageText)
     {
         damageText.gameObject.SetActive(false);
         pool.Enqueue(damageText);
     }
-
 }

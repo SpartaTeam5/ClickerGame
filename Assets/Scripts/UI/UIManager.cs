@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance {  get; private set; }
+    public static UIManager Instance;
 
     public UIStage uistage;
     
 
-    private void Awake()
+    private void Awake()        // 싱글톤을 제네릭으로 구현 가능하다! 찾아보기
     {
         if (Instance == null)
         {
@@ -20,4 +20,7 @@ public class UIManager : MonoBehaviour
         }
     }
    
+
+
+
 }

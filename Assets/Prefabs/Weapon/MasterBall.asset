@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ae122111134a4046a0728ed2669d929, type: 3}
-  m_Name: UltraBall
+  m_Name: MasterBall
   m_EditorClassIdentifier: 
-  weaponName: "\uC6B8\uD2B8\uB77C\uBCFC"
-  baseAttack: 15
+  weaponName: "\uB9C8\uC2A4\uD130\uBCFC"
+  baseAttack: 20
   critChance: 30
   weaponLevel: 1
-  atkIncrease: 3
+  atkIncrease: 5
   critChanceIncrease: 5
-  costAtk: 10
-  costCritChance: 10
+  costAtk: 15
+  costCritChance: 15

@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
    
     public void UpdateUI()
     {
-        var crit = statTable.crit[critLevel - 1];
+        CritData crit = statTable.crit[critLevel - 1];
         critLevelText.text = "Lv" + crit.level.ToString();
         critDamageText.text = crit.critDamage.ToString() + "%";
         critCostText.text = crit.cost_c.ToString();
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
             critCostText.color = Color.red;
         }
 
-        var auto = statTable.auto[autoLevel - 1];
+        AutoAttackData auto = statTable.auto[autoLevel - 1];
         autoLevelText.text = "Lv" + auto.level.ToString();
         autoCycleText.text = auto.autoAttackCycle.ToString();
         autoCostText.text = auto.cost_a.ToString();
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
             autoCostText.color = Color.red;
         }
 
-        var gold = statTable.gold[goldLevel - 1];
+        GoldData gold = statTable.gold[goldLevel - 1];
         goldLevelText.text = "Lv" + gold.level.ToString();
         goldAmountText.text = gold.getGoldAmount.ToString() + "%";
         goldCostText.text = gold.cost_g.ToString();
