@@ -6540,6 +6540,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
   - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
   - {fileID: 11400000, guid: ae942a475d2ca584fb0e724b3562d766, type: 2}
+  - {fileID: 11400000, guid: 3f756b7b5619e5b4db287482a0338906, type: 2}
+  - {fileID: 11400000, guid: cbbe5d0493667cc4aa3fbb74cc012415, type: 2}
+  - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
+  - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
+  - {fileID: 11400000, guid: c8840be096195a648b233a4c1c1af87e, type: 2}
   playerInput: {fileID: 7441366982229900404}
   isOptionUIOpen: 0
 --- !u!114 &7441366982229900404
