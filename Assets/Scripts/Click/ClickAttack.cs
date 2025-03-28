@@ -30,19 +30,28 @@ public class ClickAttack : MonoBehaviour
         uIStage = FindObjectOfType<UIStage>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        _clickAction.performed += OnClickAttack;
-        _clickAction.Enable();
-        StartCoroutine(AutoAttack());
+        if (isOptionUIOpen)
+        {
+            _clickAction.performed += OnClickAttack;
+            _clickAction.Enable();
+
+            StartCoroutine(AutoAttack()); // 자동 공격 시작
+        }
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        _clickAction.performed -= OnClickAttack;
-        _clickAction.Disable();
-        StopCoroutine(AutoAttack());
+        if (!isOptionUIOpen) // 옵션 창이 열리면 입력 비활성화 및 공격 중지
+        {
+            _clickAction.performed -= OnClickAttack;
+            _clickAction.Disable();
+
+            StopCoroutine(AutoAttack());
+        }
     }
+
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
