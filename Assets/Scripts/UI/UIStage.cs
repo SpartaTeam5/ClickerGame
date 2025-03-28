@@ -43,7 +43,7 @@ public class UIStage : MonoBehaviour
         MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];
         SetMonster(monsterData);
 
-        backGround.sprite = stageData.backGround;
+        //backGround.sprite = stageData.backGround;
         stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
         stageName.text = $"{stageData.stageName} - {waveIndex + 1}";
         monsterName.text = monsterData.MonsterName;
