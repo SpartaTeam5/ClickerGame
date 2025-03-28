@@ -72,9 +72,9 @@ public class UIStage : MonoBehaviour
         if (curValue < 0) curValue = 0;
         healthSlider.value = curValue;
 
-        DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        damageText.transform.position = Camera.main.WorldToScreenPoint(monsterImage.transform.position);
-        damageText.SetText(damage);
+        //DamageText damageText = DamageTextPool.Instance.GetFromPool();
+        //damageText.transform.position = Camera.main.WorldToScreenPoint(monsterImage.transform.position);
+        //damageText.SetText(damage);
 
         if (curValue == 0)
         {
