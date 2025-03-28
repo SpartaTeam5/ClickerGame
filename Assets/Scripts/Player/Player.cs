@@ -30,73 +30,86 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI goldAmountText;
     public TextMeshProUGUI goldCostText;
 
+    public int curgold;
+
     public void Start()
     {
         statTable.GenerateData(100);
         UpdateUI();
 
-        //Check();
+        
         
     }
-    //public void Check() //테스트 코드
-    //{
-        
-    //    foreach (var crit in statTable.crit)
-    //    {
-    //        Debug.Log($"레벨: {crit.level}, 치명타 데미지: {crit.critDamage}");
-    //    }
-
-        
-    //    foreach (var atk in statTable.auto)
-    //    {
-    //        Debug.Log($"레벨: {atk.level}, 초당 공격 횟수: {atk.autoAttack}");
-    //    }
-
-        
-    //    foreach (var gold in statTable.gold)
-    //    {
-    //        Debug.Log($"레벨: {gold.level}, 골드 획득 배율: {gold.getGold}");
-    //    }
-    //}
-
+   
     public void UpdateUI()
     {
         var crit = statTable.crit[critLevel - 1];
         critLevelText.text = crit.level.ToString();
         critDamageText.text = crit.critDamage.ToString() + "%";
         critCostText.text = crit.cost_c.ToString();
+        if(curgold < statTable.crit[critLevel - 1].cost_c)
+        {
+            critCostText.color = Color.red;
+        }
+
         var auto = statTable.auto[autoLevel - 1];
         autoLevelText.text = auto.level.ToString();
         autoCycleText.text = auto.autoAttackCycle.ToString();
         autoCostText.text = auto.cost_a.ToString();
+        if (curgold < statTable.auto[autoLevel - 1].cost_a)
+        {
+            autoCostText.color = Color.red;
+        }
+
         var gold = statTable.gold[goldLevel - 1];
         goldLevelText.text = gold.level.ToString();
         goldAmountText.text = gold.getGoldAmount.ToString() + "%";
         goldCostText.text = gold.cost_g.ToString();
+        if (curgold < statTable.gold[goldLevel - 1].cost_g)
+        {
+            goldCostText.color = Color.red;
+        }
     }
 
     public void OnClickCrit() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
     {
-        critLevel++;
-        var crit = statTable.crit[critLevel - 1];
-        UpdateUI();
-        Debug.Log($"[치명타 레벨 업!] 현재 레벨: {crit.level}, 치명타 데미지: {crit.critDamage}");
+        if (curgold >= statTable.crit[critLevel - 1].cost_c)
+        {
+            curgold -= (critLevel * 10);
+            critLevel++;
+            var crit = statTable.crit[critLevel - 1];
+            UpdateUI();
+            Debug.Log($"[치명타 레벨 업!] 현재 레벨: {crit.level}, 치명타 데미지: {crit.critDamage}");
+        }
+        else
+        {
+            Debug.Log("골드 부족");
+            
+        }
     }
 
     public void OnClickAuto() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
     {
-        autoLevel++;
-        var auto = statTable.auto[autoLevel - 1];
-        UpdateUI();
-        Debug.Log($"[자동공격 레벨 업!] 현재 레벨: {auto.level}, 초당 자동공격 횟수: {auto.autoAttackCycle}");
+        if (curgold >= statTable.auto[autoLevel - 1].cost_a)
+        {
+            curgold -= (autoLevel * 10);
+            autoLevel++;
+            var auto = statTable.auto[autoLevel - 1];
+            UpdateUI();
+            Debug.Log($"[자동공격 레벨 업!] 현재 레벨: {auto.level}, 초당 자동공격 횟수: {auto.autoAttackCycle}");
+        }
     }
 
     public void OnClickGold() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
     {
-        goldLevel++;
-        var gold = statTable.gold[goldLevel - 1];
-        UpdateUI();
-        Debug.Log($"[골드획득 레벨 업!] 현재 레벨: {gold.level}, 골드 획득량: {gold.getGoldAmount}");
+        if (curgold >= statTable.gold[goldLevel - 1].cost_g)
+        {
+            curgold -= (goldLevel * 10);
+            goldLevel++;
+            var gold = statTable.gold[goldLevel - 1];
+            UpdateUI();
+            Debug.Log($"[골드획득 레벨 업!] 현재 레벨: {gold.level}, 골드 획득량: {gold.getGoldAmount}");
+        }
     }
 
     public void OnClickEnhance()

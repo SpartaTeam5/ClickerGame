@@ -1979,6 +1979,7 @@ MonoBehaviour:
   goldLevelText: {fileID: 5812092614936099296}
   goldAmountText: {fileID: 8645157241381867944}
   goldCostText: {fileID: 434345105576398800}
+  curgold: 100
 --- !u!1 &3151848713643078730
 GameObject:
   m_ObjectHideFlags: 0
