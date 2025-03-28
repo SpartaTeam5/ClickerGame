@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: "\uBAAC\uC2A4\uD130\uBCFC"
   baseAttack: 5
-  critChance: 20
+  critChance: 15
   weaponLevel: 1
   atkIncrease: 1
   critChanceIncrease: 5
-  costAtk: 10
-  costCritChance: 10
+  costAtk: 15
+  costCritChance: 15

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class WeaponEnhanceUI : MonoBehaviour
 {
-    
+    public WeaponDataTable weaponTable;
+
     public GameObject weapon1;
     public GameObject weapon2;
     public GameObject weapon3;

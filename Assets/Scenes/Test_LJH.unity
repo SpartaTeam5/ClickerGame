@@ -2011,12 +2011,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628352797}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bce560319c7de2b45ba14c4da37898d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
+  weaponTable: {fileID: 0}
   weaponEnhance: {fileID: 1335506606}
   weapon1: {fileID: 5343865276221983928}
   weapon2: {fileID: 2227881329866677834}
@@ -3754,6 +3754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de219633c350edf46ad72c3b449494e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponTable: {fileID: 0}
   weapon1: {fileID: 33870597}
   weapon2: {fileID: 1779852967}
   weapon3: {fileID: 1955738750}
@@ -8912,7 +8913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &5527019712975320810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10183,7 +10184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapondata: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
-  isEquipped: 1
+  isEquipped: 0
 --- !u!224 &8425040278666458865
 RectTransform:
   m_ObjectHideFlags: 0

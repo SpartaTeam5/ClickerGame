@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
 
     public void Start()
     {
-        UpdateUI();
+        
         weapon1.GetComponent<WeaponData>().isEquipped = true;
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
@@ -87,6 +87,18 @@ public class Weapon : MonoBehaviour
 
     public void OpenWeaponEnhance()
     {
+        // 현재 장착된 무기 찾아서 복사본 넘기기
+        GameObject[] weapons = { weapon1, weapon2, weapon3, weapon4 };
+
+        foreach (GameObject weapon in weapons)
+        {
+            WeaponData weaponData = weapon.GetComponent<WeaponData>();
+            if (weaponData.isEquipped)
+            {
+                weaponEnhance.weaponTable = weaponData.weapondata;
+                break;
+            }
+        }
         weaponEnhanceUI.SetActive(true);
     }
 
