@@ -12,7 +12,7 @@ public class Monster : MonoBehaviour
     private float curValue;
     private float maxValue;
 
-    public void In
+    //public void In
 }
 
 

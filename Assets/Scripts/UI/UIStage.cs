@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class UIStage : MonoBehaviour
 {
@@ -82,8 +83,8 @@ public class UIStage : MonoBehaviour
 
 
         DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        damageText.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+        //damageText.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        damageText.transform.position = UnityEngine.Input.mousePosition;
         damageText.SetText(damage);
 
         if (curValue == 0)
