@@ -10,37 +10,50 @@ public class ClickAttack : MonoBehaviour
     [SerializeField] float click_Damage = 1.0f;
     [SerializeField] float autoAttackInterval = 1.0f;
     [SerializeField] bool isAutoAttackEnabled = true;
-    [SerializeField] MonsterData pokemonMonster;
+    [SerializeField] MonsterData[] pokemonMonster;
 
     private Camera mainCamera;
-    public InputAction _clickAtt;
+    public PlayerInput playerInput;
+    private InputAction _clickAction;
     public bool isOptionUIOpen = false;
     
 
     private void Awake()
     {
         mainCamera = Camera.main; // 현재씬의 카메라 가져오기
-        _clickAtt = new InputAction(); // 인풋액션 인스턴스 생성
+        playerInput = GetComponent<PlayerInput>();
+        _clickAction = playerInput.actions["ClickAtt"];
     }
 
     private void OnEnable()
     {
+        _clickAction.performed += OnClickAttack;
+        _clickAction.Enable();
         StartCoroutine(AutoAttack());
     }
 
     private void OnDisable()
     {
+        _clickAction.performed -= OnClickAttack;
+        _clickAction.Disable();
         StopCoroutine(AutoAttack());
     }
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject() || isOptionUIOpen)
+        if (isOptionUIOpen)
+        {
+            Debug.Log("옵션ui가 열려있으므로 공격불가");
+            return;
+        }
+
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         { 
          // UI요소 위에서 클릭되었는지 확인하는 함수,EventSystem.current 가 존재하면 UI 클릭 감지 가능
             Debug.Log("ui 클릭 공격 실행 안됨");
             return;
         }
+
         Vector2 mousePosition = Mouse.current.position.ReadValue(); // 클릭위치값 가져오기
         Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition); // 화면 좌표를 월드좌표로 변환
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
@@ -53,16 +66,11 @@ public class ClickAttack : MonoBehaviour
             if (monster != null)
             {
                 AttackMonster(click_Damage);
+                return;
             }
         }
+        Debug.Log("몬스터를 클릭하지 않음");
 
-        if (isOptionUIOpen)
-        {
-            Debug.Log("옵션ui가 열려있으므로 공격불가");
-            return ;
-        }
-
-        AttackMonster(click_Damage);
     }
 
     IEnumerator AutoAttack()
@@ -77,12 +85,12 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
-    public void AttackMonster(float Damage)
+    public void AttackMonster(float damage)
     {
         if (pokemonMonster != null)
         {
-            // 데미지 받음
-            Debug.Log($"몬스터 {pokemonMonster.name}를 공격!");
+            //몬스터의 체력에 클릭데미지로 감소
+            Debug.Log($"몬스터 {pokemonMonster.Length}를 공격!");
         }
     }
 }
