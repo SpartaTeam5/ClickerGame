@@ -16,7 +16,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         isHolding = true;
-        holdCoroutine = StartCoroutine(HoldRoutine());
+        holdCoroutine = StartCoroutine(DelayHoldRoutine());
     }
 
     public void OnPointerUp(PointerEventData eventData) 
@@ -26,6 +26,11 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             StopCoroutine(holdCoroutine);
     }
 
+    IEnumerator DelayHoldRoutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        yield return StartCoroutine(HoldRoutine());
+    }
     IEnumerator HoldRoutine()
     {
         while (isHolding)
