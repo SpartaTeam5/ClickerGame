@@ -627,7 +627,6 @@ GameObject:
   - component: {fileID: 182470485}
   - component: {fileID: 182470484}
   - component: {fileID: 182470488}
-  - component: {fileID: 182470489}
   m_Layer: 5
   m_Name: UIStage
   m_TagString: Untagged
@@ -743,20 +742,6 @@ MonoBehaviour:
   stageIndex: 0
   waveIndex: 0
   stageData: {fileID: 11400000, guid: 124a82b4c7c2b6348b22295d90596be2, type: 2}
---- !u!114 &182470489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182470483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd460decd0501ff4891fbb0e611ff9bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentStage: {fileID: 11400000, guid: 124a82b4c7c2b6348b22295d90596be2, type: 2}
-  uiStage: {fileID: 182470488}
 --- !u!1 &695185826
 GameObject:
   m_ObjectHideFlags: 0

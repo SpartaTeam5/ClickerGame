@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,6 +61,8 @@ public class UIStage : MonoBehaviour
         if (curValue == 0)
         {
             stageData.curKillCount++;
+            // 플레이어에게 돈 추가
+            GameManager.Instance.AddGold(stageData.monsters[stageIndex].MonsterData[waveIndex].money);
             UpdataUI();
         }
     }
