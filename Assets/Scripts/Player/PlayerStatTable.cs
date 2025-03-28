@@ -25,6 +25,7 @@ public class PlayerStatTable : ScriptableObject
             {
                 level = level,
                 critDamage = 50f + (i * 50f),
+                critChance = Mathf.Clamp(0.05f + (i * 0.01f), 0f, 0.5f), // 최대 50% 제한
                 cost_c = 10 + (i * 10)
             };
 
@@ -52,6 +53,7 @@ public class CritData
 {
     public int level; //치명타 레벨
     public float critDamage; //치명타 데미지
+    public float critChance; // 치명타 확률 (0~1 범위)
     public int cost_c; //레벨업 비용
 }
 
