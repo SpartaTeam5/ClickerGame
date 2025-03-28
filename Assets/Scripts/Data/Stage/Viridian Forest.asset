@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Viridian Forest
   m_EditorClassIdentifier: 
   stageName: "\uC0C1\uB85D \uC232"
+  curKillCount: 0
+  backGround: {fileID: 21300000, guid: c2f80211b189b0a4594e25d78c44703f, type: 3}
   monsters:
   - MonsterData:
     - {fileID: 11400000, guid: b331486fe503c0d4092a338b1dc1ef90, type: 2}
@@ -30,4 +32,3 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: ae942a475d2ca584fb0e724b3562d766, type: 2}
-  curKillCount: 0

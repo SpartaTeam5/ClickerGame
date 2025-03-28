@@ -298,7 +298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: faf6a46f04e858e44accc432313048ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86fae881dd0e7ce4f85195b34707d64c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 / 1
+  m_text: 0 / 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cf147f77ae8d1ed4f887f3700890dc55, type: 2}
   m_sharedMaterial: {fileID: 3712691562007591523, guid: cf147f77ae8d1ed4f887f3700890dc55, type: 2}
@@ -734,12 +734,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1479371c358a771488ffefe9c0ac30a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backGround: {fileID: 1336012102}
   stageKillCount: {fileID: 143938634}
   stageName: {fileID: 1986767909}
   monsterName: {fileID: 917828901}
   healthSlider: {fileID: 109551731}
   monsterImage: {fileID: 88240781}
-  stageIndex: 1
+  stageIndex: 0
   waveIndex: 0
   monsterIndex: 0
   stageDataList:
@@ -870,7 +871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC789\uC5B4\uD0B9"
+  m_text: "\uBAA8\uB2E4\uD53C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0adae490b91541e4cb59d0bae7a81cdf, type: 2}
   m_sharedMaterial: {fileID: 5410439483936413879, guid: 0adae490b91541e4cb59d0bae7a81cdf, type: 2}
@@ -1441,7 +1442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD48D\uC694\uC758 \uBC14\uB2E4 - 1"
+  m_text: "\uC0C1\uB85D \uC232 - 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cf147f77ae8d1ed4f887f3700890dc55, type: 2}
   m_sharedMaterial: {fileID: 3712691562007591523, guid: cf147f77ae8d1ed4f887f3700890dc55, type: 2}
