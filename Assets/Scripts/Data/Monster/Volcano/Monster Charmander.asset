@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae122111134a4046a0728ed2669d929, type: 3}
-  m_Name: MasterBall
+  m_Script: {fileID: 11500000, guid: 151d934edc2ab5e42b6fb0aa673d3a87, type: 3}
+  m_Name: Monster Charmander
   m_EditorClassIdentifier: 
-  weaponName: "\uB9C8\uC2A4\uD130\uBCFC"
-  baseAttack: 20
-  critChance: 35
-  weaponLevel: 1
-  atkIncrease: 5
-  critChanceIncrease: 5
-  costAtk: 10
-  costCritChance: 10
+  MonsterName: "\uD30C\uC774\uB9AC"
+  health: 200
+  maxhealth: 200
+  money: 200
+  sprite: {fileID: 21300000, guid: a8c08eab3dc6a4841a61c5b8da8edf6b, type: 3}

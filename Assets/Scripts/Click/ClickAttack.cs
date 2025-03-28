@@ -34,7 +34,7 @@ public class ClickAttack : MonoBehaviour
     {
         _clickAction.performed += OnClickAttack;
         _clickAction.Enable();
-        StartCoroutine(AutoAttack());
+        //StartCoroutine(AutoAttack());         // 일정 조건일때 사용하기 -> Start에서 실행
     }
 
     private void OnDisable()
@@ -101,6 +101,7 @@ public class ClickAttack : MonoBehaviour
     public void AttackMonster(float damage)
     {
         if (pokemonMonster != null)
+        //if(uIStage != null)
         {
             uIStage.TakeDamage(damage);
             Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {uIStage.GetPercentage() * 100}%");
