@@ -398,6 +398,7 @@ MonoBehaviour:
   monsterName: {fileID: 917828901}
   healthSlider: {fileID: 109551731}
   monsterImage: {fileID: 88240781}
+  animator: {fileID: 88240783}
 --- !u!1 &109551729
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +778,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &182470487
 RectTransform:
@@ -821,9 +822,7 @@ MonoBehaviour:
   backGround: {fileID: 1336012102}
   stageKillCount: {fileID: 143938634}
   stageName: {fileID: 1986767909}
-  monsterName: {fileID: 917828901}
-  healthSlider: {fileID: 109551731}
-  monsterImage: {fileID: 88240781}
+  monster: {fileID: 88240784}
   stageIndex: 0
   waveIndex: 0
   monsterIndex: 0
@@ -831,8 +830,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 124a82b4c7c2b6348b22295d90596be2, type: 2}
   - {fileID: 11400000, guid: 5b6b829e86e51f64c96ce2f8c62bd55c, type: 2}
   - {fileID: 11400000, guid: db462456e91cb174e832cc00bf70636f, type: 2}
-  animator: {fileID: 0}
-  rectTransform: {fileID: 0}
 --- !u!1 &216887412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1499,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4817445167198167425, guid: 0c194e99a2b71f846ae2cbf292429105, type: 3}
+      propertyPath: monster
+      value: 
+      objectReference: {fileID: 88240784}
     - target: {fileID: 4842496708631399753, guid: 0c194e99a2b71f846ae2cbf292429105, type: 3}
       propertyPath: m_Name
       value: Click

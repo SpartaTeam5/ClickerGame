@@ -7,17 +7,14 @@ using UnityEngine.Windows;
 
 public class UIStage : MonoBehaviour
 {
+    public static UIStage Instance;
+
     [Header("Stage Info")]
     public Image backGround;
     public TextMeshProUGUI stageKillCount;  // 각 스테이지에서 죽은 적 카운트
     public TextMeshProUGUI stageName;       // 스테이지 이름
 
-    public TextMeshProUGUI monsterName;     // 몬스터 이름
-    public Slider healthSlider;             // 몬스터 체력
-    public Image monsterImage;              // 몬스터 이미지
-
-    private float curValue;
-    private float maxValue;
+    public Monster monster; // 몬스터 관리 객체
 
     //임시용 인덱스
     public int stageIndex = 0;
@@ -26,86 +23,49 @@ public class UIStage : MonoBehaviour
 
     public List<StageData> stageDataList;
 
-    public Animator animator;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
         LoadStage(stageIndex);
         UpdateUI();
     }
 
-
-    private void UpdateUI()
+    public void UpdateUI()
     {
-
-        // 넘기기
-        monsterImage.raycastTarget = true;
-        animator.SetBool("Die", false);
-
         StageData stageData = stageDataList[stageIndex];        // 스테이지
 
-        // 몬스터 넘기기
-        MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];
-        SetMonster(monsterData);
-
-        healthSlider.value = GetPercentage();
-
-
-        backGround.sprite = stageData.backGround;
-        stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
-        stageName.text = $"{stageData.stageName} - {waveIndex + 1}";
-        
-        // 여기
-        monsterName.text = monsterData.MonsterName;
-        monsterImage.sprite = monsterData.sprite;
-
-    }
-    // 너
-    public void SetMonster(MonsterData monsterData)
-    {
-        maxValue = monsterData.maxhealth;
-        curValue = monsterData.health;
-    }
-    // 너
-    public float GetPercentage()
-    {
-        return curValue / maxValue;
-    }
-    // 너
-    public void TakeDamage(float damage)
-    {
-
-        curValue -= damage;
-        if (curValue < 0) curValue = 0;
-        healthSlider.value = GetPercentage();
-        animator.SetTrigger("Attack");
-
-
-        DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        //damageText.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        damageText.transform.position = UnityEngine.Input.mousePosition;
-        damageText.SetText(damage);
-
-        if (curValue == 0)
+        if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)
         {
-            monsterImage.raycastTarget = false;
-            animator.SetBool("Die", true);
+            MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];
+            monster.Init(monsterData);
 
-            StageData stageData = stageDataList[stageIndex];
-            stageData.curKillCount++;
-            monsterIndex++;
+            backGround.sprite = stageData.backGround;
+            //if(stageData.curKillCount == stageData.monsters[waveIndex].MonsterData.Length)
+            //    stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
+            //else
+                stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
+            stageName.text = $"{stageData.stageName} - {waveIndex + 1}";
+        }
+    }
+   
+    public void OnMonsterDeath()
+    {
+        StageData stageData = stageDataList[stageIndex];
+        stageData.curKillCount++;
+        monsterIndex++;
 
-            //GameManager.Instance.AddGold(stageData.monsters[waveIndex].MonsterData[monsterIndex].money);
-            // 다음 몬스터의 정보를 가져와서 UI를 업데이트
-            if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)
-            {
-                Invoke("UpdateUI", 1f);
-            }
-            else
-            {
-                Invoke("NextWave", 1f);
-            }
+        // 다음 몬스터의 정보를 가져와서 UI를 업데이트
+        if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)
+        {
+            Invoke("UpdateUI", 1f);
+        }
+        else
+        {
+            Invoke("NextWave", 1f);
         }
     }
 
