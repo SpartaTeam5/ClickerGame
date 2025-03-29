@@ -15,9 +15,12 @@ public class Monster : MonoBehaviour
     private float maxValue;
     private float rewardGold; // 몬스터 처치 시 주는 골드
 
+    private UIStage uiStage;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        uiStage = GetComponentInParent<UIStage>();
     }
 
     public void Init(MonsterData monsterData)
@@ -67,7 +70,10 @@ public class Monster : MonoBehaviour
         monsterImage.raycastTarget = false;
         animator.SetBool("Die", true);
         //GameManager.Instance.AddGold(rewardGold);
-        UIStage.Instance.OnMonsterDeath();
+
+        uiStage.OnMonsterDeath();
+        uiStage.KillMonster();
+
     }
 }
 

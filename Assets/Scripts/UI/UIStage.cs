@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
 public class UIStage : MonoBehaviour
 {
-    public static UIStage Instance;
+    //public static UIStage Instance;
 
     [Header("Stage Info")]
     public Image backGround;
@@ -23,10 +24,6 @@ public class UIStage : MonoBehaviour
 
     public List<StageData> stageDataList;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     void Start()
     {
@@ -45,11 +42,16 @@ public class UIStage : MonoBehaviour
             monster.Init(monsterData);
 
             backGround.sprite = stageData.backGround;
-            stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
+            KillMonster();
             stageName.text = $"{stageData.stageName} - {waveIndex + 1}";
         }
     }
-   
+    public void KillMonster()
+    {
+        StageData stageData = stageDataList[stageIndex];
+        stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
+    }
+
     public void OnMonsterDeath()
     {
         StageData stageData = stageDataList[stageIndex];
