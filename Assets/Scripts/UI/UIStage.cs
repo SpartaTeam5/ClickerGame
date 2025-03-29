@@ -38,16 +38,14 @@ public class UIStage : MonoBehaviour
     {
         StageData stageData = stageDataList[stageIndex];        // 스테이지
 
+        MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];
+
         if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)
         {
-            MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];
             monster.Init(monsterData);
 
             backGround.sprite = stageData.backGround;
-            //if(stageData.curKillCount == stageData.monsters[waveIndex].MonsterData.Length)
-            //    stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
-            //else
-                stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
+            stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
             stageName.text = $"{stageData.stageName} - {waveIndex + 1}";
         }
     }
@@ -75,6 +73,7 @@ public class UIStage : MonoBehaviour
         if (waveIndex < stageDataList[stageIndex].monsters.Length)
         {
             monsterIndex = 0;
+            stageDataList[stageIndex].curKillCount = 0;
             UpdateUI();
         }
         else
