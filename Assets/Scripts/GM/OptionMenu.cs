@@ -6,8 +6,9 @@ public class OptionMenu : MonoBehaviour
 {
     // BGM 볼륨 조절 슬라이더
     public Slider bgmSlider;
-    // 효과음 볼륨 조절 슬라이더
-    public Slider sfxSlider;
+    public Slider sfxSlider;// 효과음 볼륨 조절 슬라이더
+    public Button closeBtn;//닫기 버튼
+    public GameObject optionsMenu; //옵션 메뉴 창
 
     private void Start()
     {
@@ -23,5 +24,17 @@ public class OptionMenu : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
         // 타이틀 화면용 BGM 재생
         AudioManager.Instance.PlayBGM(true);
+    }
+
+    //볼륨 옵션 메뉴 열기
+    public void OpenOption()
+    {
+        optionsMenu.SetActive(true);
+    }
+
+    //볼륨 옵션 메뉴 닫기
+    public void CloseOption()
+    {
+        optionsMenu.SetActive(false);
     }
 }
