@@ -106,8 +106,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
   - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
   - {fileID: 11400000, guid: c8840be096195a648b233a4c1c1af87e, type: 2}
+  - {fileID: 11400000, guid: 72a1dd7787be6f54290a16667aedacfa, type: 2}
+  - {fileID: 11400000, guid: 01fe4b18d14414c40bf1806b610f7dc2, type: 2}
+  - {fileID: 11400000, guid: aca351db04f0e9e4e80fd622a3dde898, type: 2}
+  - {fileID: 11400000, guid: 28d8097ad2f56234a855629c131ea54d, type: 2}
+  - {fileID: 11400000, guid: 125bd5d6eae364a4092b580ddb391906, type: 2}
   playerInput: {fileID: 4325033392429134892}
   isOptionUIOpen: 0
+  monster: {fileID: 0}
 --- !u!1 &2465469940651809319
 GameObject:
   m_ObjectHideFlags: 0

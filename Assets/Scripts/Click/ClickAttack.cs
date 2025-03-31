@@ -19,7 +19,7 @@ public class ClickAttack : MonoBehaviour
     private InputAction _clickAction;
     public bool isOptionUIOpen = false;
 
-    //UIStage uIStage;
+    UIStage uIStage;
     public Monster monster;
 
     private void Awake()
@@ -29,11 +29,21 @@ public class ClickAttack : MonoBehaviour
         _clickAction = playerInput.actions["ClickAtt"];
 
         //uIStage = FindObjectOfType<UIStage>();
+        
     }
 
     private void Start()
     {
-        if (isOptionUIOpen)
+        monster = FindObjectOfType<Monster>();
+        if (monster == null)
+        {
+            Debug.LogError("Monster 오브젝트를 찾을 수 없습니다!");
+            return;
+        }
+
+        Debug.Log($"[DEBUG] monster 값: {monster}");
+
+        if (!isOptionUIOpen)
         {
             _clickAction.performed += OnClickAttack;
             _clickAction.Enable();
@@ -44,7 +54,7 @@ public class ClickAttack : MonoBehaviour
 
     private void Update()
     {
-        if (!isOptionUIOpen) // 옵션 창이 열리면 입력 비활성화 및 공격 중지
+        if (isOptionUIOpen) // 옵션 창이 열리면 입력 비활성화 및 공격 중지
         {
             _clickAction.performed -= OnClickAttack;
             _clickAction.Disable();
@@ -71,6 +81,7 @@ public class ClickAttack : MonoBehaviour
             {
                 Debug.Log("UI 몬스터 클릭! 공격");
                 AttackMonster(click_Damage);
+                return;
             }
 
             Debug.Log("ui 클릭 공격 실행 안됨");
