@@ -10,6 +10,8 @@ public class Monster : MonoBehaviour
     public TextMeshProUGUI monsterName;     // 몬스터 이름
     public Slider healthSlider;             // 몬스터 체력
     public Image monsterImage;              // 몬스터 이미지
+    public Image pcImage;                   // PC 이미지
+
     public Animator animator;               // 몬스터 애니메이션
 
     private float curValue;
@@ -22,6 +24,8 @@ public class Monster : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         uiStage = GetComponentInParent<UIStage>();
+        pcImage.gameObject.SetActive(false);
+
     }
 
     public void Init(MonsterData monsterData)
@@ -39,7 +43,7 @@ public class Monster : MonoBehaviour
 
         monsterImage.raycastTarget = true;
         animator.SetBool("Die", false);
-
+        pcImage.gameObject.SetActive(false);
     }
 
     public float GetPercentage()
@@ -64,6 +68,8 @@ public class Monster : MonoBehaviour
         if (curValue == 0)
         {
             Die();
+            pcImage.gameObject.SetActive(true);
+
         }
     }
 
@@ -86,11 +92,11 @@ public class Monster : MonoBehaviour
     {
         monsterImage.raycastTarget = false;
         animator.SetBool("Die", true);
+
         //GameManager.Instance.AddGold(rewardGold);
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();
-
     }
 }
 
