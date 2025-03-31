@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     // 골드 UI 업데이트: 골드 텍스트를 최신 데이터로 갱신
     private void UpdateGoldUI()
     {
-        goldText.text = $"Gold: {playerData.gold:F1}";
+        //goldText.text = $"Gold: {playerData.gold:F1}";
+        goldText.text = $"{playerData.gold:N0}";
     }
 }

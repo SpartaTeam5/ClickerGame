@@ -93,7 +93,7 @@ public class Monster : MonoBehaviour
         monsterImage.raycastTarget = false;
         animator.SetBool("Die", true);
 
-        //GameManager.Instance.AddGold(rewardGold);
+        GameManager.Instance.AddGold(rewardGold);
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();
