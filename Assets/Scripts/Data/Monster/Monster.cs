@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
@@ -51,7 +52,8 @@ public class Monster : MonoBehaviour
         curValue -= damage;
         if (curValue < 0) curValue = 0;
 
-        healthSlider.value = GetPercentage();
+        StartCoroutine(SmoothHealthBar(GetPercentage()));
+        //healthSlider.value = GetPercentage();
         animator.SetTrigger("Attack");
 
         // 데미지 텍스트 표시
@@ -63,6 +65,21 @@ public class Monster : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private IEnumerator SmoothHealthBar(float targetValue)
+    {
+        float starValue = healthSlider.value;   // 현재 체력 비율
+        float elapsedTime = 0f;
+        float duration = 0.5f;  // 감소 속도 (0.5초)
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            healthSlider.value = Mathf.Lerp(starValue, targetValue, elapsedTime / duration);
+            yield return null;  // 한 프레임 대기
+        }
+        healthSlider.value = targetValue;
     }
 
     private void Die()
