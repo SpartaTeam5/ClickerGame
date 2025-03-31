@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public WeaponDataTable weaponTable;
     public WeaponEnhanceUI weaponEnhance;
     public Player player;
+    public PlayerData playerData;
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -110,18 +111,18 @@ public class Weapon : MonoBehaviour
         WeaponData weaponData = weapon.GetComponent<WeaponData>();
         weaponTable = weaponData.weapondata;
 
-        if (player.curgold >= weaponTable.costEnhance && weaponTable.weaponLevel < weaponTable.weaponaMaxLevel)
+        if (player.playerdata.gold >= weaponTable.costEnhance && weaponTable.weaponLevel < weaponTable.weaponaMaxLevel)
         {
             weaponTable.weaponLevel++;
             weaponTable.baseAttack += weaponTable.atkIncrease;
             weaponTable.critChance += weaponTable.critChanceIncrease;
-            player.curgold -= weaponTable.costEnhance;
+            player.playerdata.gold -= weaponTable.costEnhance;
             weaponTable.costEnhance *= 2f;
 
             Debug.Log($"[강화됨] {weaponTable.weaponName} → Lv.{weaponTable.weaponLevel}, 공격력: {weaponTable.baseAttack}, 치명타: {weaponTable.critChance}%");
         }
 
-        if (player.curgold < weaponTable.costEnhance)
+        if (player.playerdata.gold < weaponTable.costEnhance)
             Debug.Log("골드 부족");
         if(weaponTable.weaponLevel == weaponTable.weaponaMaxLevel)
         {
