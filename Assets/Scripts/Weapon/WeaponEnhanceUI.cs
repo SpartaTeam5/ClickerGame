@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeaponEnhanceUI : MonoBehaviour
 {
     public WeaponDataTable weaponTable;
+    public Player player;
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -26,6 +27,10 @@ public class WeaponEnhanceUI : MonoBehaviour
     public TextMeshProUGUI weapon2Chancetext;
     public TextMeshProUGUI weapon3Chancetext;
     public TextMeshProUGUI weapon4Chancetext;
+    public TextMeshProUGUI weapon1Enhancetext;
+    public TextMeshProUGUI weapon2Enhancetext;
+    public TextMeshProUGUI weapon3Enhanceext;
+    public TextMeshProUGUI weapon4Enhancetext;
 
    
     public void UpdateEnhanceUI()
@@ -51,6 +56,27 @@ public class WeaponEnhanceUI : MonoBehaviour
         weapon3Chancetext.text = "치명타 확률 " + w3.critChance.ToString();
         weapon4Chancetext.text = "치명타 확률 " + w4.critChance.ToString();
 
-       
+        weapon1Enhancetext.text = w1.costEnhance.ToString();
+        if (player.curgold < w1.costEnhance) // 골드 부족하면 빨간색으로 표시
+        {
+            weapon1Enhancetext.color = Color.red;
+        }
+        weapon2Enhancetext.text = w2.costEnhance.ToString();
+        if (player.curgold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
+        {
+            weapon1Enhancetext.color = Color.red;
+        }
+        weapon3Enhanceext.text = w3.costEnhance.ToString();
+        if (player.curgold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
+        {
+            weapon1Enhancetext.color = Color.red;
+        }
+        weapon4Enhancetext.text = w4.costEnhance.ToString();
+        if (player.curgold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
+        {
+            weapon1Enhancetext.color = Color.red;
+        }
+
+
     }
 }

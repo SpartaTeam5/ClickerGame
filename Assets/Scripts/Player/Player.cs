@@ -47,16 +47,16 @@ public class Player : MonoBehaviour
         critLevelText.text = "Lv" + crit.level.ToString();
         critDamageText.text = crit.critDamage.ToString() + "%";
         critCostText.text = crit.cost_c.ToString();
-        if(curgold < statTable.crit[critLevel - 1].cost_c)
+        if(curgold < statTable.crit[critLevel - 1].cost_c) // 골드 부족하면 빨간색으로 표시
         {
-            critCostText.color = Color.red;
+            critCostText.color = Color.red; 
         }
 
         AutoAttackData auto = statTable.auto[autoLevel - 1];
         autoLevelText.text = "Lv" + auto.level.ToString();
         autoCycleText.text = auto.autoAttackCycle.ToString();
         autoCostText.text = auto.cost_a.ToString();
-        if (curgold < statTable.auto[autoLevel - 1].cost_a)
+        if (curgold < statTable.auto[autoLevel - 1].cost_a) // 골드 부족하면 빨간색으로 표시
         {
             autoCostText.color = Color.red;
         }
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         goldLevelText.text = "Lv" + gold.level.ToString();
         goldAmountText.text = gold.getGoldAmount.ToString() + "%";
         goldCostText.text = gold.cost_g.ToString();
-        if (curgold < statTable.gold[goldLevel - 1].cost_g)
+        if (curgold < statTable.gold[goldLevel - 1].cost_g) // 골드 부족하면 빨간색으로 표시
         {
             goldCostText.color = Color.red;
         }
