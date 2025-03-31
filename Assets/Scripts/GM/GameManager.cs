@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData = new PlayerData();// 플레이어 데이터를 인스펙터에서 확인 가능하도록 public으로 선언
 
     [Header("UI Elements")]
-    public Text goldText;//골드 표시
+    public TextMeshProUGUI goldText;//골드 표시
     public GameObject warningMessage;// 골드 부족 시 경고
     public PlayerStatTable playerStatTable;
 
