@@ -2223,6 +2223,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4066146107587522768, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: closeBtn
       value: 

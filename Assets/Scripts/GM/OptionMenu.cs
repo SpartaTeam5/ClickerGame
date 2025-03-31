@@ -30,6 +30,7 @@ public class OptionMenu : MonoBehaviour
     //볼륨 옵션 메뉴 열기
     public void OpenOption()
     {
+        Debug.Log("오늘밤 주인공은 나야 나! 나야 나!");
         optionsMenu.SetActive(true);
     }
 

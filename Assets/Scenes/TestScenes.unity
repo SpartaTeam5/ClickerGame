@@ -892,7 +892,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1222779281}
         m_TargetAssemblyTypeName: OptionMenu, Assembly-CSharp
         m_MethodName: OpenOption
         m_Mode: 1
@@ -1232,6 +1232,10 @@ PrefabInstance:
     - target: {fileID: 4842496708631399753, guid: 0c194e99a2b71f846ae2cbf292429105, type: 3}
       propertyPath: m_Name
       value: Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842496708631399753, guid: 0c194e99a2b71f846ae2cbf292429105, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1800,6 +1804,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1107889261}
     m_Modifications:
+    - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4066146107587522768, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: closeBtn
       value: 
@@ -1870,6 +1878,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7953302202659577273, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
   m_PrefabInstance: {fileID: 1222779279}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1222779281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4066146107587522768, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
+  m_PrefabInstance: {fileID: 1222779279}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ada57449809e0a44af58a9de4f950b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1283648403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,7 +2737,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1222779281}
         m_TargetAssemblyTypeName: OptionMenu, Assembly-CSharp
         m_MethodName: CloseOption
         m_Mode: 1
