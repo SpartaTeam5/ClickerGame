@@ -16,25 +16,26 @@ public class Particle : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ClickAttack clickAttack = gameObject.GetComponent<ClickAttack>();
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        ClickAttack clickAttack = gameObject.GetComponent<ClickAttack>();
 
-            if (clickAttack != null)
-            {
-                bool isCritical = clickAttack.IsCriticalHit();
-                PlayParticleSystem(isCritical);
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            StopParticleSystem();
-        }
-    }
+    //        if (clickAttack != null)
+    //        {
+    //            bool isCritical = clickAttack.IsCriticalHit();
+    //            PlayParticleSystem(isCritical);
+    //        }
+    //    }
+    //    if (Input.GetMouseButtonUp(0))
+    //    {
+    //        StopParticleSystem();
+    //    }
+    //}
         public void PlayParticleSystem(bool isCritical)
         {
+
             if (normalParticle != null) normalParticle.Stop();
             if (criticalEffect != null) criticalEffect.Stop();
 
@@ -46,11 +47,11 @@ public class Particle : MonoBehaviour
                 effectPlay.Play();
             }
         }
-        void StopParticleSystem()
-        {
-        if (normalParticle != null) normalParticle.Stop();
-        if (criticalEffect != null) criticalEffect.Stop();
-        }
+        //void StopParticleSystem()
+        //{
+        //if (normalParticle != null) normalParticle.Stop();
+        //if (criticalEffect != null) criticalEffect.Stop();
+        //}
 
         void SpawnParticleMousePosition(ParticleSystem particle)
         {

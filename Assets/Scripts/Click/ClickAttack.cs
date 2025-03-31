@@ -17,11 +17,12 @@ public class ClickAttack : MonoBehaviour
     [SerializeField] MonsterData[] pokemonMonster;
 
     public PlayerInput playerInput;
-    private InputAction _clickAction;
     public bool isOptionUIOpen = false;
-
-    private Particle particleEffect;
     public Monster monster;
+
+    private InputAction _clickAction;
+    private Particle particleEffect;
+    private bool lastAttCriticalCheck;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class ClickAttack : MonoBehaviour
             _clickAction.performed += OnClickAttack;
             _clickAction.Enable();
 
-            StartCoroutine(AutoAttack()); // 자동 공격 시작
+            //StartCoroutine(AutoAttack()); // 자동 공격 시작
         }
     }
 
@@ -57,7 +58,10 @@ public class ClickAttack : MonoBehaviour
             StopCoroutine(AutoAttack());
         }
     }
-
+     public bool IsCriticalHit()
+    {
+        return Random.value < criticalPercent;
+    }
     public void OnClickAttack(InputAction.CallbackContext context)
     {
         if (isOptionUIOpen)
@@ -94,10 +98,9 @@ public class ClickAttack : MonoBehaviour
 
     public void AttackMonster(float damage)
     {
-        bool isCritical = IsCriticalHit();
-
-        float finalDamage = isCritical ? click_Damage * criticalMultiplier : click_Damage;
-        Debug.Log(isCritical ? "치명타" : "일반 공격");
+        lastAttCriticalCheck = Random.value < criticalPercent;
+        float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
+        Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
 
         Monster monster = FindObjectOfType<Monster>();
         if (monster != null)
@@ -105,29 +108,12 @@ public class ClickAttack : MonoBehaviour
             monster.TakeDamage(finalDamage);
         }
 
-        if(particleEffect != null)
+        Particle particleEffect = FindObjectOfType<Particle>();
+
+        if (particleEffect != null)
         {
-            particleEffect.PlayParticleSystem(isCritical);
+            particleEffect.PlayParticleSystem(lastAttCriticalCheck);
         }
-
-        //if (pokemonMonster != null)
-        //{
-        //    monster.TakeDamage(damage);
-        //    Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {monster.GetPercentage() * 100}%");
-        //}
-        //float finalDamage = damage;
-
-        //if (Random.value < criticalPercent)
-        //{
-        //    finalDamage *= criticalMultiplier;
-        //    Debug.Log($"치명타 {finalDamage} 데미지");
-        //}
-        //else
-        //{
-        //    Debug.Log($"일반 공격: {finalDamage} 데미지");
-        //}
-
-        //monster.TakeDamage(finalDamage);
     }
 
     private GameObject GetClickMonsterUI(Vector2 screenPosition)
@@ -164,9 +150,6 @@ public class ClickAttack : MonoBehaviour
         }
         return null;
     }
-    public bool IsCriticalHit()
-    {
-        return Random.value < criticalPercent;
-    }
+   
 
 }
