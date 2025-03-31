@@ -11,22 +11,25 @@ public class WeaponDataTable : ScriptableObject
     public int baseAttack;  //기본 공격력
     public int critChance;  //치명타 확률
     public int weaponLevel;  //무기 레벨
+    public int weaponaMaxLevel=25; //무기 최대 레벨
 
     public int atkIncrease; //강화 시 공격력 증가량
     public int critChanceIncrease; //강화 시 치명타 확률 증가량
-    public int costAtk; //공격력 강화 비용
-    public int costCritChance;//치명타 확률 강화 비용
+    public float costEnhance; // 강화 비용
+    
+    public bool isInitialized = false; // 초기화 여부 체크용
 
-    public void WeaponData(string weaponname, int baseattack, int critchance, int weaponlevel, int atkincrease, int critchanceincrease, int costatk, int costcritchance)
+    public void WeaponData(string weaponname, int baseattack, int critchance, int weaponlevel, int maxlevel, int atkincrease, int critchanceincrease, float costenhance)
     {
         weaponName = weaponname;
         baseAttack = baseattack;
         critChance = critchance;
         weaponLevel = weaponlevel;
+        weaponaMaxLevel = maxlevel;
         atkIncrease = atkincrease;
         critChanceIncrease = critchanceincrease;
-        costAtk = costatk;
-        costCritChance = costcritchance;
+        costEnhance = costenhance;
+        
     }
     
 #if UNITY_EDITOR
@@ -45,38 +48,42 @@ public class WeaponDataTable : ScriptableObject
         monsterBall.weaponName = "몬스터볼";
         monsterBall.baseAttack = 5;
         monsterBall.weaponLevel = 1;
-        monsterBall.critChance = 15;
+        monsterBall.weaponaMaxLevel = 25;
+        monsterBall.critChance = 10;
         monsterBall.atkIncrease = 1;
-        monsterBall.critChanceIncrease = 5;
-        monsterBall.costAtk = 15;
-        monsterBall.costCritChance = 15;
+        monsterBall.critChanceIncrease = 3;
+        monsterBall.costEnhance = 10f;
+        
 
         superBall.weaponName = "슈퍼볼";
         superBall.baseAttack = 10;
         superBall.weaponLevel = 1;
-        superBall.critChance = 20;
+        superBall.weaponaMaxLevel = 25;
+        superBall.critChance = 15;
         superBall.atkIncrease = 2;
-        superBall.critChanceIncrease = 5;
-        superBall.costAtk = 15;
-        superBall.costCritChance = 15;
+        superBall.critChanceIncrease = 3;
+        superBall.costEnhance = 15f;
+        
 
         ultraBall.weaponName = "울트라볼";
         ultraBall.baseAttack = 15;
         ultraBall.weaponLevel = 1;
-        ultraBall.critChance = 25;
+        ultraBall.weaponaMaxLevel = 25;
+        ultraBall.critChance = 23;
         ultraBall.atkIncrease = 5;
-        ultraBall.critChanceIncrease = 5;
-        ultraBall.costAtk = 15;
-        ultraBall.costCritChance = 15;
+        ultraBall.critChanceIncrease = 3;
+        ultraBall.costEnhance = 20f;
+        
 
         masterBall.weaponName = "마스터볼";
         masterBall.baseAttack = 20;
         masterBall.weaponLevel = 1;
-        masterBall.critChance = 30;
+        masterBall.weaponaMaxLevel = 25;
+        masterBall.critChance = 28;
         masterBall.atkIncrease = 5;
-        masterBall.critChanceIncrease = 5;
-        masterBall.costAtk = 15;
-        masterBall.costCritChance = 15;
+        masterBall.critChanceIncrease = 3;
+        masterBall.costEnhance = 30f;
+        
 
         // 저장
         EditorUtility.SetDirty(monsterBall);
