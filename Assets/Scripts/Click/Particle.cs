@@ -17,19 +17,44 @@ public class Particle : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        PlayParticleSystem();
-    //    }
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlayParticleSystem();
+        }
 
-    //    if (Input.GetMouseButtonUp(0))
-    //    {
-    //        StopParticleSystem();
-    //    }
-    //}
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopParticleSystem();
+        }
+    }
 
+    void PlayParticleSystem()
+    {
+        if(particle != null)
+        {
+            SpawnParticleMousePosition();
+            particle.Play();
+        }
+    }
+    void StopParticleSystem()
+    {
+        if(particle != null)
+        {
+            particle.Stop();
+        }
+    }
 
+    void SpawnParticleMousePosition()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+
+        mousePosition.z = Camera.main.nearClipPlane + 1f;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        particle.transform.position = worldPosition;
+
+        particle.Play();
+    }
 }
