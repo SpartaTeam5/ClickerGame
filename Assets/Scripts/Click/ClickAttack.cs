@@ -9,8 +9,8 @@ using UnityEngine.UIElements;
 
 public class ClickAttack : MonoBehaviour
 {
-    [SerializeField] float click_Damage = 1.0f;
-    [SerializeField] float autoAttackInterval = 1.0f;
+    [SerializeField] float click_Damage;
+    [SerializeField] float autoAttackInterval;
     [SerializeField] bool isAutoAttackEnabled = true;
     [SerializeField] public float criticalPercent; 
     [SerializeField] float criticalMultiplier;
@@ -20,7 +20,7 @@ public class ClickAttack : MonoBehaviour
     private InputAction _clickAction;
     public bool isOptionUIOpen = false;
 
-    public Particle particleEffect;
+    private Particle particleEffect;
     public Monster monster;
 
     private void Awake()
