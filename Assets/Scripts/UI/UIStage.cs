@@ -36,6 +36,14 @@ public class UIStage : MonoBehaviour
         {
             monster.Init(monsterData);      // 몬스터 초기화
 
+            // 새 몬스터로 ClickAttack의 참조 갱신 및 자동 공격 재시작
+            ClickAttack clickAttack = FindObjectOfType<ClickAttack>();
+            if (clickAttack != null)
+            {
+                clickAttack.monster = this.monster;
+                clickAttack.RestartAutoAttack();
+            }
+
             backGround.sprite = stageData.backGround;       // 배경 이미지 변경
             KillMonster();      // 현재 처치한 몬스터 수 UI 갱신
             stageName.text = $"{stageData.stageName} - {waveIndex + 1}";    // 스테이지 이름 및 웨이브 표시

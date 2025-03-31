@@ -115,6 +115,17 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
+    public void RestartAutoAttack()
+    {
+        // 모든 코루틴 정지 후 자동 공격 코루틴 재시작
+        StopAllCoroutines();
+        // 옵션 UI가 열려있지 않은 경우만 자동 공격 실행
+        if (!isOptionUIOpen)
+        {
+            StartCoroutine(AutoAttack());
+        }
+    }
+
     private GameObject GetClickMonsterUI(Vector2 screenPosition)
     {
         EventSystem eventSystem = EventSystem.current ?? FindObjectOfType<EventSystem>();
