@@ -19,7 +19,8 @@ public class ClickAttack : MonoBehaviour
     private InputAction _clickAction;
     public bool isOptionUIOpen = false;
 
-    UIStage uIStage;
+    //UIStage uIStage;
+    public Monster monster;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class ClickAttack : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         _clickAction = playerInput.actions["ClickAtt"];
 
-        uIStage = FindObjectOfType<UIStage>();
+        //uIStage = FindObjectOfType<UIStage>();
     }
 
     private void OnEnable()
@@ -101,10 +102,11 @@ public class ClickAttack : MonoBehaviour
     public void AttackMonster(float damage)
     {
         if (pokemonMonster != null)
-        //if(uIStage != null)
         {
-            uIStage.TakeDamage(damage);
-            Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {uIStage.GetPercentage() * 100}%");
+            //uIStage.TakeDamage(damage);
+            //Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {uIStage.GetPercentage() * 100}%");
+            monster.TakeDamage(damage);
+            Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {monster.GetPercentage() * 100}%");
         }
     }
 
