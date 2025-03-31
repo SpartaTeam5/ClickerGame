@@ -14,7 +14,8 @@ public class StatManager : MonoBehaviour
     // 최종 공격력
     public float GetFinalDamage()
     {
-        return GameManager.Instance.playerData.clickPower;
+        //return GameManager.Instance.playerData.clickPower;
+        return GameManager.Instance.weaponDataTable.baseAttack;
     }
 
     // 최종 치명타 확률

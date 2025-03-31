@@ -6,12 +6,20 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;// 싱글턴 인스턴스 접근
-    public PlayerData playerData = new PlayerData(1, 100000, 3, 0f, 2f, 1f);// 플레이어 데이터를 인스펙터에서 확인 가능하도록 public으로 선언
+    public PlayerData playerData = new PlayerData();// 플레이어 데이터를 인스펙터에서 확인 가능하도록 public으로 선언
 
     [Header("UI Elements")]
     public TextMeshProUGUI goldText;//골드 표시
     public GameObject warningMessage;// 골드 부족 시 경고
     public PlayerStatTable playerStatTable;
+
+    [Header("Weapon")]
+    public WeaponDataTable weaponDataTable; // 데이터 정보 가져오기
+    public Weapon weapon;
+    public GameObject weapon1;
+    public GameObject weapon2;
+    public GameObject weapon3;
+    public GameObject weapon4;
 
     private void Awake()
     {
@@ -30,8 +38,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        GameObject[] weapons = { weapon1, weapon2, weapon3, weapon4 };
+        foreach (GameObject weapon in weapons)
+        {
+            WeaponData weaponData = weapon.GetComponent<WeaponData>();
+            if (weaponData != null && weaponData.isEquipped)
+            {
+                weaponDataTable = weaponData.weapondata;
+                break;
+            }
+        }
+
         // 시작 시 골드 UI 업데이트
         UpdateGoldUI();
+
     }
 
     // 골드 추가 후 UI 업데이트
@@ -71,6 +91,8 @@ public class GameManager : MonoBehaviour
     // 골드 UI 업데이트: 골드 텍스트를 최신 데이터로 갱신
     public void UpdateGoldUI()
     {
-        goldText.text = $"Gold: {playerData.gold:F1}";
+        //goldText.text = $"Gold: {playerData.gold:F1}";
+        goldText.text = $"{playerData.gold:N0}";
     }
+
 }
