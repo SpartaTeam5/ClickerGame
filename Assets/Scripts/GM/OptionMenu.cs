@@ -13,6 +13,7 @@ public class OptionMenu : MonoBehaviour
     private void Start()
     {
         // 슬라이더 값 변경 시 AudioManager의 볼륨 조절 메소드 호출
+        optionsMenu.SetActive(false);
         bgmSlider.onValueChanged.AddListener(AudioManager.Instance.SetBGMVolume);
         sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
     }
