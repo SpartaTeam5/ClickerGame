@@ -63,6 +63,7 @@ public class Weapon : MonoBehaviour
             if (weaponData.isEquipped)
             {
                 weaponTable = weaponData.weapondata;
+                GameManager.Instance.weaponDataTable = weaponTable;
                 weaponText.text = weaponTable.weaponName;
                 weaponLevelText.text = "Lv " + weaponTable.weaponLevel.ToString();
                 weaponAtkText.text = "°ø°Ý·Â " + weaponTable.baseAttack.ToString();

@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using TMPro;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +12,7 @@ public class Monster : MonoBehaviour
 
     public Animator animator;               // 몬스터 애니메이션
 
+    [SerializeField] private float offsetindex;
     private float curValue;
     private float maxValue;
     private float rewardGold; // 몬스터 처치 시 주는 골드
@@ -62,7 +61,11 @@ public class Monster : MonoBehaviour
 
         // 데미지 텍스트 표시
         DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        damageText.transform.position = Input.mousePosition;
+        //damageText.transform.position = Input.mousePosition;
+        Vector2 randomOffset = Random.insideUnitSphere * offsetindex;   // 범위 지정 (기본값 100f)
+        Vector2 randomPosition = monsterImage.transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        damageText.transform.position = randomPosition;
+
         damageText.SetText(damage);
 
         if (curValue == 0)

@@ -15,16 +15,6 @@ public class PlayerData
     public float criticalMultiplier = 2.0f;// 치명타 시 데미지 배율
     public float goldBonus = 1.0f; // 골드 획득 시 적용되는 보너스 (업그레이드 등으로 증가)
 
-    public PlayerData (int stage, float gold, int clickPower, float criticalChance, float criticalMultiplier, float goldBonus)
-    {
-        this.stage = stage;
-        this.gold = gold;
-        this.clickPower = clickPower;
-        this.criticalChance = criticalChance;
-        this.criticalMultiplier = criticalMultiplier;
-        this.goldBonus = goldBonus;
-    }
-
 
     // 골드추가(보너스 적용)
     public void AddGold(float amount)

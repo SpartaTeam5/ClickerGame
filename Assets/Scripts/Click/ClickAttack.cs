@@ -9,8 +9,11 @@ using UnityEngine.UIElements;
 
 public class ClickAttack : MonoBehaviour
 {
-    [SerializeField] float click_Damage = 1.0f;
+    //[SerializeField] float click_Damage = 1.0f;
+    //[SerializeField] float autoAttackInterval = 1.0f;
+    [SerializeField] float click_Damage;
     [SerializeField] float autoAttackInterval = 1.0f;
+
     [SerializeField] bool isAutoAttackEnabled = true;
     [SerializeField] MonsterData[] pokemonMonster;
 
@@ -20,7 +23,6 @@ public class ClickAttack : MonoBehaviour
     public bool isOptionUIOpen = false;
 
     public Monster monster;
-
     private void Awake()
     {
         mainCamera = Camera.main; // 현재씬의 카메라 가져오기
@@ -31,6 +33,8 @@ public class ClickAttack : MonoBehaviour
 
     private void Start()
     {
+        click_Damage = StatManager.Instance.GetFinalDamage();
+
         monster = FindObjectOfType<Monster>();
         if (monster == null)
         {
@@ -63,6 +67,8 @@ public class ClickAttack : MonoBehaviour
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
+        click_Damage = StatManager.Instance.GetFinalDamage();
+
         if (isOptionUIOpen)
         {
             Debug.Log("옵션ui가 열려있음 공격불가");
@@ -117,7 +123,7 @@ public class ClickAttack : MonoBehaviour
 
         PointerEventData eventData = new PointerEventData(eventSystem)
         {
-        // PointerEventData 인스턴스를 생성하면서 화면 위치 설정
+            // PointerEventData 인스턴스를 생성하면서 화면 위치 설정
             position = screenPosition // 클릭된 화면 위치를 설정
         };
 
