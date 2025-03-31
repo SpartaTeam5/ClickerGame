@@ -3923,6 +3923,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statTable: {fileID: 11400000, guid: 14b980fd4e2fe214f90c2695e1ec63e0, type: 2}
+  playerData:
+    stage: 1
+    gold: 100000
+    clickPower: 1
+    criticalChance: 0.1
+    criticalMultiplier: 2
+    goldBonus: 1
   critLevel: 1
   autoLevel: 1
   goldLevel: 1
@@ -3941,7 +3948,6 @@ MonoBehaviour:
   goldLevelText: {fileID: 741899270314363490}
   goldAmountText: {fileID: 3133840759624196630}
   goldCostText: {fileID: 263963100600764201}
-  curgold: 20000
 --- !u!224 &2524521351857476613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8200,6 +8206,13 @@ MonoBehaviour:
   weaponTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
   weaponEnhance: {fileID: 5636986156243639339}
   player: {fileID: 2500383356470340713}
+  playerData:
+    stage: 1
+    gold: 0
+    clickPower: 1
+    criticalChance: 0.1
+    criticalMultiplier: 2
+    goldBonus: 1
   weapon1: {fileID: 6046114011064824116}
   weapon2: {fileID: 7440106916964574312}
   weapon3: {fileID: 792204929147548117}
@@ -8647,6 +8660,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
   player: {fileID: 2500383356470340713}
+  playerData:
+    stage: 1
+    gold: 0
+    clickPower: 1
+    criticalChance: 0.1
+    criticalMultiplier: 2
+    goldBonus: 1
   weapon1: {fileID: 7094688170680003770}
   weapon2: {fileID: 3976904680836463878}
   weapon3: {fileID: 4216600477766293220}

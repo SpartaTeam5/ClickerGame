@@ -9,6 +9,7 @@ public class WeaponEnhanceUI : MonoBehaviour
 {
     public WeaponDataTable weaponTable;
     public Player player;
+    public PlayerData playerData;
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -74,22 +75,22 @@ public class WeaponEnhanceUI : MonoBehaviour
         weapon4Chancetext.text = "치명타 확률 " + w4.critChance.ToString();
 
         weapon1Enhancetext.text = w1.costEnhance.ToString();
-        if (player.curgold < w1.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (playerData.gold < w1.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon1Enhancetext.color = Color.red;
         }
         weapon2Enhancetext.text = w2.costEnhance.ToString();
-        if (player.curgold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (playerData.gold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon2Enhancetext.color = Color.red;
         }
         weapon3Enhancetext.text = w3.costEnhance.ToString();
-        if (player.curgold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (playerData.gold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon3Enhancetext.color = Color.red;
         }
         weapon4Enhancetext.text = w4.costEnhance.ToString();
-        if (player.curgold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (playerData.gold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon4Enhancetext.color = Color.red;
         }
@@ -99,7 +100,7 @@ public class WeaponEnhanceUI : MonoBehaviour
 
     public void OnClickBuy1()
     {
-        if(player.curgold >= 1000)
+        if(playerData.gold >= 1000)
         {
             buy1.SetActive(false);
         }
@@ -107,7 +108,7 @@ public class WeaponEnhanceUI : MonoBehaviour
 
     public void OnClickBuy2()
     {
-        if (player.curgold >= 2000)
+        if (playerData.gold >= 2000)
         {
             buy2.SetActive(false);
         }
@@ -115,7 +116,7 @@ public class WeaponEnhanceUI : MonoBehaviour
 
     public void OnClickBuy3()
     {
-        if (player.curgold >= 3000)
+        if (playerData.gold >= 3000)
         {
             buy3.SetActive(false);
         }
