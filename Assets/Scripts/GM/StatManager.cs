@@ -14,7 +14,6 @@ public class StatManager : MonoBehaviour
     // 최종 공격력
     public float GetFinalDamage()
     {
-        //return GameManager.Instance.playerData.clickPower;
         return GameManager.Instance.weaponDataTable.baseAttack;
     }
 
@@ -30,4 +29,13 @@ public class StatManager : MonoBehaviour
     {
         return GameManager.Instance.playerData.criticalMultiplier;
     }
+
+    // 치명타 데미지 주기
+    public float GetCritDamage()
+    {
+        return GameManager.Instance.playerStatTable.crit[GameManager.Instance.player.critLevel - 1].critDamage;
+    }
+
+    // 자동 공격 주기
+    //public float g
 }

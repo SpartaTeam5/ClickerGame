@@ -72,7 +72,6 @@ public class Monster : MonoBehaviour
         {
             Die();
             pcImage.gameObject.SetActive(true);
-
         }
     }
 
