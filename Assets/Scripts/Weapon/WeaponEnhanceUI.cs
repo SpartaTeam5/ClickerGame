@@ -48,6 +48,7 @@ public class WeaponEnhanceUI : MonoBehaviour
         buy1.SetActive(true);
         buy2.SetActive(true);
         buy3.SetActive(true);
+        Debug.Log($"{GameManager.Instance.playerData.gold}");
     }
 
     public void UpdateEnhanceUI()
