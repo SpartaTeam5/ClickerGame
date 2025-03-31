@@ -6,7 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;// 싱글턴 인스턴스 접근
-    public PlayerData playerData = new PlayerData();// 플레이어 데이터를 인스펙터에서 확인 가능하도록 public으로 선언
+    public PlayerData playerData = new PlayerData(1, 100000, 3, 0f, 2f, 1f);// 플레이어 데이터를 인스펙터에서 확인 가능하도록 public으로 선언
 
     [Header("UI Elements")]
     public TextMeshProUGUI goldText;//골드 표시

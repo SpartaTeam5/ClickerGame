@@ -42,7 +42,6 @@ public class Weapon : MonoBehaviour
         weapon1.GetComponent<WeaponData>().isEquipped = true;
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-
     }
 
     public void UpdateUI()
