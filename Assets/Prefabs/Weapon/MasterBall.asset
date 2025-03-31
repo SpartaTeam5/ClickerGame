@@ -20,3 +20,4 @@ MonoBehaviour:
   critChanceIncrease: 5
   costAtk: 15
   costCritChance: 15
+  isInitialized: 1

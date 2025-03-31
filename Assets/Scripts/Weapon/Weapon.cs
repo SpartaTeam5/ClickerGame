@@ -26,16 +26,17 @@ public class Weapon : MonoBehaviour
     public Button enhanceBtn3;
     public Button enhanceBtn4;
     public Button backBtn;
-    
+
 
     public TextMeshProUGUI weaponText;
     public TextMeshProUGUI weaponLevelText;
     public TextMeshProUGUI weaponAtkText;
     public TextMeshProUGUI weaponCritText;
 
+   
     public void Start()
     {
-        
+        weaponTable.InitializeWeaponData();
         weapon1.GetComponent<WeaponData>().isEquipped = true;
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
@@ -66,7 +67,7 @@ public class Weapon : MonoBehaviour
                 weaponCritText.text = "치명타 확률 " + weaponTable.critChance.ToString();
             }
 
-            
+
         }
     }
 
@@ -104,7 +105,7 @@ public class Weapon : MonoBehaviour
 
     public void onClickEnhance(GameObject weapon) //강화 버튼 누르면 레벨 증가
     {
-        
+
         WeaponData weaponData = weapon.GetComponent<WeaponData>();
         weaponTable = weaponData.weapondata;
 
@@ -116,11 +117,11 @@ public class Weapon : MonoBehaviour
 
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-        
-                
+
+
     }
 
-   
+
 
     public void OnClickBack()
     {
@@ -129,3 +130,5 @@ public class Weapon : MonoBehaviour
 
 
 }
+
+

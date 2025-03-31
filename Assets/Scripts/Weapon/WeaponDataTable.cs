@@ -17,6 +17,8 @@ public class WeaponDataTable : ScriptableObject
     public int costAtk; //공격력 강화 비용
     public int costCritChance;//치명타 확률 강화 비용
 
+    public bool isInitialized = false; // 초기화 여부 체크용
+
     public void WeaponData(string weaponname, int baseattack, int critchance, int weaponlevel, int atkincrease, int critchanceincrease, int costatk, int costcritchance)
     {
         weaponName = weaponname;
