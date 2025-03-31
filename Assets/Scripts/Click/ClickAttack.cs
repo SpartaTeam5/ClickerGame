@@ -19,7 +19,6 @@ public class ClickAttack : MonoBehaviour
     private InputAction _clickAction;
     public bool isOptionUIOpen = false;
 
-    UIStage uIStage;
     public Monster monster;
 
     private void Awake()
@@ -27,8 +26,6 @@ public class ClickAttack : MonoBehaviour
         mainCamera = Camera.main; // 현재씬의 카메라 가져오기
         playerInput = GetComponent<PlayerInput>();
         _clickAction = playerInput.actions["ClickAtt"];
-
-        //uIStage = FindObjectOfType<UIStage>();
         
     }
 
@@ -87,22 +84,6 @@ public class ClickAttack : MonoBehaviour
             Debug.Log("ui 클릭 공격 실행 안됨");
             return;
         }
-
-        //Vector2 mousePosition = Mouse.current.position.ReadValue(); // 클릭위치값 가져오기
-        //Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition); // 화면 좌표를 월드좌표로 변환
-        //RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-        // 2D에서 더 정확한 Raycast 작동 (Physics2D.Raycast는 방향이 필요 없다)
-
-        //if (hit.collider != null )
-        //{
-        //    MonsterData monster = hit.collider.GetComponent<MonsterData>();
-
-        //    if (monster != null)
-        //    {
-        //        AttackMonster(click_Damage);
-        //        return;
-        //    }
-        //}
         Debug.Log("몬스터를 클릭하지 않음");
 
     }
@@ -123,8 +104,6 @@ public class ClickAttack : MonoBehaviour
     {
         if (pokemonMonster != null)
         {
-            //uIStage.TakeDamage(damage);
-            //Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {uIStage.GetPercentage() * 100}%");
             monster.TakeDamage(damage);
             Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {monster.GetPercentage() * 100}%");
         }
