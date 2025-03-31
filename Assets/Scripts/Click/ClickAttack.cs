@@ -28,7 +28,7 @@ public class ClickAttack : MonoBehaviour
         mainCamera = Camera.main; // 현재씬의 카메라 가져오기
         playerInput = GetComponent<PlayerInput>();
         _clickAction = playerInput.actions["ClickAtt"];
-        
+
     }
 
     private void Start()

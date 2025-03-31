@@ -37,5 +37,13 @@ public class StatManager : MonoBehaviour
     }
 
     // 자동 공격 주기
-    //public float g
+    public float GetAutoAttackCycle()
+    {
+        return GameManager.Instance.playerStatTable.auto[GameManager.Instance.player.autoLevel -1].autoAttackCycle;
+    }
+    // 골드 획득량 가져오기
+    public float GetGoldAmount()
+    {
+        return GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel - 1].getGoldAmount;
+    }
 }
