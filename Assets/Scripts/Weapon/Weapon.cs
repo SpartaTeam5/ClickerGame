@@ -116,7 +116,7 @@ public class Weapon : MonoBehaviour
             weaponTable.baseAttack += weaponTable.atkIncrease;
             weaponTable.critChance += weaponTable.critChanceIncrease;
             player.curgold -= weaponTable.costEnhance;
-            weaponTable.costEnhance += 10;
+            weaponTable.costEnhance *= 2f;
 
             Debug.Log($"[강화됨] {weaponTable.weaponName} → Lv.{weaponTable.weaponLevel}, 공격력: {weaponTable.baseAttack}, 치명타: {weaponTable.critChance}%");
         }

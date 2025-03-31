@@ -19,5 +19,5 @@ MonoBehaviour:
   weaponaMaxLevel: 25
   atkIncrease: 1
   critChanceIncrease: 3
-  costEnhance: 15
+  costEnhance: 10
   isInitialized: 1

@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI goldAmountText;
     public TextMeshProUGUI goldCostText;
 
-    public int curgold;
+    public float curgold;
 
     public void Start()
     {

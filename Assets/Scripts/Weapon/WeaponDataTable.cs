@@ -15,11 +15,11 @@ public class WeaponDataTable : ScriptableObject
 
     public int atkIncrease; //강화 시 공격력 증가량
     public int critChanceIncrease; //강화 시 치명타 확률 증가량
-    public int costEnhance; // 강화 비용
+    public float costEnhance; // 강화 비용
     
     public bool isInitialized = false; // 초기화 여부 체크용
 
-    public void WeaponData(string weaponname, int baseattack, int critchance, int weaponlevel, int maxlevel, int atkincrease, int critchanceincrease, int costenhance)
+    public void WeaponData(string weaponname, int baseattack, int critchance, int weaponlevel, int maxlevel, int atkincrease, int critchanceincrease, float costenhance)
     {
         weaponName = weaponname;
         baseAttack = baseattack;
@@ -52,7 +52,7 @@ public class WeaponDataTable : ScriptableObject
         monsterBall.critChance = 10;
         monsterBall.atkIncrease = 1;
         monsterBall.critChanceIncrease = 3;
-        monsterBall.costEnhance = 15;
+        monsterBall.costEnhance = 10f;
         
 
         superBall.weaponName = "슈퍼볼";
@@ -62,7 +62,7 @@ public class WeaponDataTable : ScriptableObject
         superBall.critChance = 15;
         superBall.atkIncrease = 2;
         superBall.critChanceIncrease = 3;
-        superBall.costEnhance = 15;
+        superBall.costEnhance = 15f;
         
 
         ultraBall.weaponName = "울트라볼";
@@ -72,7 +72,7 @@ public class WeaponDataTable : ScriptableObject
         ultraBall.critChance = 23;
         ultraBall.atkIncrease = 5;
         ultraBall.critChanceIncrease = 3;
-        ultraBall.costEnhance = 15;
+        ultraBall.costEnhance = 20f;
         
 
         masterBall.weaponName = "마스터볼";
@@ -82,7 +82,7 @@ public class WeaponDataTable : ScriptableObject
         masterBall.critChance = 28;
         masterBall.atkIncrease = 5;
         masterBall.critChanceIncrease = 3;
-        masterBall.costEnhance = 15;
+        masterBall.costEnhance = 30f;
         
 
         // 저장

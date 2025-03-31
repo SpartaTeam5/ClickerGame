@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponEnhanceUI : MonoBehaviour
 {
@@ -12,6 +14,14 @@ public class WeaponEnhanceUI : MonoBehaviour
     public GameObject weapon2;
     public GameObject weapon3;
     public GameObject weapon4;
+
+    public GameObject buy1;
+    public GameObject buy2;
+    public GameObject buy3;
+
+    public Button buyBtn1;
+    public Button buyBtn2;
+    public Button buyBtn3;
 
     
 
@@ -29,10 +39,17 @@ public class WeaponEnhanceUI : MonoBehaviour
     public TextMeshProUGUI weapon4Chancetext;
     public TextMeshProUGUI weapon1Enhancetext;
     public TextMeshProUGUI weapon2Enhancetext;
-    public TextMeshProUGUI weapon3Enhanceext;
+    public TextMeshProUGUI weapon3Enhancetext;
     public TextMeshProUGUI weapon4Enhancetext;
 
-   
+
+    public void Start()
+    {
+        buy1.SetActive(true);
+        buy2.SetActive(true);
+        buy3.SetActive(true);
+    }
+
     public void UpdateEnhanceUI()
     {
         WeaponDataTable w1 = weapon1.GetComponent<WeaponData>().weapondata;
@@ -64,19 +81,43 @@ public class WeaponEnhanceUI : MonoBehaviour
         weapon2Enhancetext.text = w2.costEnhance.ToString();
         if (player.curgold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
-            weapon1Enhancetext.color = Color.red;
+            weapon2Enhancetext.color = Color.red;
         }
-        weapon3Enhanceext.text = w3.costEnhance.ToString();
+        weapon3Enhancetext.text = w3.costEnhance.ToString();
         if (player.curgold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
-            weapon1Enhancetext.color = Color.red;
+            weapon3Enhancetext.color = Color.red;
         }
         weapon4Enhancetext.text = w4.costEnhance.ToString();
         if (player.curgold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
-            weapon1Enhancetext.color = Color.red;
+            weapon4Enhancetext.color = Color.red;
         }
 
+        
+    }
 
+    public void OnClickBuy1()
+    {
+        if(player.curgold >= 1000)
+        {
+            buy1.SetActive(false);
+        }
+    }
+
+    public void OnClickBuy2()
+    {
+        if (player.curgold >= 2000)
+        {
+            buy2.SetActive(false);
+        }
+    }
+
+    public void OnClickBuy3()
+    {
+        if (player.curgold >= 3000)
+        {
+            buy3.SetActive(false);
+        }
     }
 }
