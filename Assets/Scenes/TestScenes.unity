@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 678622330}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClickGold
         m_Mode: 1
@@ -3065,7 +3065,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 678622330}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClickAuto
         m_Mode: 1
@@ -4660,7 +4660,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 678622330}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClickCrit
         m_Mode: 1
@@ -7807,7 +7807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: 203.77359}
+  m_AnchoredPosition: {x: -0.000015258789, y: 163}
   m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4110007755242023245

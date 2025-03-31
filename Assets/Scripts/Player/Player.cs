@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
             critLevel++;
             var crit = statTable.crit[critLevel - 1];
             UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
             Debug.Log($"[치명타 레벨 업!] 현재 레벨: {crit.level}, 치명타 데미지: {crit.critDamage}");
         }
         else
@@ -97,6 +98,7 @@ public class Player : MonoBehaviour
             autoLevel++;
             var auto = statTable.auto[autoLevel - 1];
             UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
             Debug.Log($"[자동공격 레벨 업!] 현재 레벨: {auto.level}, 초당 자동공격 횟수: {auto.autoAttackCycle}");
         }
     }
@@ -109,6 +111,7 @@ public class Player : MonoBehaviour
             goldLevel++;
             var gold = statTable.gold[goldLevel - 1];
             UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
             Debug.Log($"[골드획득 레벨 업!] 현재 레벨: {gold.level}, 골드 획득량: {gold.getGoldAmount}");
         }
     }

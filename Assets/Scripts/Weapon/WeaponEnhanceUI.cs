@@ -102,7 +102,9 @@ public class WeaponEnhanceUI : MonoBehaviour
     {
         if(GameManager.Instance.playerData.gold >= 1000)
         {
+            GameManager.Instance.playerData.gold -= 1000;
             buy1.SetActive(false);
+            GameManager.Instance.UpdateGoldUI();
         }
     }
 
@@ -110,7 +112,9 @@ public class WeaponEnhanceUI : MonoBehaviour
     {
         if (GameManager.Instance.playerData.gold >= 2000)
         {
+            GameManager.Instance.playerData.gold -= 2000;
             buy2.SetActive(false);
+            GameManager.Instance.UpdateGoldUI();
         }
     }
 
@@ -118,7 +122,9 @@ public class WeaponEnhanceUI : MonoBehaviour
     {
         if (GameManager.Instance.playerData.gold >= 3000)
         {
+            GameManager.Instance.playerData.gold -= 3000;
             buy3.SetActive(false);
+            GameManager.Instance.UpdateGoldUI();
         }
     }
 }
