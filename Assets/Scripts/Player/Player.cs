@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
         AutoAttackData auto = statTable.auto[autoLevel - 1];
         autoLevelText.text = "Lv" + auto.level.ToString();
-        autoCycleText.text = auto.autoAttackCycle.ToString();
+        autoCycleText.text = auto.autoAttackCycle.ToString() + "회/초";
         autoCostText.text = auto.cost_a.ToString();
         if (curgold < statTable.auto[autoLevel - 1].cost_a) // 골드 부족하면 빨간색으로 표시
         {
