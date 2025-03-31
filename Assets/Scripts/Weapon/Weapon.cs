@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     public WeaponEnhanceUI weaponEnhance;
     public Player player;
     //public PlayerData playerData;
+    
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -130,7 +131,7 @@ public class Weapon : MonoBehaviour
 
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-
+        GameManager.Instance.UpdateGoldUI();
 
     }
 
