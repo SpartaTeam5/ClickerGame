@@ -4207,28 +4207,7 @@ PrefabInstance:
       propertyPath: monster
       value: 
       objectReference: {fileID: 1625896794}
-    - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
-      propertyPath: particleEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
-      propertyPath: criticalPercent
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
-      propertyPath: autoAttackInterval
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
-      propertyPath: criticalMultiplier
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106036427583923761, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.a
-      value: 0.5529412
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3541182578852604634, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -97,7 +97,7 @@ MonoBehaviour:
   click_Damage: 1
   autoAttackInterval: 20
   isAutoAttackEnabled: 1
-  criticalPercent: 0.5
+  criticalPercent: 0.2
   criticalMultiplier: 10
   pokemonMonster:
   - {fileID: 11400000, guid: b331486fe503c0d4092a338b1dc1ef90, type: 2}
@@ -117,7 +117,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 125bd5d6eae364a4092b580ddb391906, type: 2}
   playerInput: {fileID: 4325033392429134892}
   isOptionUIOpen: 0
-  particleEffect: {fileID: 0}
   monster: {fileID: 0}
 --- !u!114 &3321841778594745044
 MonoBehaviour:
