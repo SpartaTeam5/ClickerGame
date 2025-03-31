@@ -180,6 +180,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Click
       objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 77
+      objectReference: {fileID: 0}
     - target: {fileID: 2075299370169777638, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
