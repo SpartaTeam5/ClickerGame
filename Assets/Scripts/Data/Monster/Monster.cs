@@ -1,4 +1,6 @@
+using System;
 using TMPro;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +13,68 @@ public class Monster : MonoBehaviour
 
     private float curValue;
     private float maxValue;
+    private float rewardGold; // 몬스터 처치 시 주는 골드
 
-    //public void In
+    private UIStage uiStage;
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+        uiStage = GetComponentInParent<UIStage>();
+    }
+
+    public void Init(MonsterData monsterData)
+    {
+
+        monsterName.text = monsterData.MonsterName;
+        healthSlider.value = monsterData.health;
+        monsterImage.sprite = monsterData.sprite;
+
+        maxValue = monsterData.maxhealth;
+        curValue = monsterData.health;
+        rewardGold = monsterData.money;
+
+        healthSlider.value = GetPercentage();
+
+        monsterImage.raycastTarget = true;
+        animator.SetBool("Die", false);
+
+    }
+
+    public float GetPercentage()
+    {
+        return curValue / maxValue;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        curValue -= damage;
+        if (curValue < 0) curValue = 0;
+
+        healthSlider.value = GetPercentage();
+        animator.SetTrigger("Attack");
+
+        // 데미지 텍스트 표시
+        DamageText damageText = DamageTextPool.Instance.GetFromPool();
+        damageText.transform.position = Input.mousePosition;
+        damageText.SetText(damage);
+
+        if (curValue == 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        monsterImage.raycastTarget = false;
+        animator.SetBool("Die", true);
+        //GameManager.Instance.AddGold(rewardGold);
+
+        uiStage.OnMonsterDeath();
+        uiStage.KillMonster();
+
+    }
 }
 
 
