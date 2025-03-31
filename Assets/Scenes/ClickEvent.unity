@@ -1304,6 +1304,7 @@ MonoBehaviour:
   monsterName: {fileID: 5730061875816571514}
   healthSlider: {fileID: 8948538534777201788}
   monsterImage: {fileID: 3038488137120234479}
+  pcImage: {fileID: 0}
   animator: {fileID: 6985987395541588296}
 --- !u!222 &6144484186978078462
 CanvasRenderer:
