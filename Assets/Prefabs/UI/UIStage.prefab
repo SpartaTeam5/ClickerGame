@@ -862,9 +862,9 @@ RectTransform:
   - {fileID: 7735667051684768580}
   - {fileID: 7126502412846078469}
   - {fileID: 599543268579992659}
+  - {fileID: 8626538240546528772}
   - {fileID: 8653878838293959963}
   - {fileID: 3981818398848072132}
-  - {fileID: 8626538240546528772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1249,6 +1249,7 @@ MonoBehaviour:
   monsterName: {fileID: 7445960914322017834}
   healthSlider: {fileID: 6124757539492939820}
   monsterImage: {fileID: 214759043294517183}
+  pcImage: {fileID: 3856098934651685958}
   animator: {fileID: 5198047250840401176}
 --- !u!1 &7455484529452740710
 GameObject:
