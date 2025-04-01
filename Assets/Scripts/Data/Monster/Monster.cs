@@ -19,6 +19,9 @@ public class Monster : MonoBehaviour
 
     private UIStage uiStage;
 
+    public Player player;
+    public WeaponEnhanceUI weaponEnhanceUI;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -101,6 +104,8 @@ public class Monster : MonoBehaviour
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();
+        player.UpdateUI();
+        weaponEnhanceUI.UpdateEnhanceUI();
     }
 }
 
