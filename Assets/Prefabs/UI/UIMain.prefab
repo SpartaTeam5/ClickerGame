@@ -786,8 +786,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SetSFXVolume
+        m_TargetAssemblyTypeName: VolumeControl, Assembly-CSharp
+        m_MethodName: OnSFXVolumeChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -889,8 +889,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SetBGMVolume
+        m_TargetAssemblyTypeName: VolumeControl, Assembly-CSharp
+        m_MethodName: OnBGMVolumeChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1268,6 +1268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6458014990607496614}
   - component: {fileID: 214441341952564617}
+  - component: {fileID: 1429438561638521322}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -1311,6 +1312,20 @@ MonoBehaviour:
   sfxSlider: {fileID: 7375436880692341046}
   closeBtn: {fileID: 6310541322159484431}
   optionsMenu: {fileID: 1068459557652040119}
+--- !u!114 &1429438561638521322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176610660135200299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20cf3ee5eeab1cf4d88730ae9ee33115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSlider: {fileID: 5747898083847827011}
+  sfxSlider: {fileID: 7375436880692341046}
 --- !u!1 &5337328175625387452
 GameObject:
   m_ObjectHideFlags: 0
