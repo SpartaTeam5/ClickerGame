@@ -48,15 +48,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData:
-    stage: 1
-    gold: 0
+    stage: 0
+    gold: 100000
     clickPower: 1
     criticalChance: 0.1
     criticalMultiplier: 2
     goldBonus: 1
   goldText: {fileID: 0}
   warningMessage: {fileID: 0}
-  playerStatTable: {fileID: 0}
+  playerStatTable: {fileID: 11400000, guid: 14b980fd4e2fe214f90c2695e1ec63e0, type: 2}
+  weaponDataTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
+  weapon: {fileID: 0}
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
+  weapon3: {fileID: 0}
+  weapon4: {fileID: 0}
 --- !u!114 &7270933497635501198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,10 +87,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af2eae22f5eb484d8f7be14b6a58d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
-  bgmSource: {fileID: 0}
-  titleBGM: {fileID: 0}
-  mainBGM: {fileID: 0}
+  BGM:
+  - {fileID: 8300000, guid: 1ffabb2620c28244f93ec100406c6930, type: 3}
+  - {fileID: 8300000, guid: e513906702cab6543a9c47fd9b6b8dfb, type: 3}
+  SFX:
+  - {fileID: 8300000, guid: 44d2d947642b5e24e977281777e42041, type: 3}
+  bgmPlayer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 39f2f33fe4a1a834ca856af37e216be9, type: 2}
 --- !u!114 &4066146107587522768
 MonoBehaviour:
   m_ObjectHideFlags: 0
