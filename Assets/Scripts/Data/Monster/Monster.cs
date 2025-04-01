@@ -21,6 +21,7 @@ public class Monster : MonoBehaviour
 
     public Player player;
     public WeaponEnhanceUI weaponEnhanceUI;
+    public bool isDie = false;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class Monster : MonoBehaviour
 
         healthSlider.value = GetPercentage();
 
-        monsterImage.raycastTarget = true;
+        isDie = false;
         animator.SetBool("Die", false);
         pcImage.gameObject.SetActive(false);
     }
@@ -96,7 +97,8 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
-        monsterImage.raycastTarget = false;
+
+        isDie = true;
         animator.SetBool("Die", true);
 
         float goldMultiplier = StatManager.Instance.GetGoldAmount() / 100f;

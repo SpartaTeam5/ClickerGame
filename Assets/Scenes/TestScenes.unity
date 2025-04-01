@@ -129,7 +129,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1175090156}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20cf3ee5eeab1cf4d88730ae9ee33115, type: 3}
   m_Name: 
@@ -956,6 +956,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1283648405}
     - target: {fileID: 3878684135222106746, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878684135222106746, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
       propertyPath: sfxSlider
       value: 
       objectReference: {fileID: 390930776}
@@ -1002,6 +1006,14 @@ PrefabInstance:
     - target: {fileID: 6756044843448088141, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
       propertyPath: m_Name
       value: BGMManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756044843448088141, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7708373642543042736, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1155,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 1710060651}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerData.gold
-      value: 0
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerStatTable
@@ -1177,6 +1189,10 @@ PrefabInstance:
       propertyPath: bgmSlider
       value: 
       objectReference: {fileID: 1283648405}
+    - target: {fileID: 4066146107587522768, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4066146107587522768, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: sfxSlider
       value: 
@@ -1229,7 +1245,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6523256574134780243, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1245,7 +1262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1222779279}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ada57449809e0a44af58a9de4f950b7, type: 3}
   m_Name: 
@@ -3363,6 +3380,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4727479145665594241, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5176610660135200299, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5747898083847827011, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}

@@ -148,6 +148,11 @@ public class Player : MonoBehaviour
 
     private void ApplyStatsToClickAttack()
     {
+        CritData crit = statTable.crit[critLevel - 1];
+        clickAttack.criticalPercent = crit.critChance; // 치명타 확률 설정
+        Debug.Log(crit.critChance);
+        clickAttack.criticalMultiplier = crit.critDamage / 100.0f; // 치명타 데미지 설정
+
         if (clickAttack != null)
         {
             if (autoLevel > 0) // 자동공격 레벨이 1 이상일 때만 자동공격 활성화
@@ -162,9 +167,6 @@ public class Player : MonoBehaviour
                 clickAttack.isAutoAttackEnabled = false; // 자동공격 비활성화
             }
 
-            CritData crit = statTable.crit[critLevel - 1];
-            clickAttack.criticalPercent = crit.critChance; // 치명타 확률 설정
-            clickAttack.criticalMultiplier = crit.critDamage / 100.0f; // 치명타 데미지 설정
         }
     }
 }

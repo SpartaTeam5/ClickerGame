@@ -13,7 +13,6 @@ public class StatManager : MonoBehaviour
     // 최종 공격력
     public float GetFinalDamage()
     {
-        //return GameManager.Instance.playerData.clickPower;
         return GameManager.Instance.weaponDataTable.baseAttack;
     }
 
@@ -27,10 +26,10 @@ public class StatManager : MonoBehaviour
     // 최종 치명타 배율
     public float GetCriticalDamage()
     {
-        return GameManager.Instance.playerData.criticalMultiplier;
+        return GameManager.Instance.weaponDataTable.baseAttack * 
+            GameManager.Instance.playerData.criticalMultiplier;
     }
-
-    public float GetAutoAttackCycle()
+    public float GetAutoAttackCycle()   // 자동 공격
     {
         int autoLevel = GameManager.Instance.player.autoLevel;
         if (autoLevel > 0)
