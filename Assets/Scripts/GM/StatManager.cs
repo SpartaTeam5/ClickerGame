@@ -16,6 +16,11 @@ public class StatManager : MonoBehaviour
         return GameManager.Instance.weaponDataTable.baseAttack;
     }
 
+    public float GetAutoDamage()
+    {
+        return GameManager.Instance.playerStatTable.auto[GameManager.Instance.player.autoLevel].autoAttackCycle;
+    }
+
     // 최종 치명타 확률
     public float GetCriticalChance()
     {
@@ -26,11 +31,11 @@ public class StatManager : MonoBehaviour
     public float GetCriticalDamage()
     {
 
-        return GameManager.Instance.playerStatTable.crit[GameManager.Instance.player.critLevel - 1].critDamage;
+        return GameManager.Instance.playerStatTable.crit[GameManager.Instance.player.critLevel].critDamage;
     }
 
     public float GetGoldAmount()
     {
-        return GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel - 1].getGoldAmount;
+        return GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel].getGoldAmount;
     }
 }
