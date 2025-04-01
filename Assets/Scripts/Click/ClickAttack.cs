@@ -37,6 +37,7 @@ public class ClickAttack : MonoBehaviour
     {
         particleEffect = FindObjectOfType<Particle>();
         monster = FindObjectOfType<Monster>();
+
         click_Damage = StatManager.Instance.GetFinalDamage();
         criticalPercent = StatManager.Instance.GetCriticalChance();
         criticalMultiplier = StatManager.Instance.GetCriticalDamage();
@@ -72,15 +73,16 @@ public class ClickAttack : MonoBehaviour
             StopCoroutine(autoCoroutine);
         }
     }
-
-    //public bool IsCriticalHit()
-    //{
-    //    return Random.value < criticalPercent;
-    //}
+    public void UpdataStat()
+    {
+        click_Damage = StatManager.Instance.GetFinalDamage();
+        criticalPercent = StatManager.Instance.GetCriticalChance();
+        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
+    }
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
-        click_Damage = StatManager.Instance.GetFinalDamage();
+        UpdataStat();
 
         if (isOptionUIOpen)
         {
@@ -101,8 +103,9 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
-    IEnumerator AutoAttack()    // 자동 어택
+    public IEnumerator AutoAttack()    // 자동 어택
     {
+        UpdataStat();
         while (true)
         {
             if (isAutoAttackEnabled && !isOptionUIOpen)
@@ -117,7 +120,7 @@ public class ClickAttack : MonoBehaviour
     {
         if (monster.isDie == false)
         {
-            //lastAttCriticalCheck = IsCriticalHit();
+            UpdataStat();
 
             float critChance = weaponData.critChance / 100f; // 무기 치명타 확률
             lastAttCriticalCheck = Random.value < critChance; // 치명타 확률 계산
@@ -139,6 +142,7 @@ public class ClickAttack : MonoBehaviour
             }
         }
     }
+
 
     public void RestartAutoAttack()
     {

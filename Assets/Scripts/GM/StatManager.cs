@@ -26,8 +26,7 @@ public class StatManager : MonoBehaviour
     public float GetCriticalDamage()
     {
 
-        return GameManager.Instance.weaponDataTable.baseAttack *
-            GameManager.Instance.playerStatTable.crit[GameManager.Instance.player.critLevel - 1].critDamage;
+        return GameManager.Instance.playerStatTable.crit[GameManager.Instance.player.critLevel - 1].critDamage;
     }
 
     public float GetGoldAmount()

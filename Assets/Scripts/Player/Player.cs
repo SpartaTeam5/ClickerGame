@@ -110,7 +110,8 @@ public class Player : MonoBehaviour
             var auto = statTable.auto[autoLevel - 1];
             UpdateUI();
             GameManager.Instance.UpdateGoldUI();
-            ApplyStatsToClickAttack(); // 자동공격 주기 업데이트 및 재시작
+            //ApplyStatsToClickAttack(); // 자동공격 주기 업데이트 및 재시작
+            clickAttack.AutoAttack();
             Debug.Log($"[자동공격 레벨 업!] 현재 레벨: {auto.level}, 초당 자동공격 횟수: {auto.autoAttackCycle}");
         }
         else
@@ -146,26 +147,26 @@ public class Player : MonoBehaviour
         enhanceUI.SetActive(false);
     }
 
-    private void ApplyStatsToClickAttack()
-    {
-        CritData crit = statTable.crit[critLevel - 1];
-        clickAttack.criticalPercent = crit.critChance; // 치명타 확률 설정
-        Debug.Log(crit.critChance);
-        clickAttack.criticalMultiplier = crit.critDamage; // 치명타 데미지 설정
+    //private void ApplyStatsToClickAttack()
+    //{
+    //    CritData crit = statTable.crit[critLevel - 1];
+    //    clickAttack.criticalPercent = crit.critChance; // 치명타 확률 설정
+    //    Debug.Log(crit.critChance);
+    //    clickAttack.criticalMultiplier = crit.critDamage; // 치명타 데미지 설정
 
-        if (clickAttack != null)
-        {
-            if (autoLevel > 0) // 자동공격 레벨이 1 이상일 때만 자동공격 활성화
-            {
-                AutoAttackData auto = statTable.auto[autoLevel - 1];
-                clickAttack.autoAttackInterval = 1.0f / auto.autoAttackCycle; // 자동공격 주기 설정
-                clickAttack.isAutoAttackEnabled = true; // 자동공격 활성화
-                clickAttack.RestartAutoAttack(); // 자동공격 재시작
-            }
-            else
-            {
-                clickAttack.isAutoAttackEnabled = false; // 자동공격 비활성화
-            }
-        }
-    }
+    //    if (clickAttack != null)
+    //    {
+    //        if (autoLevel > 0) // 자동공격 레벨이 1 이상일 때만 자동공격 활성화
+    //        {
+    //            AutoAttackData auto = statTable.auto[autoLevel - 1];
+    //            clickAttack.autoAttackInterval = 1.0f / auto.autoAttackCycle; // 자동공격 주기 설정
+    //            clickAttack.isAutoAttackEnabled = true; // 자동공격 활성화
+    //            clickAttack.RestartAutoAttack(); // 자동공격 재시작
+    //        }
+    //        else
+    //        {
+    //            clickAttack.isAutoAttackEnabled = false; // 자동공격 비활성화
+    //        }
+    //    }
+    //}
 }
