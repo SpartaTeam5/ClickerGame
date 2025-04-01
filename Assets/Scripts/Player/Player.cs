@@ -35,8 +35,6 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
-        //statTable.GenerateData(100);
-        statTable = GameManager.Instance.playerStatTable;
         statTable.GenerateData(100);
         UpdateUI();
                         
