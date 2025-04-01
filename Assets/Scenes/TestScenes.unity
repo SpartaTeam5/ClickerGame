@@ -373,6 +373,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: autoAttackInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
       propertyPath: criticalMultiplier
       value: 1
       objectReference: {fileID: 0}
@@ -658,9 +662,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statTable: {fileID: 11400000, guid: 14b980fd4e2fe214f90c2695e1ec63e0, type: 2}
-  critLevel: 1
-  autoLevel: 1
-  goldLevel: 1
+  critLevel: 0
+  autoLevel: 0
+  goldLevel: 0
   critBtn: {fileID: 2060966068471581741}
   autoBtn: {fileID: 954850011992603160}
   goldBtn: {fileID: 618026562897342210}
@@ -11140,7 +11144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6345232400713351369
 GameObject:
   m_ObjectHideFlags: 0

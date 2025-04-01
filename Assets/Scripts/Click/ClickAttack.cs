@@ -10,7 +10,8 @@ using UnityEngine.UIElements;
 public class ClickAttack : MonoBehaviour
 {
     [SerializeField] float click_Damage;
-    public float autoAttackInterval;
+    private float autoAttackInterval = 1f;
+    public float autaAttackCycle;
     public bool isAutoAttackEnabled = false; // 초기 자동공격 비활성화
     [SerializeField] public float criticalPercent;
     [SerializeField] public float criticalMultiplier;
@@ -72,7 +73,7 @@ public class ClickAttack : MonoBehaviour
     public void UpdateStat()
     {
         click_Damage = StatManager.Instance.GetFinalDamage();
-        autoAttackInterval = StatManager.Instance.GetAutoDamage(); // 초당 공격 횟수로 변환
+        autaAttackCycle = StatManager.Instance.GetAutoDamage(); // 초당 공격 횟수로 변환
         criticalPercent = StatManager.Instance.GetCriticalChance();
         criticalMultiplier = StatManager.Instance.GetCriticalDamage();
     }
@@ -106,7 +107,7 @@ public class ClickAttack : MonoBehaviour
         if (autoLevel > 0) // 자동공격 레벨이 1 이상일 때만 자동공격 활성화
         {
             AutoAttackData auto = GameManager.Instance.playerStatTable.auto[autoLevel - 1];
-            autoAttackInterval = 1.0f / auto.autoAttackCycle; // 자동공격 주기 설정
+            autaAttackCycle = auto.autoAttackCycle; // 자동공격 주기 설정
             isAutoAttackEnabled = true; // 자동공격 활성화
             RestartAutoAttack(); // 자동공격 재시작
         }
@@ -117,7 +118,7 @@ public class ClickAttack : MonoBehaviour
 
         CritData crit = GameManager.Instance.playerStatTable.crit[critLevel - 1];
         criticalPercent = crit.critChance; // 치명타 확률 설정
-        criticalMultiplier = crit.critDamage / 100.0f; // 치명타 데미지 설정
+        criticalMultiplier = crit.critDamage; // 치명타 데미지 설정
     }
 
     public IEnumerator AutoAttack()    // 자동 어택
@@ -129,7 +130,7 @@ public class ClickAttack : MonoBehaviour
             {
                 AttackMonster(click_Damage);
             }
-            yield return new WaitForSeconds(autoAttackInterval);
+            yield return new WaitForSeconds(autoAttackInterval / autaAttackCycle);
         }
     }
 
@@ -174,15 +175,7 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
-    public void StopAutoAttack()
-    {
-        if (autoCoroutine != null)
-        {
-            StopCoroutine(autoCoroutine);
-            autoCoroutine = null;
-        }
-    }
-
+    
     private GameObject GetClickMonsterUI(Vector2 screenPosition)
     {
         EventSystem eventSystem = EventSystem.current ?? FindObjectOfType<EventSystem>();
