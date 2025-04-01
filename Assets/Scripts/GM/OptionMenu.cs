@@ -14,8 +14,8 @@ public class OptionMenu : MonoBehaviour
     {
         // 슬라이더 값 변경 시 AudioManager의 볼륨 조절 메소드 호출
         optionsMenu.SetActive(false);
-        bgmSlider.onValueChanged.AddListener(AudioManager.Instance.SetBGMVolume);
-        sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
+        bgmSlider.onValueChanged.AddListener(BGMManager.instance.SetBGMVolume);
+        sfxSlider.onValueChanged.AddListener(BGMManager.instance.SetSFXVolume);
     }
 
     // 옵션 창에서 타이틀 화면으로 돌아가는 메소드
@@ -23,8 +23,6 @@ public class OptionMenu : MonoBehaviour
     {
         // 씬 전환 (타이틀 씬의 이름이 "TitleScene"이라고 가정)
         SceneManager.LoadScene("TitleScene");
-        // 타이틀 화면용 BGM 재생
-        AudioManager.Instance.PlayBGM(true);
     }
 
     //볼륨 옵션 메뉴 열기
