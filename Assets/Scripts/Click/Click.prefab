@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4325033392429134892}
   - component: {fileID: 7982935983126869321}
   - component: {fileID: 3321841778594745044}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Click
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   click_Damage: 1
   autoAttackInterval: 20
-  isAutoAttackEnabled: 1
+  isAutoAttackEnabled: 0
   criticalPercent: 0.2
   criticalMultiplier: 10
   pokemonMonster:
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 1636204210778674989}
   - component: {fileID: 1226452759968119084}
   - component: {fileID: 3607360048738294985}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AttackParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2465469940651809319}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
@@ -248,7 +248,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -796,7 +796,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 0
     angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -4987,7 +4987,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 500
+  m_SortingOrder: 1000
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4996,10 +4996,10 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 1
+  m_SortingFudge: 10
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 1
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_EnableGPUInstancing: 1
@@ -5031,7 +5031,7 @@ GameObject:
   - component: {fileID: 6762738310601823340}
   - component: {fileID: 9106036427583923761}
   - component: {fileID: 2029471962839870882}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CriticalParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5061,7 +5061,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2795611275785798218}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
@@ -5136,7 +5136,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5684,7 +5684,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 17
     angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -9887,7 +9887,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 1
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 1
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_EnableGPUInstancing: 1
@@ -9899,7 +9899,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
