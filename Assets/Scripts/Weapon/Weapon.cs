@@ -10,7 +10,8 @@ public class Weapon : MonoBehaviour
     public WeaponDataTable weaponTable;
     public WeaponEnhanceUI weaponEnhance;
     public Player player;
-    public PlayerData playerData;
+    //public PlayerData playerData;
+    
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -42,7 +43,6 @@ public class Weapon : MonoBehaviour
         weapon1.GetComponent<WeaponData>().isEquipped = true;
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-
     }
 
     public void UpdateUI()
@@ -63,6 +63,7 @@ public class Weapon : MonoBehaviour
             if (weaponData.isEquipped)
             {
                 weaponTable = weaponData.weapondata;
+                GameManager.Instance.weaponDataTable = weaponTable;
                 weaponText.text = weaponTable.weaponName;
                 weaponLevelText.text = "Lv " + weaponTable.weaponLevel.ToString();
                 weaponAtkText.text = "공격력 " + weaponTable.baseAttack.ToString();
@@ -111,18 +112,18 @@ public class Weapon : MonoBehaviour
         WeaponData weaponData = weapon.GetComponent<WeaponData>();
         weaponTable = weaponData.weapondata;
 
-        if (player.playerdata.gold >= weaponTable.costEnhance && weaponTable.weaponLevel < weaponTable.weaponaMaxLevel)
+        if (GameManager.Instance.playerData.gold >= weaponTable.costEnhance && weaponTable.weaponLevel < weaponTable.weaponaMaxLevel)
         {
             weaponTable.weaponLevel++;
             weaponTable.baseAttack += weaponTable.atkIncrease;
             weaponTable.critChance += weaponTable.critChanceIncrease;
-            player.playerdata.gold -= weaponTable.costEnhance;
+            GameManager.Instance.playerData.gold -= weaponTable.costEnhance;
             weaponTable.costEnhance *= 2f;
 
             Debug.Log($"[강화됨] {weaponTable.weaponName} → Lv.{weaponTable.weaponLevel}, 공격력: {weaponTable.baseAttack}, 치명타: {weaponTable.critChance}%");
         }
 
-        if (player.playerdata.gold < weaponTable.costEnhance)
+        if (GameManager.Instance.playerData.gold < weaponTable.costEnhance)
             Debug.Log("골드 부족");
         if(weaponTable.weaponLevel == weaponTable.weaponaMaxLevel)
         {
@@ -131,7 +132,7 @@ public class Weapon : MonoBehaviour
 
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-
+        GameManager.Instance.UpdateGoldUI();
 
     }
 

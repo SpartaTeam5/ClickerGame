@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public PlayerStatTable statTable;
-    public PlayerData playerdata;
+    //public PlayerData playerdata;
 
     public int critLevel = 1;
     public int autoLevel = 1;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         critLevelText.text = "Lv" + crit.level.ToString();
         critDamageText.text = crit.critDamage.ToString() + "%";
         critCostText.text = crit.cost_c.ToString();
-        if(playerdata.gold < statTable.crit[critLevel - 1].cost_c) // 골드 부족하면 빨간색으로 표시
+        if(GameManager.Instance.playerData.gold < statTable.crit[critLevel - 1].cost_c) // 골드 부족하면 빨간색으로 표시
         {
             critCostText.color = Color.red; 
         }
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         autoLevelText.text = "Lv" + auto.level.ToString();
         autoCycleText.text = auto.autoAttackCycle.ToString() + "회/초";
         autoCostText.text = auto.cost_a.ToString();
-        if (playerdata.gold < statTable.auto[autoLevel - 1].cost_a) // 골드 부족하면 빨간색으로 표시
+        if (GameManager.Instance.playerData.gold < statTable.auto[autoLevel - 1].cost_a) // 골드 부족하면 빨간색으로 표시
         {
             autoCostText.color = Color.red;
         }
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         goldLevelText.text = "Lv" + gold.level.ToString();
         goldAmountText.text = gold.getGoldAmount.ToString() + "%";
         goldCostText.text = gold.cost_g.ToString();
-        if (playerdata.gold < statTable.gold[goldLevel - 1].cost_g) // 골드 부족하면 빨간색으로 표시
+        if (GameManager.Instance.playerData.gold < statTable.gold[goldLevel - 1].cost_g) // 골드 부족하면 빨간색으로 표시
         {
             goldCostText.color = Color.red;
         }
@@ -74,12 +74,13 @@ public class Player : MonoBehaviour
 
     public void OnClickCrit() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
     {
-        if (playerdata.gold >= statTable.crit[critLevel - 1].cost_c)
+        if (GameManager.Instance.playerData.gold >= statTable.crit[critLevel - 1].cost_c)
         {
-            playerdata.gold -= (critLevel * 10);
+            GameManager.Instance.playerData.gold -= (critLevel * 10);
             critLevel++;
             var crit = statTable.crit[critLevel - 1];
             UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
             Debug.Log($"[치명타 레벨 업!] 현재 레벨: {crit.level}, 치명타 데미지: {crit.critDamage}");
         }
         else
@@ -91,24 +92,26 @@ public class Player : MonoBehaviour
 
     public void OnClickAuto() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
     {
-        if (playerdata.gold >= statTable.auto[autoLevel - 1].cost_a)
+        if (GameManager.Instance.playerData.gold >= statTable.auto[autoLevel - 1].cost_a)
         {
-            playerdata.gold -= (autoLevel * 10);
+            GameManager.Instance.playerData.gold -= (autoLevel * 10);
             autoLevel++;
             var auto = statTable.auto[autoLevel - 1];
             UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
             Debug.Log($"[자동공격 레벨 업!] 현재 레벨: {auto.level}, 초당 자동공격 횟수: {auto.autoAttackCycle}");
         }
     }
 
     public void OnClickGold() //레벨 업 버튼 누르면 치명타 레벨 1씩 증가
     {
-        if (playerdata.gold >= statTable.gold[goldLevel - 1].cost_g)
+        if (GameManager.Instance.playerData.gold >= statTable.gold[goldLevel - 1].cost_g)
         {
-            playerdata.gold -= (goldLevel * 10);
+            GameManager.Instance.playerData.gold -= (goldLevel * 10);
             goldLevel++;
             var gold = statTable.gold[goldLevel - 1];
             UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
             Debug.Log($"[골드획득 레벨 업!] 현재 레벨: {gold.level}, 골드 획득량: {gold.getGoldAmount}");
         }
     }

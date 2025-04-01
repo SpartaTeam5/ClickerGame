@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster Numel
   m_EditorClassIdentifier: 
   MonsterName: "\uB454\uD0C0"
-  health: 200
+  health: 9
   maxhealth: 200
   money: 200
   sprite: {fileID: 21300000, guid: c6a2a0cac22156c40b7bae4354817104, type: 3}
