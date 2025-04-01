@@ -16,6 +16,11 @@ public class StatManager : MonoBehaviour
         return GameManager.Instance.weaponDataTable.baseAttack;
     }
 
+    public float GetAutoDamage()
+    {
+        return GameManager.Instance.playerStatTable.auto[GameManager.Instance.player.autoLevel - 1].autoAttackCycle;
+    }
+
     // 최종 치명타 확률
     public float GetCriticalChance()
     {

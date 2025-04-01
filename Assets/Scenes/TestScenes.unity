@@ -676,7 +676,7 @@ MonoBehaviour:
   goldLevelText: {fileID: 2837693622885748991}
   goldAmountText: {fileID: 457082055700838539}
   goldCostText: {fileID: 3351675579699305908}
-  clickAttack: {fileID: 0}
+  clickAttack: {fileID: 848709957}
 --- !u!1 &699536891
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +837,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &848709957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+  m_PrefabInstance: {fileID: 451337880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6845dbba3ded9b47816d58be73c71d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &967917692 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9204147405978789023, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}

@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
         statTable.GenerateData(100);
         UpdateUI();
 
-        clickAttack = FindObjectOfType<ClickAttack>(); // ClickAttack 인스턴스 찾기
-        //ApplyStatsToClickAttack(); // ClickAttack에 스탯 적용
     }
 
     public void UpdateUI()
@@ -110,8 +108,7 @@ public class Player : MonoBehaviour
             var auto = statTable.auto[autoLevel - 1];
             UpdateUI();
             GameManager.Instance.UpdateGoldUI();
-            //ApplyStatsToClickAttack(); // 자동공격 주기 업데이트 및 재시작
-            clickAttack.AutoAttack();
+            clickAttack.ApplyStatsToClickAttack(); // 자동공격 주기 업데이트 및 재시작
             Debug.Log($"[자동공격 레벨 업!] 현재 레벨: {auto.level}, 초당 자동공격 횟수: {auto.autoAttackCycle}");
         }
         else
