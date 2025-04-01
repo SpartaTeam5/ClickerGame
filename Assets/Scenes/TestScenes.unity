@@ -340,6 +340,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4325033392429134892, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 699536893}
     - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
       propertyPath: monster
       value: 
