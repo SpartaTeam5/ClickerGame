@@ -36,6 +36,8 @@ public class ClickAttack : MonoBehaviour
         particleEffect = FindObjectOfType<Particle>();
         monster = FindObjectOfType<Monster>();
         click_Damage = StatManager.Instance.GetFinalDamage();
+        criticalPercent = StatManager.Instance.GetCriticalChance();
+        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
 
         if (monster == null)
         {
@@ -66,10 +68,10 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
-    public bool IsCriticalHit()
-    {
-        return Random.value < criticalPercent;
-    }
+    //public bool IsCriticalHit()
+    //{
+    //    return Random.value < criticalPercent;
+    //}
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
@@ -110,7 +112,8 @@ public class ClickAttack : MonoBehaviour
     {
         if (monster.isDie == false)
         {
-            lastAttCriticalCheck = Random.value < criticalPercent;
+            //lastAttCriticalCheck = IsCriticalHit();
+
             float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
             Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
 

@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
         CritData crit = statTable.crit[critLevel - 1];
         clickAttack.criticalPercent = crit.critChance; // 치명타 확률 설정
         Debug.Log(crit.critChance);
-        clickAttack.criticalMultiplier = crit.critDamage / 100.0f; // 치명타 데미지 설정
+        clickAttack.criticalMultiplier = crit.critDamage; // 치명타 데미지 설정
 
         if (clickAttack != null)
         {
@@ -166,7 +166,6 @@ public class Player : MonoBehaviour
             {
                 clickAttack.isAutoAttackEnabled = false; // 자동공격 비활성화
             }
-
         }
     }
 }

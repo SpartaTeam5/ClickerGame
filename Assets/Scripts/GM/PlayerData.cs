@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerData
 {
 
-    public int stage = 1; //스테이지 번호
+    public int stage; //스테이지 번호
     public float gold; //보유 중인 골드
     public int clickPower = 1; // 클릭 시 데미지 (업그레이드에 따라 증가)
     public float criticalChance = 0.1f;// 치명타 발생 확률 (0 ~ 1 사이의 값)

@@ -28,7 +28,6 @@ public class Monster : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         uiStage = GetComponentInParent<UIStage>();
         pcImage.gameObject.SetActive(false);
-
     }
 
     public void Init(MonsterData monsterData)
@@ -65,7 +64,6 @@ public class Monster : MonoBehaviour
 
         // 데미지 텍스트 표시
         DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        //damageText.transform.position = Input.mousePosition;
         Vector2 randomOffset = Random.insideUnitSphere * offsetindex;   // 범위 지정 (기본값 100f)
         Vector2 randomPosition = monsterImage.transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
         damageText.transform.position = randomPosition;
@@ -103,7 +101,7 @@ public class Monster : MonoBehaviour
 
         float goldMultiplier = StatManager.Instance.GetGoldAmount() / 100f;
         float finalRewardsGold = rewardGold * goldMultiplier;
-        GameManager.Instance.AddGold(finalRewardsGold);
+        GameManager.Instance.AddGold(finalRewardsGold);     // 골드 추가 획득
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();
