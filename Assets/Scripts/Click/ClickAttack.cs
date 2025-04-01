@@ -16,6 +16,8 @@ public class ClickAttack : MonoBehaviour
     [SerializeField] public float criticalMultiplier;
     [SerializeField] MonsterData[] pokemonMonster;
 
+    private WeaponDataTable weaponData; // 무기 데이터 호출
+
     public PlayerInput playerInput;
     public bool isOptionUIOpen = false;
     public Monster monster;
@@ -38,6 +40,9 @@ public class ClickAttack : MonoBehaviour
         click_Damage = StatManager.Instance.GetFinalDamage();
         criticalPercent = StatManager.Instance.GetCriticalChance();
         criticalMultiplier = StatManager.Instance.GetCriticalDamage();
+
+        weaponData = GameManager.Instance.weaponDataTable;
+
 
         if (monster == null)
         {
@@ -114,7 +119,11 @@ public class ClickAttack : MonoBehaviour
         {
             //lastAttCriticalCheck = IsCriticalHit();
 
+            float critChance = weaponData.critChance / 100f; // 무기 치명타 확률
+            lastAttCriticalCheck = Random.value < critChance; // 치명타 확률 계산
+
             float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
+            Debug.Log($"{weaponData.critChance}");
             Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
 
             if (monster != null)
