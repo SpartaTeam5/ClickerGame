@@ -999,6 +999,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGMManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7708373642543042736, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
+      propertyPath: clickSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 44d2d947642b5e24e977281777e42041, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
