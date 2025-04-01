@@ -23,10 +23,17 @@ public class BGMManager : MonoBehaviour
             GameObject bgmObject = new GameObject("BGMPlayer");
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
 
+            GameObject sfxObject = new GameObject("SFXPlayer");
+            sfxPlayer = sfxObject.AddComponent<AudioSource>();
+
             // AudioSource 기본 설정
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
             bgmObject.transform.parent = transform;
+
+            sfxPlayer.loop = true;
+            sfxPlayer.playOnAwake = false;
+            sfxObject.transform.parent = transform;
 
             // 씬 변경 감지 리스너 추가
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -37,10 +44,10 @@ public class BGMManager : MonoBehaviour
             SetBGMVolume(savedBGMVolume);
             SetSFXVolume(savedSFXVolume);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void Start()
