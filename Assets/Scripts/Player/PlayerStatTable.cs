@@ -32,7 +32,7 @@ public class PlayerStatTable : ScriptableObject
             auto[i] = new AutoAttackData
             {
                 level = level,
-                autoAttackCycle = 1f + i,
+                autoAttackCycle = 0f + i,
                 cost_a = 10 + (i * 10)
             };
 

@@ -10,10 +10,10 @@ using UnityEngine.UIElements;
 public class ClickAttack : MonoBehaviour
 {
     [SerializeField] float click_Damage;
-    [SerializeField] float autoAttackInterval;
-    [SerializeField] bool isAutoAttackEnabled = true;
-    [SerializeField] public float criticalPercent; 
-    [SerializeField] float criticalMultiplier;
+    public float autoAttackInterval;
+    public bool isAutoAttackEnabled = false; // 초기 자동공격 비활성화
+    [SerializeField] public float criticalPercent;
+    [SerializeField] public float criticalMultiplier;
     [SerializeField] MonsterData[] pokemonMonster;
 
     public PlayerInput playerInput;
@@ -28,7 +28,6 @@ public class ClickAttack : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         _clickAction = playerInput.actions["ClickAtt"];
-        
     }
 
     private void Start()
@@ -36,7 +35,6 @@ public class ClickAttack : MonoBehaviour
         particleEffect = FindObjectOfType<Particle>();
         monster = FindObjectOfType<Monster>();
         click_Damage = StatManager.Instance.GetFinalDamage();
-
 
         if (monster == null)
         {
@@ -48,7 +46,11 @@ public class ClickAttack : MonoBehaviour
             _clickAction.performed += OnClickAttack;
             _clickAction.Enable();
 
-            //StartCoroutine(AutoAttack()); // 자동 공격 시작
+            // 자동공격 레벨이 1 이상일 때만 자동공격 시작
+            if (isAutoAttackEnabled)
+            {
+                StartCoroutine(AutoAttack());
+            }
         }
     }
 
@@ -62,10 +64,12 @@ public class ClickAttack : MonoBehaviour
             StopCoroutine(AutoAttack());
         }
     }
-     public bool IsCriticalHit()
+
+    public bool IsCriticalHit()
     {
         return Random.value < criticalPercent;
     }
+
     public void OnClickAttack(InputAction.CallbackContext context)
     {
         click_Damage = StatManager.Instance.GetFinalDamage();
@@ -77,9 +81,8 @@ public class ClickAttack : MonoBehaviour
         }
 
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        { 
-         // UI요소 위에서 클릭되었는지 확인하는 함수,EventSystem.current 가 존재하면 UI 클릭 감지 가능
-            
+        {
+            // UI요소 위에서 클릭되었는지 확인하는 함수,EventSystem.current 가 존재하면 UI 클릭 감지 가능
             GameObject clickMonterUI = GetClickMonsterUI(Mouse.current.position.ReadValue());
             if (clickMonterUI != null)
             {
@@ -94,7 +97,7 @@ public class ClickAttack : MonoBehaviour
     {
         while (true)
         {
-            if(isAutoAttackEnabled && !isOptionUIOpen)
+            if (isAutoAttackEnabled && !isOptionUIOpen)
             {
                 AttackMonster(click_Damage);
             }
@@ -127,7 +130,7 @@ public class ClickAttack : MonoBehaviour
         // 모든 코루틴 정지 후 자동 공격 코루틴 재시작
         StopAllCoroutines();
         // 옵션 UI가 열려있지 않은 경우만 자동 공격 실행
-        if (!isOptionUIOpen)
+        if (!isOptionUIOpen && isAutoAttackEnabled)
         {
             StartCoroutine(AutoAttack());
         }
@@ -137,11 +140,11 @@ public class ClickAttack : MonoBehaviour
     {
         EventSystem eventSystem = EventSystem.current ?? FindObjectOfType<EventSystem>();
         if (eventSystem == null) return null; // EventSystem이 없으면 null 반환
-        // EventSystem을 찾고, 없으면 null을 반환
+                                              // EventSystem을 찾고, 없으면 null을 반환
 
         PointerEventData eventData = new PointerEventData(eventSystem)
         {
-        // PointerEventData 인스턴스를 생성하면서 화면 위치 설정
+            // PointerEventData 인스턴스를 생성하면서 화면 위치 설정
             position = screenPosition // 클릭된 화면 위치를 설정
         };
 
@@ -167,6 +170,4 @@ public class ClickAttack : MonoBehaviour
         }
         return null;
     }
-   
-
 }

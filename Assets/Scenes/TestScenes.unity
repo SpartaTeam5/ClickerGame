@@ -353,6 +353,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: criticalPercent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982935983126869321, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
       propertyPath: isAutoAttackEnabled
       value: 0
       objectReference: {fileID: 0}
