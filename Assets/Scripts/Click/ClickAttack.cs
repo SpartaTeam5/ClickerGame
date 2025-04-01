@@ -9,23 +9,23 @@ using UnityEngine.UIElements;
 
 public class ClickAttack : MonoBehaviour
 {
-    //[SerializeField] float click_Damage = 1.0f;
-    //[SerializeField] float autoAttackInterval = 1.0f;
     [SerializeField] float click_Damage;
-    [SerializeField] float autoAttackInterval = 1.0f;
-
+    [SerializeField] float autoAttackInterval;
     [SerializeField] bool isAutoAttackEnabled = true;
+    [SerializeField] public float criticalPercent; 
+    [SerializeField] float criticalMultiplier;
     [SerializeField] MonsterData[] pokemonMonster;
 
-    private Camera mainCamera;
     public PlayerInput playerInput;
-    private InputAction _clickAction;
     public bool isOptionUIOpen = false;
-
     public Monster monster;
+
+    private InputAction _clickAction;
+    private Particle particleEffect;
+    private bool lastAttCriticalCheck;
+
     private void Awake()
     {
-        mainCamera = Camera.main; // 현재씬의 카메라 가져오기
         playerInput = GetComponent<PlayerInput>();
         _clickAction = playerInput.actions["ClickAtt"];
         
@@ -33,23 +33,18 @@ public class ClickAttack : MonoBehaviour
 
     private void Start()
     {
-        click_Damage = StatManager.Instance.GetFinalDamage();
-
-        monster = FindObjectOfType<Monster>();
+        particleEffect = FindObjectOfType<Particle>();
         if (monster == null)
         {
-            Debug.LogError("Monster 오브젝트를 찾을 수 없습니다!");
             return;
         }
-
-        Debug.Log($"[DEBUG] monster 값: {monster}");
 
         if (!isOptionUIOpen)
         {
             _clickAction.performed += OnClickAttack;
             _clickAction.Enable();
 
-            StartCoroutine(AutoAttack()); // 자동 공격 시작
+            //StartCoroutine(AutoAttack()); // 자동 공격 시작
         }
     }
 
@@ -63,12 +58,12 @@ public class ClickAttack : MonoBehaviour
             StopCoroutine(AutoAttack());
         }
     }
-
-
+     public bool IsCriticalHit()
+    {
+        return Random.value < criticalPercent;
+    }
     public void OnClickAttack(InputAction.CallbackContext context)
     {
-        click_Damage = StatManager.Instance.GetFinalDamage();
-
         if (isOptionUIOpen)
         {
             Debug.Log("옵션ui가 열려있음 공격불가");
@@ -82,16 +77,11 @@ public class ClickAttack : MonoBehaviour
             GameObject clickMonterUI = GetClickMonsterUI(Mouse.current.position.ReadValue());
             if (clickMonterUI != null)
             {
-                Debug.Log("UI 몬스터 클릭! 공격");
                 AttackMonster(click_Damage);
                 return;
             }
-
-            Debug.Log("ui 클릭 공격 실행 안됨");
             return;
         }
-        Debug.Log("몬스터를 클릭하지 않음");
-
     }
 
     IEnumerator AutoAttack()
@@ -108,10 +98,21 @@ public class ClickAttack : MonoBehaviour
 
     public void AttackMonster(float damage)
     {
-        if (pokemonMonster != null)
+        lastAttCriticalCheck = Random.value < criticalPercent;
+        float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
+        Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
+
+        Monster monster = FindObjectOfType<Monster>();
+        if (monster != null)
         {
-            monster.TakeDamage(damage);
-            Debug.Log($"몬스터를 {damage}만큼 공격! 남은 체력: {monster.GetPercentage() * 100}%");
+            monster.TakeDamage(finalDamage);
+        }
+
+        Particle particleEffect = FindObjectOfType<Particle>();
+
+        if (particleEffect != null)
+        {
+            particleEffect.PlayParticleSystem(lastAttCriticalCheck);
         }
     }
 
@@ -134,7 +135,7 @@ public class ClickAttack : MonoBehaviour
 
         PointerEventData eventData = new PointerEventData(eventSystem)
         {
-            // PointerEventData 인스턴스를 생성하면서 화면 위치 설정
+        // PointerEventData 인스턴스를 생성하면서 화면 위치 설정
             position = screenPosition // 클릭된 화면 위치를 설정
         };
 
@@ -160,4 +161,6 @@ public class ClickAttack : MonoBehaviour
         }
         return null;
     }
+   
+
 }
