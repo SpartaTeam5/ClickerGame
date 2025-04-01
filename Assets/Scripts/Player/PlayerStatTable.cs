@@ -25,7 +25,6 @@ public class PlayerStatTable : ScriptableObject
             {
                 level = level,
                 critDamage = 50f + (i * 50f),
-                critChance = Mathf.Clamp(0.05f + (i * 0.01f), 0f, 0.5f), // 최대 50% 제한
                 cost_c = 10 + (i * 10)
             };
 
