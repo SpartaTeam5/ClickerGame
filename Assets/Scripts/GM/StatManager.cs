@@ -4,7 +4,6 @@ public class StatManager : MonoBehaviour
 {
     // 싱글턴 인스턴스
     public static StatManager Instance;
-
     private void Awake()
     {
         // 싱글턴 패턴 적용
@@ -29,5 +28,14 @@ public class StatManager : MonoBehaviour
     public float GetCriticalDamage()
     {
         return GameManager.Instance.playerData.criticalMultiplier;
+    }
+
+    public float GetAutoAttackCycle()
+    {
+        return GameManager.Instance.playerStatTable.auto[GameManager.Instance.player.autoLevel - 1].autoAttackCycle;
+    }
+    public float GetGoldAmount()
+    {
+        return GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel - 1].getGoldAmount;
     }
 }

@@ -34,6 +34,10 @@ public class ClickAttack : MonoBehaviour
     private void Start()
     {
         particleEffect = FindObjectOfType<Particle>();
+        monster = FindObjectOfType<Monster>();
+        click_Damage = StatManager.Instance.GetFinalDamage();
+
+
         if (monster == null)
         {
             return;
@@ -64,6 +68,8 @@ public class ClickAttack : MonoBehaviour
     }
     public void OnClickAttack(InputAction.CallbackContext context)
     {
+        click_Damage = StatManager.Instance.GetFinalDamage();
+
         if (isOptionUIOpen)
         {
             Debug.Log("옵션ui가 열려있음 공격불가");
