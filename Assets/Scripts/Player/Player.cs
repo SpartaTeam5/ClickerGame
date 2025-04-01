@@ -37,9 +37,7 @@ public class Player : MonoBehaviour
     {
         statTable.GenerateData(100);
         UpdateUI();
-
-        
-        
+                        
     }
    
     public void UpdateUI()
@@ -52,6 +50,10 @@ public class Player : MonoBehaviour
         {
             critCostText.color = Color.red; 
         }
+        else
+        {
+            critCostText.color = Color.black;
+        }
 
         AutoAttackData auto = statTable.auto[autoLevel - 1];
         autoLevelText.text = "Lv" + auto.level.ToString();
@@ -61,6 +63,10 @@ public class Player : MonoBehaviour
         {
             autoCostText.color = Color.red;
         }
+        else
+        {
+            autoCostText.color = Color.black;
+        }
 
         GoldData gold = statTable.gold[goldLevel - 1];
         goldLevelText.text = "Lv" + gold.level.ToString();
@@ -69,6 +75,10 @@ public class Player : MonoBehaviour
         if (GameManager.Instance.playerData.gold < statTable.gold[goldLevel - 1].cost_g) // 골드 부족하면 빨간색으로 표시
         {
             goldCostText.color = Color.red;
+        }
+        else
+        {
+            goldCostText.color= Color.black;
         }
     }
 

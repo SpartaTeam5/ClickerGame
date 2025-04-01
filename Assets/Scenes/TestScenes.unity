@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 1710060651}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerData.gold
-      value: 100000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerStatTable
@@ -2870,9 +2870,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828434911177225720, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 678622330}
+    - target: {fileID: 8828434911177225720, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
       propertyPath: offsetindex
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8828434911177225720, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: weaponEnhanceUI
+      value: 
+      objectReference: {fileID: 6174830117649240757}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

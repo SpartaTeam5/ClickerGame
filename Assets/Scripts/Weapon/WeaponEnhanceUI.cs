@@ -79,23 +79,39 @@ public class WeaponEnhanceUI : MonoBehaviour
         {
             weapon1Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon1Enhancetext.color = Color.black;
+        }
         weapon2Enhancetext.text = w2.costEnhance.ToString();
         if (GameManager.Instance.playerData.gold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon2Enhancetext.color = Color.red;
+        }
+        else
+        {
+            weapon2Enhancetext.color = Color.black;
         }
         weapon3Enhancetext.text = w3.costEnhance.ToString();
         if (GameManager.Instance.playerData.gold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon3Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon3Enhancetext.color = Color.black;
+        }
         weapon4Enhancetext.text = w4.costEnhance.ToString();
         if (GameManager.Instance.playerData.gold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon4Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon4Enhancetext.color = Color.black;
+        }
 
-        
+
     }
 
     public void OnClickBuy1()
