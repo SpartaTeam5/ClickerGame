@@ -1170,6 +1170,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1320602997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6524436956674685295, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+  m_PrefabInstance: {fileID: 858766938921334860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1449906589
 GameObject:
   m_ObjectHideFlags: 0
@@ -10282,6 +10293,7 @@ MonoBehaviour:
   weaponTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
   weaponEnhance: {fileID: 6174830117649240757}
   player: {fileID: 678622330}
+  monsterImage: {fileID: 1320602997}
   weapon1: {fileID: 5216262268570337194}
   weapon2: {fileID: 8992403813641366262}
   weapon3: {fileID: 1258057228289097547}

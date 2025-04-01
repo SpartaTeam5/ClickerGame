@@ -10,6 +10,7 @@ public class WeaponEnhanceUI : MonoBehaviour
     public WeaponDataTable weaponTable;
     //public PlayerData playerdata;
 
+    
     public GameObject weapon1;
     public GameObject weapon2;
     public GameObject weapon3;

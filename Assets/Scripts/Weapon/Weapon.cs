@@ -11,7 +11,8 @@ public class Weapon : MonoBehaviour
     public WeaponEnhanceUI weaponEnhance;
     public Player player;
     //public PlayerData playerData;
-    
+
+    public Image monsterImage; // 몬스터 이미지
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -103,6 +104,7 @@ public class Weapon : MonoBehaviour
                 break;
             }
         }
+        monsterImage.raycastTarget = false; // 강화창 활성시
         weaponEnhanceUI.SetActive(true);
     }
 
@@ -141,6 +143,7 @@ public class Weapon : MonoBehaviour
     public void OnClickBack()
     {
         weaponEnhanceUI.SetActive(false);
+        monsterImage.raycastTarget = true; // 비활성 시
     }
 
 
