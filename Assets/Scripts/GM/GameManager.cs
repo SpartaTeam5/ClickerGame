@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;// 싱글턴 인스턴스 접근
     public PlayerData playerData = new PlayerData();// 플레이어 데이터를 인스펙터에서 확인 가능하도록 public으로 선언
-    public Player player;
 
     [Header("UI Elements")]
     public TextMeshProUGUI goldText;//골드 표시
@@ -52,8 +51,6 @@ public class GameManager : MonoBehaviour
 
         // 시작 시 골드 UI 업데이트
         UpdateGoldUI();
-
-
 
     }
 

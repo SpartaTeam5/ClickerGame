@@ -72,6 +72,7 @@ public class Monster : MonoBehaviour
         {
             Die();
             pcImage.gameObject.SetActive(true);
+
         }
     }
 
@@ -95,9 +96,7 @@ public class Monster : MonoBehaviour
         monsterImage.raycastTarget = false;
         animator.SetBool("Die", true);
 
-        float goldMultiplier = GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel - 1].getGoldAmount / 100f;
-        float finalRewardsGold = rewardGold * goldMultiplier;
-        GameManager.Instance.AddGold(finalRewardsGold);
+        GameManager.Instance.AddGold(rewardGold);
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();
