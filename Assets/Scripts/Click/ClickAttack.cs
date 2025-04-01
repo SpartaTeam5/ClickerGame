@@ -16,6 +16,8 @@ public class ClickAttack : MonoBehaviour
     [SerializeField] public float criticalMultiplier;
     [SerializeField] MonsterData[] pokemonMonster;
 
+    private WeaponDataTable weaponData; // 무기 데이터 호출
+
     public PlayerInput playerInput;
     public bool isOptionUIOpen = false;
     public Monster monster;
@@ -24,6 +26,7 @@ public class ClickAttack : MonoBehaviour
     private Particle particleEffect;
     private bool lastAttCriticalCheck;
 
+    private Coroutine autoCoroutine;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -34,7 +37,13 @@ public class ClickAttack : MonoBehaviour
     {
         particleEffect = FindObjectOfType<Particle>();
         monster = FindObjectOfType<Monster>();
+
         click_Damage = StatManager.Instance.GetFinalDamage();
+        criticalPercent = StatManager.Instance.GetCriticalChance();
+        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
+
+        weaponData = GameManager.Instance.weaponDataTable;
+
 
         if (monster == null)
         {
@@ -49,7 +58,7 @@ public class ClickAttack : MonoBehaviour
             // 자동공격 레벨이 1 이상일 때만 자동공격 시작
             if (isAutoAttackEnabled)
             {
-                StartCoroutine(AutoAttack());
+                autoCoroutine = StartCoroutine(AutoAttack());
             }
         }
     }
@@ -61,18 +70,19 @@ public class ClickAttack : MonoBehaviour
             _clickAction.performed -= OnClickAttack;
             _clickAction.Disable();
 
-            StopCoroutine(AutoAttack());
+            StopCoroutine(autoCoroutine);
         }
     }
-
-    public bool IsCriticalHit()
+    public void UpdataStat()
     {
-        return Random.value < criticalPercent;
+        click_Damage = StatManager.Instance.GetFinalDamage();
+        criticalPercent = StatManager.Instance.GetCriticalChance();
+        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
     }
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
-        click_Damage = StatManager.Instance.GetFinalDamage();
+        UpdataStat();
 
         if (isOptionUIOpen)
         {
@@ -93,8 +103,9 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
-    IEnumerator AutoAttack()
+    public IEnumerator AutoAttack()    // 자동 어택
     {
+        UpdataStat();
         while (true)
         {
             if (isAutoAttackEnabled && !isOptionUIOpen)
@@ -107,32 +118,43 @@ public class ClickAttack : MonoBehaviour
 
     public void AttackMonster(float damage)
     {
-        lastAttCriticalCheck = Random.value < criticalPercent;
-        float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
-        Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
-
-        Monster monster = FindObjectOfType<Monster>();
-        if (monster != null)
+        if (monster.isDie == false)
         {
-            monster.TakeDamage(finalDamage);
-        }
+            UpdataStat();
 
-        Particle particleEffect = FindObjectOfType<Particle>();
+            float critChance = weaponData.critChance / 100f; // 무기 치명타 확률
+            lastAttCriticalCheck = Random.value < critChance; // 치명타 확률 계산
 
-        if (particleEffect != null)
-        {
-            particleEffect.PlayParticleSystem(lastAttCriticalCheck);
+            float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
+            Debug.Log($"{weaponData.critChance}");
+            Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
+
+            if (monster != null)
+            {
+                monster.TakeDamage(finalDamage);
+            }
+
+            Particle particleEffect = FindObjectOfType<Particle>();
+
+            if (particleEffect != null)
+            {
+                particleEffect.PlayParticleSystem(lastAttCriticalCheck);
+            }
         }
     }
+
 
     public void RestartAutoAttack()
     {
         // 모든 코루틴 정지 후 자동 공격 코루틴 재시작
-        StopAllCoroutines();
+        if (autoCoroutine != null)
+        {
+            StopCoroutine(autoCoroutine);
+        }
         // 옵션 UI가 열려있지 않은 경우만 자동 공격 실행
         if (!isOptionUIOpen && isAutoAttackEnabled)
         {
-            StartCoroutine(AutoAttack());
+            autoCoroutine = StartCoroutine(AutoAttack());
         }
     }
 

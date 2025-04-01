@@ -21,13 +21,13 @@ public class Monster : MonoBehaviour
 
     public Player player;
     public WeaponEnhanceUI weaponEnhanceUI;
+    public bool isDie = false;
 
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
         uiStage = GetComponentInParent<UIStage>();
         pcImage.gameObject.SetActive(false);
-
     }
 
     public void Init(MonsterData monsterData)
@@ -43,7 +43,7 @@ public class Monster : MonoBehaviour
 
         healthSlider.value = GetPercentage();
 
-        monsterImage.raycastTarget = true;
+        isDie = false;
         animator.SetBool("Die", false);
         pcImage.gameObject.SetActive(false);
     }
@@ -64,7 +64,6 @@ public class Monster : MonoBehaviour
 
         // 데미지 텍스트 표시
         DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        //damageText.transform.position = Input.mousePosition;
         Vector2 randomOffset = Random.insideUnitSphere * offsetindex;   // 범위 지정 (기본값 100f)
         Vector2 randomPosition = monsterImage.transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
         damageText.transform.position = randomPosition;
@@ -96,12 +95,13 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
-        monsterImage.raycastTarget = false;
+
+        isDie = true;
         animator.SetBool("Die", true);
 
         float goldMultiplier = StatManager.Instance.GetGoldAmount() / 100f;
         float finalRewardsGold = rewardGold * goldMultiplier;
-        GameManager.Instance.AddGold(finalRewardsGold);
+        GameManager.Instance.AddGold(finalRewardsGold);     // 골드 추가 획득
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();

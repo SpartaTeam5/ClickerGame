@@ -24,7 +24,7 @@ public class PlayerStatTable : ScriptableObject
             crit[i] = new CritData
             {
                 level = level,
-                critDamage = 50f + (i * 50f),
+                critDamage =  1.5f + (i * 0.5f),
                 cost_c = 10 + (i * 10)
             };
 
