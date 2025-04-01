@@ -125,9 +125,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Die
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: Attack
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7060149980381041808}
   m_Solo: 0
@@ -145,7 +142,7 @@ AnimatorStateTransition:
 --- !u!1102 &6990898486276990494
 AnimatorState:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

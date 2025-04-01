@@ -880,10 +880,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1107889261}
     m_Modifications:
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 678622330}
-    - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: weapon1
       value: 
       objectReference: {fileID: 5216262268570337194}
@@ -913,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 1710060651}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerData.gold
-      value: 100000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerStatTable
@@ -2870,9 +2866,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828434911177225720, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 678622330}
+    - target: {fileID: 8828434911177225720, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
       propertyPath: offsetindex
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8828434911177225720, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: weaponEnhanceUI
+      value: 
+      objectReference: {fileID: 6174830117649240757}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2930,10 +2934,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1222779281}
-    - target: {fileID: 4420141737318700121, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4727479145665594241, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
