@@ -99,7 +99,7 @@ public class Monster : MonoBehaviour
         monsterImage.raycastTarget = false;
         animator.SetBool("Die", true);
 
-        float goldMultiplier = GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel - 1].getGoldAmount / 100f;
+        float goldMultiplier = StatManager.Instance.GetGoldAmount() / 100f;
         float finalRewardsGold = rewardGold * goldMultiplier;
         GameManager.Instance.AddGold(finalRewardsGold);
 
