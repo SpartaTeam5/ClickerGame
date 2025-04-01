@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         UpdateUI();
 
         clickAttack = FindObjectOfType<ClickAttack>(); // ClickAttack 인스턴스 찾기
-        ApplyStatsToClickAttack(); // ClickAttack에 스탯 적용
+        //ApplyStatsToClickAttack(); // ClickAttack에 스탯 적용
     }
 
     public void UpdateUI()

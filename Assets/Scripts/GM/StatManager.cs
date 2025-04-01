@@ -32,8 +32,14 @@ public class StatManager : MonoBehaviour
 
     public float GetAutoAttackCycle()
     {
-        return GameManager.Instance.playerStatTable.auto[GameManager.Instance.player.autoLevel - 1].autoAttackCycle;
+        int autoLevel = GameManager.Instance.player.autoLevel;
+        if (autoLevel > 0)
+        {
+            return GameManager.Instance.playerStatTable.auto[autoLevel - 1].autoAttackCycle;
+        }
+        return 0;
     }
+
     public float GetGoldAmount()
     {
         return GameManager.Instance.playerStatTable.gold[GameManager.Instance.player.goldLevel - 1].getGoldAmount;
