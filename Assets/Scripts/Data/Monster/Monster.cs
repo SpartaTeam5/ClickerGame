@@ -19,6 +19,9 @@ public class Monster : MonoBehaviour
 
     private UIStage uiStage;
 
+    public Player player;
+    public WeaponEnhanceUI weaponEnhanceUI;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -96,10 +99,14 @@ public class Monster : MonoBehaviour
         monsterImage.raycastTarget = false;
         animator.SetBool("Die", true);
 
-        GameManager.Instance.AddGold(rewardGold);
+        float goldMultiplier = StatManager.Instance.GetGoldAmount() / 100f;
+        float finalRewardsGold = rewardGold * goldMultiplier;
+        GameManager.Instance.AddGold(finalRewardsGold);
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();
+        player.UpdateUI();
+        weaponEnhanceUI.UpdateEnhanceUI();
     }
 }
 
