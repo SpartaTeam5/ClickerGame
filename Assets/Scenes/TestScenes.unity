@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &88112288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88112289}
+  - component: {fileID: 88112290}
+  m_Layer: 0
+  m_Name: SceneChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &88112289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88112288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1222779280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88112290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88112288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea47d0e9e3fd744483d1eeddf58cd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 20
 --- !u!114 &244381835 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3878684135222106746, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
@@ -672,6 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea47d0e9e3fd744483d1eeddf58cd8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 20
 --- !u!1 &678622328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,7 +1517,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6523256574134780243, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7953302202659577273, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 88112289}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
 --- !u!4 &1222779280 stripped
@@ -3416,6 +3465,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7060258283693108309, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: sceneChanger
+      value: 
+      objectReference: {fileID: 88112290}
     - target: {fileID: 8478203395686616708, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
       propertyPath: m_Name
       value: UIStage
@@ -3769,7 +3822,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIMain
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1429438561638521322, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7222,8 +7276,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7258,7 +7312,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -9.191208, w: 0}
+  m_margin: {x: 0, y: 0, z: -9.822338, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7485,8 +7539,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7521,7 +7575,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.30500793, w: 0}
+  m_margin: {x: 0, y: 0, z: -9.79273, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14433,8 +14487,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

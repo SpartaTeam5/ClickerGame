@@ -84,7 +84,7 @@ public class ClickAttack : MonoBehaviour
 
         if (isOptionUIOpen)
         {
-            Debug.Log("옵션ui가 열려있음 공격불가");
+            Debug.Log("?듭뀡ui媛 ?대젮?덉쓬 怨듦꺽遺덇?");
             return;
         }
 
@@ -146,7 +146,7 @@ public class ClickAttack : MonoBehaviour
 
             float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
             Debug.Log($"{weaponData.critChance}");
-            Debug.Log(lastAttCriticalCheck ? "치명타" : "일반 공격");
+            Debug.Log(lastAttCriticalCheck ? "치명타" : "일반공격");
 
             if (monster != null)
             {
