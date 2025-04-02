@@ -47,8 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmPlayer: {fileID: 0}
   sfxPlayer: {fileID: 0}
-  titleBGM: {fileID: 8300000, guid: 1ffabb2620c28244f93ec100406c6930, type: 3}
+  titleBGM: {fileID: 8300000, guid: 4c0d0c946872a844cb71c36a7364ea0c, type: 3}
   battleBGM: {fileID: 8300000, guid: 871e9bb5262259941b0319f9db4ac389, type: 3}
+  enemyBGM: {fileID: 8300000, guid: 1ffabb2620c28244f93ec100406c6930, type: 3}
 --- !u!114 &3878684135222106746
 MonoBehaviour:
   m_ObjectHideFlags: 0

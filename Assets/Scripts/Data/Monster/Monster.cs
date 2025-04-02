@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
-    public TextMeshProUGUI monsterName;     // ¸ó½ºÅÍ ÀÌ¸§
-    public Slider healthSlider;             // ¸ó½ºÅÍ Ã¼·Â
-    public Image monsterImage;              // ¸ó½ºÅÍ ÀÌ¹ÌÁö
-    public Image pcImage;                   // PC ÀÌ¹ÌÁö
+    public TextMeshProUGUI monsterName;     // ëª¬ìŠ¤í„° ì´ë¦„
+    public Slider healthSlider;             // ëª¬ìŠ¤í„° ì²´ë ¥
+    public Image monsterImage;              // ëª¬ìŠ¤í„° ì´ë¯¸ì§€
+    public Image pcImage;                   // PC ì´ë¯¸ì§€
 
-    public Animator animator;               // ¸ó½ºÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç
+    public Animator animator;               // ëª¬ìŠ¤í„° ì• ë‹ˆë©”ì´ì…˜
 
     [SerializeField] private float offsetindex;
     private float curValue;
     private float maxValue;
-    private float rewardGold; // ¸ó½ºÅÍ Ã³Ä¡ ½Ã ÁÖ´Â °ñµå
+    private float rewardGold; // ëª¬ìŠ¤í„° ì²˜ì¹˜ ì‹œ ì£¼ëŠ” ê³¨ë“œ
 
     private UIStage uiStage;
 
@@ -62,9 +62,9 @@ public class Monster : MonoBehaviour
         //healthSlider.value = GetPercentage();
         animator.SetTrigger("Attack");
 
-        // µ¥¹ÌÁö ÅØ½ºÆ® Ç¥½Ã
+        // ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ í‘œì‹œ
         DamageText damageText = DamageTextPool.Instance.GetFromPool();
-        Vector2 randomOffset = Random.insideUnitSphere * offsetindex;   // ¹üÀ§ ÁöÁ¤ (±âº»°ª 100f)
+        Vector2 randomOffset = Random.insideUnitSphere * offsetindex;   // ë²”ìœ„ ì§€ì • (ê¸°ë³¸ê°’ 100f)
         Vector2 randomPosition = monsterImage.transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
         damageText.transform.position = randomPosition;
 
@@ -80,15 +80,15 @@ public class Monster : MonoBehaviour
 
     private IEnumerator SmoothHealthBar(float targetValue)
     {
-        float starValue = healthSlider.value;   // ÇöÀç Ã¼·Â ºñÀ²
+        float starValue = healthSlider.value;   // í˜„ì¬ ì²´ë ¥ ë¹„ìœ¨
         float elapsedTime = 0f;
-        float duration = 0.5f;  // °¨¼Ò ¼Óµµ (0.5ÃÊ)
+        float duration = 0.5f;  // ê°ì†Œ ì†ë„ (0.5ì´ˆ)
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             healthSlider.value = Mathf.Lerp(starValue, targetValue, elapsedTime / duration);
-            yield return null;  // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+            yield return null;  // í•œ í”„ë ˆì„ ëŒ€ê¸°
         }
         healthSlider.value = targetValue;
     }
@@ -101,7 +101,7 @@ public class Monster : MonoBehaviour
 
         float goldMultiplier = StatManager.Instance.GetGoldAmount() / 100f;
         float finalRewardsGold = rewardGold * goldMultiplier;
-        GameManager.Instance.AddGold(finalRewardsGold);     // °ñµå Ãß°¡ È¹µæ
+        GameManager.Instance.AddGold(finalRewardsGold);     // ê³¨ë“œ ì¶”ê°€ íšë“
 
         uiStage.OnMonsterDeath();
         uiStage.KillMonster();

@@ -10,79 +10,22 @@ public class BGMManager : MonoBehaviour
     [Header("BGM Clips")]
     public AudioClip titleBGM;  // 기본 BGM(타이틀)
     public AudioClip battleBGM;   // 전투 씬 BGM
+    public AudioClip enemyBGM;  // 엔딩 BGM
 
-    //private void Awake()
-    //{
-
-    //    // 싱글톤 패턴 적용 (중복 방지)
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //        //(gameObject); // 씬 이동해도 유지
-
-    //        // 새로운 BGM 오브젝트 생성
-    //        GameObject bgmObject = new GameObject("BGMPlayer");
-    //        bgmPlayer = bgmObject.AddComponent<AudioSource>();
-
-    //        // 새로운 SFX 오브젝트 생성
-    //        GameObject sfxObject = new GameObject("SFXPlayer");
-    //        sfxPlayer = sfxObject.AddComponent<AudioSource>();
-
-    //        // AudioSource 기본 설정
-    //        bgmPlayer.loop = true;
-    //        bgmPlayer.playOnAwake = false;
-    //        bgmObject.transform.parent = transform;
-
-    //        sfxPlayer.loop = true;
-    //        sfxPlayer.playOnAwake = false;
-    //        sfxObject.transform.parent = transform;
-
-    //        // 씬 변경 감지 리스너 추가
-    //        SceneManager.sceneLoaded += OnSceneLoaded;
-
-    //        //PlayerPrefs에서 저장된 볼륨 값 불러오기
-    //        float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-    //        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
-    //        SetBGMVolume(savedBGMVolume);
-    //        SetSFXVolume(savedSFXVolume);
-    //    }
-
-    //}
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // BGMManager 자체를 유지
 
             // bgmPlayer 초기화
-            if (bgmPlayer == null)
-            {
-                GameObject bgmObject = new GameObject("BGMPlayer");
-                DontDestroyOnLoad(bgmObject); // bgmPlayer 유지
-                bgmPlayer = bgmObject.AddComponent<AudioSource>();
-                bgmPlayer.loop = true;
-                bgmPlayer.playOnAwake = false;
-                bgmObject.transform.parent = transform;
-            }
+            BGMInit();
 
             // sfxPlayer 초기화
-            if (sfxPlayer == null)
-            {
-                GameObject sfxObject = new GameObject("SFXPlayer");
-                DontDestroyOnLoad(sfxObject); // sfxPlayer 유지
-                sfxPlayer = sfxObject.AddComponent<AudioSource>();
-                sfxObject.transform.parent = transform;
-            }
-
-            // 씬 로드 이벤트 등록
-            SceneManager.sceneLoaded += OnSceneLoaded;
-
+            SFXInit();
+            
             // 볼륨 설정
-            float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-            float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
-            SetBGMVolume(savedBGMVolume);
-            SetSFXVolume(savedSFXVolume);
+            Volumes();
         }
         else
         {
@@ -92,6 +35,19 @@ public class BGMManager : MonoBehaviour
 
     private void Start()
     {
+        PlayBGM();
+    }
+
+    private void Volumes()
+    {
+        float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
+        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
+        SetBGMVolume(savedBGMVolume);
+        SetSFXVolume(savedSFXVolume);
+    }
+
+    private void PlayBGM()
+    {
         string sceneName = SceneManager.GetActiveScene().name;
 
         switch (sceneName)
@@ -99,49 +55,37 @@ public class BGMManager : MonoBehaviour
             case "TestScenes":
                 PlayBGM(battleBGM);
                 break;
+            case "EndingScene":
+                PlayBGM(enemyBGM);
+                break;
             default:
                 PlayBGM(titleBGM);
                 break;
         }
-
     }
 
-    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    // 씬 이름에 따라 BGM 변경
-    //    switch (scene.name)
-    //    {
-    //        case "TestScenes":
-    //            PlayBGM(battleBGM);
-    //            break;
-    //        default:
-    //            PlayBGM(titleBGM);
-    //            break;
-    //    }
-    //}
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void BGMInit()
     {
         // bgmPlayer 유효성 검사
         if (bgmPlayer == null)
         {
             Debug.LogWarning("bgmPlayer가 null 상태입니다. 다시 생성합니다.");
             GameObject bgmObject = new GameObject("BGMPlayer");
-            DontDestroyOnLoad(bgmObject);
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
-            bgmObject.transform.parent = transform;
+            bgmObject.transform.SetParent(transform);
         }
+    }
 
-        switch (scene.name)
+    private void SFXInit()
+    {
+        // sfxPlayer 초기화
+        if (sfxPlayer == null)
         {
-            case "TestScenes":
-                PlayBGM(battleBGM);
-                break;
-            default:
-                PlayBGM(titleBGM);
-                break;
+            GameObject sfxObject = new GameObject("SFXPlayer");
+            sfxPlayer = sfxObject.AddComponent<AudioSource>();
+            sfxObject.transform.parent = transform;
         }
     }
 
@@ -161,7 +105,6 @@ public class BGMManager : MonoBehaviour
             bgmPlayer.Stop();
         }
     }
-
     public void PlaySFX(AudioClip clip)
     {
 

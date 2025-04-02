@@ -76,6 +76,9 @@ public class ClickAttack : MonoBehaviour
         autaAttackCycle = StatManager.Instance.GetAutoDamage(); // 초당 공격 횟수로 변환
         criticalPercent = StatManager.Instance.GetCriticalChance();
         criticalMultiplier = StatManager.Instance.GetCriticalDamage();
+
+        GameManager.Instance.player.UpdateUI();
+        GameManager.Instance.weaponEnhanceUI.UpdateEnhanceUI();
     }
 
     public void OnClickAttack(InputAction.CallbackContext context)
@@ -160,7 +163,7 @@ public class ClickAttack : MonoBehaviour
 
             if (particleEffect != null)
             {
-                particleEffect.PlayParticleSystem(lastAttCriticalCheck);
+                particleEffect.PlayParticleSystem(lastAttCriticalCheck, monster.transform.position);
             }
         }
     }

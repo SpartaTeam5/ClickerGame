@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Particle : MonoBehaviour
 {
-    [SerializeField] ParticleSystem normalParticle; // ÀÏ¹İ °ø°İ 
-    [SerializeField] ParticleSystem criticalEffect; // Ä¡¸íÅ¸
+    [SerializeField] ParticleSystem normalParticle; // ì¼ë°˜ ê³µê²© 
+    [SerializeField] ParticleSystem criticalEffect; // ì¹˜ëª…íƒ€
 
     void Start()
     {
         if (normalParticle == null || criticalEffect == null)
         {
-            Debug.LogError("ÆÄÆ¼Å¬ ½Ã½ºÅÛÀÌ ¼³Á¤µÇÁö ¾ÊÀ½. ÀÎ½ºÆåÅÍ¿¡¼­ È®ÀÎ");
+            Debug.LogError("íŒŒí‹°í´ ì‹œìŠ¤í…œì´ ì„¤ì •ë˜ì§€ ì•ŠìŒ. ì¸ìŠ¤í™í„°ì—ì„œ í™•ì¸");
         }
     }
-    public void PlayParticleSystem(bool isCritical)
+    public void PlayParticleSystem(bool isCritical, Vector3 position)
     {
         if (normalParticle != null) normalParticle.Stop();
         if (criticalEffect != null) criticalEffect.Stop();
@@ -23,20 +23,15 @@ public class Particle : MonoBehaviour
 
         if (effectPlay != null)
         {
-            SpawnParticleMousePosition(effectPlay);
+            SpawnParticlePosition(effectPlay, position); // ìˆ˜ì •ëœ í•¨ìˆ˜ í˜¸ì¶œ
             effectPlay.Play();
         }
     }
 
-    void SpawnParticleMousePosition(ParticleSystem particle)
+    void SpawnParticlePosition(ParticleSystem particle, Vector3 monsterPosition)
     {
-        Vector3 mousePosition = Input.mousePosition;
-
-        mousePosition.z = Camera.main.nearClipPlane + 1f;
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        particle.transform.position = worldPosition;
-
+        particle.transform.position = monsterPosition; // ëª¬ìŠ¤í„° ìœ„ì¹˜ì—ì„œ íŒŒí‹°í´ ì¬ìƒ
         particle.Play();
+
     }
 }
