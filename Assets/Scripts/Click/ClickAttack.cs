@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.EventSystems; // ui °¨Áö¸¦ À§ÇØ ÇÊ¿ä
+using UnityEngine.EventSystems; // ui ê°ì§€ë¥¼ ìœ„í•´ í•„ìš”
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -12,11 +12,11 @@ public class ClickAttack : MonoBehaviour
     [SerializeField] float click_Damage;
     private float autoAttackInterval = 1f;
     public float autaAttackCycle;
-    public bool isAutoAttackEnabled = false; // ÃÊ±â ÀÚµ¿°ø°İ ºñÈ°¼ºÈ­
+    public bool isAutoAttackEnabled = false; // ì´ˆê¸° ìë™ê³µê²© ë¹„í™œì„±í™”
     [SerializeField] public float criticalPercent;
     [SerializeField] public float criticalMultiplier;
 
-    private WeaponDataTable weaponData; // ¹«±â µ¥ÀÌÅÍ È£Ãâ
+    private WeaponDataTable weaponData; // ë¬´ê¸° ë°ì´í„° í˜¸ì¶œ
 
     public PlayerInput playerInput;
     public bool isOptionUIOpen = false;
@@ -51,7 +51,7 @@ public class ClickAttack : MonoBehaviour
             _clickAction.performed += OnClickAttack;
             _clickAction.Enable();
 
-            // ÀÚµ¿°ø°İ ·¹º§ÀÌ 1 ÀÌ»óÀÏ ¶§¸¸ ÀÚµ¿°ø°İ ½ÃÀÛ
+            // ìë™ê³µê²© ë ˆë²¨ì´ 1 ì´ìƒì¼ ë•Œë§Œ ìë™ê³µê²© ì‹œì‘
             if (isAutoAttackEnabled)
             {
                 autoCoroutine = StartCoroutine(AutoAttack());
@@ -61,7 +61,7 @@ public class ClickAttack : MonoBehaviour
 
     private void Update()
     {
-        if (isOptionUIOpen) // ¿É¼Ç Ã¢ÀÌ ¿­¸®¸é ÀÔ·Â ºñÈ°¼ºÈ­ ¹× °ø°İ ÁßÁö
+        if (isOptionUIOpen) // ì˜µì…˜ ì°½ì´ ì—´ë¦¬ë©´ ì…ë ¥ ë¹„í™œì„±í™” ë° ê³µê²© ì¤‘ì§€
         {
             _clickAction.performed -= OnClickAttack;
             _clickAction.Disable();
@@ -73,7 +73,7 @@ public class ClickAttack : MonoBehaviour
     public void UpdateStat()
     {
         click_Damage = StatManager.Instance.GetFinalDamage();
-        autaAttackCycle = StatManager.Instance.GetAutoDamage(); // ÃÊ´ç °ø°İ È½¼ö·Î º¯È¯
+        autaAttackCycle = StatManager.Instance.GetAutoDamage(); // ì´ˆë‹¹ ê³µê²© íšŸìˆ˜ë¡œ ë³€í™˜
         criticalPercent = StatManager.Instance.GetCriticalChance();
         criticalMultiplier = StatManager.Instance.GetCriticalDamage();
     }
@@ -84,13 +84,13 @@ public class ClickAttack : MonoBehaviour
 
         if (isOptionUIOpen)
         {
-            Debug.Log("¿É¼Çui°¡ ¿­·ÁÀÖÀ½ °ø°İºÒ°¡");
+            Debug.Log("ì˜µì…˜uiê°€ ì—´ë ¤ìˆìŒ ê³µê²©ë¶ˆê°€");
             return;
         }
 
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
-            // UI¿ä¼Ò À§¿¡¼­ Å¬¸¯µÇ¾ú´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö,EventSystem.current °¡ Á¸ÀçÇÏ¸é UI Å¬¸¯ °¨Áö °¡´É
+            // UIìš”ì†Œ ìœ„ì—ì„œ í´ë¦­ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜,EventSystem.current ê°€ ì¡´ì¬í•˜ë©´ UI í´ë¦­ ê°ì§€ ê°€ëŠ¥
             GameObject clickMonterUI = GetClickMonsterUI(Mouse.current.position.ReadValue());
             if (clickMonterUI != null)
             {
@@ -104,24 +104,24 @@ public class ClickAttack : MonoBehaviour
     {
         int autoLevel = GameManager.Instance.player.autoLevel;
         int critLevel = GameManager.Instance.player.critLevel;
-        if (autoLevel > 0) // ÀÚµ¿°ø°İ ·¹º§ÀÌ 1 ÀÌ»óÀÏ ¶§¸¸ ÀÚµ¿°ø°İ È°¼ºÈ­
+        if (autoLevel > 0) // ìë™ê³µê²© ë ˆë²¨ì´ 1 ì´ìƒì¼ ë•Œë§Œ ìë™ê³µê²© í™œì„±í™”
         {
             AutoAttackData auto = GameManager.Instance.playerStatTable.auto[autoLevel - 1];
-            autaAttackCycle = auto.autoAttackCycle; // ÀÚµ¿°ø°İ ÁÖ±â ¼³Á¤
-            isAutoAttackEnabled = true; // ÀÚµ¿°ø°İ È°¼ºÈ­
-            RestartAutoAttack(); // ÀÚµ¿°ø°İ Àç½ÃÀÛ
+            autaAttackCycle = auto.autoAttackCycle; // ìë™ê³µê²© ì£¼ê¸° ì„¤ì •
+            isAutoAttackEnabled = true; // ìë™ê³µê²© í™œì„±í™”
+            RestartAutoAttack(); // ìë™ê³µê²© ì¬ì‹œì‘
         }
         else
         {
-            isAutoAttackEnabled = false; // ÀÚµ¿°ø°İ ºñÈ°¼ºÈ­
+            isAutoAttackEnabled = false; // ìë™ê³µê²© ë¹„í™œì„±í™”
         }
 
         CritData crit = GameManager.Instance.playerStatTable.crit[critLevel - 1];
-        criticalPercent = crit.critChance; // Ä¡¸íÅ¸ È®·ü ¼³Á¤
-        criticalMultiplier = crit.critDamage; // Ä¡¸íÅ¸ µ¥¹ÌÁö ¼³Á¤
+        criticalPercent = crit.critChance; // ì¹˜ëª…íƒ€ í™•ë¥  ì„¤ì •
+        criticalMultiplier = crit.critDamage; // ì¹˜ëª…íƒ€ ë°ë¯¸ì§€ ì„¤ì •
     }
 
-    public IEnumerator AutoAttack()    // ÀÚµ¿ ¾îÅÃ
+    public IEnumerator AutoAttack()    // ìë™ ì–´íƒ
     {
         UpdateStat();
         while (true)
@@ -140,12 +140,13 @@ public class ClickAttack : MonoBehaviour
         {
             UpdateStat();
 
-            float critChance = weaponData.critChance / 100f; // ¹«±â Ä¡¸íÅ¸ È®·ü
-            lastAttCriticalCheck = Random.value < critChance; // Ä¡¸íÅ¸ È®·ü °è»ê
+            //float critChance = weaponData.critChance / 100f; // ë¬´ê¸° ì¹˜ëª…íƒ€ í™•ë¥ 
+            float critChance = criticalPercent / 100f; // ë¬´ê¸° ì¹˜ëª…íƒ€ í™•ë¥ 
+            lastAttCriticalCheck = Random.value < critChance; // ì¹˜ëª…íƒ€ í™•ë¥  ê³„ì‚°
 
             float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
             Debug.Log($"{weaponData.critChance}");
-            Debug.Log(lastAttCriticalCheck ? "Ä¡¸íÅ¸" : "ÀÏ¹İ °ø°İ");
+            Debug.Log(lastAttCriticalCheck ? "ì¹˜ëª…íƒ€" : "ì¼ë°˜ ê³µê²©");
 
             if (monster != null)
             {
@@ -163,12 +164,12 @@ public class ClickAttack : MonoBehaviour
 
     public void RestartAutoAttack()
     {
-        // ¸ğµç ÄÚ·çÆ¾ Á¤Áö ÈÄ ÀÚµ¿ °ø°İ ÄÚ·çÆ¾ Àç½ÃÀÛ
+        // ëª¨ë“  ì½”ë£¨í‹´ ì •ì§€ í›„ ìë™ ê³µê²© ì½”ë£¨í‹´ ì¬ì‹œì‘
         if (autoCoroutine != null)
         {
             StopCoroutine(autoCoroutine);
         }
-        // ¿É¼Ç UI°¡ ¿­·ÁÀÖÁö ¾ÊÀº °æ¿ì¸¸ ÀÚµ¿ °ø°İ ½ÇÇà
+        // ì˜µì…˜ UIê°€ ì—´ë ¤ìˆì§€ ì•Šì€ ê²½ìš°ë§Œ ìë™ ê³µê²© ì‹¤í–‰
         if (!isOptionUIOpen && isAutoAttackEnabled)
         {
             autoCoroutine = StartCoroutine(AutoAttack());
@@ -179,29 +180,29 @@ public class ClickAttack : MonoBehaviour
     private GameObject GetClickMonsterUI(Vector2 screenPosition)
     {
         EventSystem eventSystem = EventSystem.current ?? FindObjectOfType<EventSystem>();
-        if (eventSystem == null) return null; // EventSystemÀÌ ¾øÀ¸¸é null ¹İÈ¯
-                                              // EventSystemÀ» Ã£°í, ¾øÀ¸¸é nullÀ» ¹İÈ¯
+        if (eventSystem == null) return null; // EventSystemì´ ì—†ìœ¼ë©´ null ë°˜í™˜
+                                              // EventSystemì„ ì°¾ê³ , ì—†ìœ¼ë©´ nullì„ ë°˜í™˜
 
         PointerEventData eventData = new PointerEventData(eventSystem)
         {
-            // PointerEventData ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÏ¸é¼­ È­¸é À§Ä¡ ¼³Á¤
-            position = screenPosition // Å¬¸¯µÈ È­¸é À§Ä¡¸¦ ¼³Á¤
+            // PointerEventData ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•˜ë©´ì„œ í™”ë©´ ìœ„ì¹˜ ì„¤ì •
+            position = screenPosition // í´ë¦­ëœ í™”ë©´ ìœ„ì¹˜ë¥¼ ì„¤ì •
         };
 
         List<RaycastResult> results = new List<RaycastResult>();
-        // ·¹ÀÌÄ³½ºÆ® °á°ú¸¦ ÀúÀåÇÒ ¸®½ºÆ®
+        // ë ˆì´ìºìŠ¤íŠ¸ ê²°ê³¼ë¥¼ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
 
         GraphicRaycaster uiRaycaster = FindObjectOfType<GraphicRaycaster>();
-        // ¾À¿¡¼­ GraphicRaycaster ÄÄÆ÷³ÍÆ®¸¦ Ã£À½ (UI ·¹ÀÌÄ³½ºÆ® ¿ëµµ)
+        // ì”¬ì—ì„œ GraphicRaycaster ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ìŒ (UI ë ˆì´ìºìŠ¤íŠ¸ ìš©ë„)
 
         if (uiRaycaster == null) return null;
-        // ¸¸¾à GraphicRaycaster°¡ ¾ø´Ù¸é, nullÀ» ¹İÈ¯ (UI°¡ ¾ø´Ù´Â ÀÇ¹Ì)
+        // ë§Œì•½ GraphicRaycasterê°€ ì—†ë‹¤ë©´, nullì„ ë°˜í™˜ (UIê°€ ì—†ë‹¤ëŠ” ì˜ë¯¸)
 
         uiRaycaster.Raycast(eventData, results);
-        // ·¹ÀÌÄ³½ºÆ®¸¦ ½ÇÇàÇÏ¿© °á°ú¸¦ results ¸®½ºÆ®¿¡ ÀúÀå
+        // ë ˆì´ìºìŠ¤íŠ¸ë¥¼ ì‹¤í–‰í•˜ì—¬ ê²°ê³¼ë¥¼ results ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 
         foreach (var result in results)
-        // ·¹ÀÌÄ³½ºÆ® °á°ú¸¦ ¹İº¹ÇÏ¸é¼­ "Monster" ÅÂ±×°¡ ºÙÀº GameObject¸¦ Ã£À½
+        // ë ˆì´ìºìŠ¤íŠ¸ ê²°ê³¼ë¥¼ ë°˜ë³µí•˜ë©´ì„œ "Monster" íƒœê·¸ê°€ ë¶™ì€ GameObjectë¥¼ ì°¾ìŒ
         {
             if (result.gameObject.CompareTag("Monster"))
             {
