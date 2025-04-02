@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         }
         // 씬 전환 시에도 삭제X
         DontDestroyOnLoad(gameObject);
+
+        //int height = Screen.height;
+        //int width = (int)(height * (9f / 16f));
+        //Screen.SetResolution(width, height, false);
+
     }
 
     private void Start()
