@@ -87,7 +87,6 @@ public class ClickAttack : MonoBehaviour
 
         if (isOptionUIOpen)
         {
-            Debug.Log("?듭뀡ui媛 ?대젮?덉쓬 怨듦꺽遺덇?");
             return;
         }
 
@@ -148,8 +147,6 @@ public class ClickAttack : MonoBehaviour
             lastAttCriticalCheck = Random.value < critChance; // 치명타 확률 계산
 
             float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
-            Debug.Log($"{weaponData.critChance}");
-            Debug.Log(lastAttCriticalCheck ? "치명타" : "일반공격");
 
             if (monster != null)
             {
