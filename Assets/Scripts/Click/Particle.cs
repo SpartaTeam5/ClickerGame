@@ -4,32 +4,39 @@ using UnityEngine;
 
 public class Particle : MonoBehaviour
 {
-    private ParticleSystem particle;
+    [SerializeField] ParticleSystem normalParticle; // 일반 공격 
+    [SerializeField] ParticleSystem criticalEffect; // 치명타
 
-    // Start is called before the first frame update
     void Start()
     {
-        particle = GetComponent<ParticleSystem>();
-
-        if (particle == null)
+        if (normalParticle == null || criticalEffect == null)
         {
-            Debug.Log("파티클 없음");
+            Debug.LogError("파티클 시스템이 설정되지 않음. 인스펙터에서 확인");
+        }
+    }
+    public void PlayParticleSystem(bool isCritical)
+    {
+        if (normalParticle != null) normalParticle.Stop();
+        if (criticalEffect != null) criticalEffect.Stop();
+
+        ParticleSystem effectPlay = isCritical ? criticalEffect : normalParticle;
+
+        if (effectPlay != null)
+        {
+            SpawnParticleMousePosition(effectPlay);
+            effectPlay.Play();
         }
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        PlayParticleSystem();
-    //    }
+    void SpawnParticleMousePosition(ParticleSystem particle)
+    {
+        Vector3 mousePosition = Input.mousePosition;
 
-    //    if (Input.GetMouseButtonUp(0))
-    //    {
-    //        StopParticleSystem();
-    //    }
-    //}
+        mousePosition.z = Camera.main.nearClipPlane + 1f;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
+        particle.transform.position = worldPosition;
 
+        particle.Play();
+    }
 }

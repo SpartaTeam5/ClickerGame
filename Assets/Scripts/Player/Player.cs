@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public PlayerStatTable statTable;
-    public PlayerData playerData;
 
-    public int critLevel = 1;
-    public int autoLevel = 1;
-    public int goldLevel = 1;
+    public int critLevel = 0;
+    public int autoLevel = 0; // ì´ˆê¸° ìë™ê³µê²© ë ˆë²¨ì„ 0ìœ¼ë¡œ ì„¤ì •
+    public int goldLevel = 0;
 
     public Button critBtn;
     public Button autoBtn;
@@ -31,85 +30,107 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI goldAmountText;
     public TextMeshProUGUI goldCostText;
 
-    
+    public ClickAttack clickAttack; // ClickAttack í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ ì¶”ê°€
 
     public void Start()
     {
         statTable.GenerateData(100);
         UpdateUI();
 
-        
-        
     }
-   
+
     public void UpdateUI()
     {
-        CritData crit = statTable.crit[critLevel - 1];
+        CritData crit = statTable.crit[critLevel];
         critLevelText.text = "Lv" + crit.level.ToString();
-        critDamageText.text = crit.critDamage.ToString() + "%";
+        critDamageText.text = " X " + crit.critDamage.ToString();
         critCostText.text = crit.cost_c.ToString();
-        if(playerData.gold < statTable.crit[critLevel - 1].cost_c) // °ñµå ºÎÁ·ÇÏ¸é »¡°£»öÀ¸·Î Ç¥½Ã
+        if (GameManager.Instance.playerData.gold < statTable.crit[critLevel].cost_c) // ê³¨ë“œ ë¶€ì¡±í•˜ë©´ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ í‘œì‹œ
         {
-            critCostText.color = Color.red; 
-        }
-
-        AutoAttackData auto = statTable.auto[autoLevel - 1];
-        autoLevelText.text = "Lv" + auto.level.ToString();
-        autoCycleText.text = auto.autoAttackCycle.ToString() + "È¸/ÃÊ";
-        autoCostText.text = auto.cost_a.ToString();
-        if (playerData.gold < statTable.auto[autoLevel - 1].cost_a) // °ñµå ºÎÁ·ÇÏ¸é »¡°£»öÀ¸·Î Ç¥½Ã
-        {
-            autoCostText.color = Color.red;
-        }
-
-        GoldData gold = statTable.gold[goldLevel - 1];
-        goldLevelText.text = "Lv" + gold.level.ToString();
-        goldAmountText.text = gold.getGoldAmount.ToString() + "%";
-        goldCostText.text = gold.cost_g.ToString();
-        if (playerData.gold < statTable.gold[goldLevel - 1].cost_g) // °ñµå ºÎÁ·ÇÏ¸é »¡°£»öÀ¸·Î Ç¥½Ã
-        {
-            goldCostText.color = Color.red;
-        }
-    }
-
-    public void OnClickCrit() //·¹º§ ¾÷ ¹öÆ° ´©¸£¸é Ä¡¸íÅ¸ ·¹º§ 1¾¿ Áõ°¡
-    {
-        if (playerData.gold >= statTable.crit[critLevel - 1].cost_c)
-        {
-            playerData.gold -= (critLevel * 10);
-            critLevel++;
-            var crit = statTable.crit[critLevel - 1];
-            UpdateUI();
-            Debug.Log($"[Ä¡¸íÅ¸ ·¹º§ ¾÷!] ÇöÀç ·¹º§: {crit.level}, Ä¡¸íÅ¸ µ¥¹ÌÁö: {crit.critDamage}");
+            critCostText.color = Color.red;
         }
         else
         {
-            Debug.Log("°ñµå ºÎÁ·");
-            
+            critCostText.color = Color.black;
+        }
+
+        AutoAttackData auto = statTable.auto[autoLevel];
+        autoLevelText.text = "Lv" + auto.level.ToString();
+        autoCycleText.text = auto.autoAttackCycle.ToString() + "íšŒ/ì´ˆ";
+        autoCostText.text = auto.cost_a.ToString();
+        if (GameManager.Instance.playerData.gold < statTable.auto[autoLevel].cost_a) // ê³¨ë“œ ë¶€ì¡±í•˜ë©´ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ í‘œì‹œ
+        {
+            autoCostText.color = Color.red;
+        }
+        else
+        {
+            autoCostText.color = Color.black;
+        }
+
+        GoldData gold = statTable.gold[goldLevel];
+        goldLevelText.text = "Lv" + gold.level.ToString();
+        goldAmountText.text = gold.getGoldAmount.ToString() + "%";
+        goldCostText.text = gold.cost_g.ToString();
+        if (GameManager.Instance.playerData.gold < statTable.gold[goldLevel].cost_g) // ê³¨ë“œ ë¶€ì¡±í•˜ë©´ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ í‘œì‹œ
+        {
+            goldCostText.color = Color.red;
+        }
+        else
+        {
+            goldCostText.color = Color.black;
         }
     }
 
-    public void OnClickAuto() //·¹º§ ¾÷ ¹öÆ° ´©¸£¸é Ä¡¸íÅ¸ ·¹º§ 1¾¿ Áõ°¡
+    public void OnClickCrit() //ë ˆë²¨ ì—… ë²„íŠ¼ ëˆ„ë¥´ë©´ ì¹˜ëª…íƒ€ ë ˆë²¨ 1ì”© ì¦ê°€
     {
-        if (playerData.gold >= statTable.auto[autoLevel - 1].cost_a)
+        if (GameManager.Instance.playerData.gold >= statTable.crit[critLevel].cost_c && critLevel < 99)
         {
-            playerData.gold -= (autoLevel * 10);
+            GameManager.Instance.playerData.gold -= statTable.crit[critLevel].cost_c;
+            critLevel++;
+            var crit = statTable.crit[critLevel];
+            UpdateUI();
+            GameManager.Instance.UpdateGoldUI();
+            Debug.Log($"[ì¹˜ëª…íƒ€ ë ˆë²¨ ì—…!] í˜„ì¬ ë ˆë²¨: {crit.level}, ì¹˜ëª…íƒ€ ë°ë¯¸ì§€: {crit.critDamage}");
+        }
+        else
+        {
+            return;
+            Debug.Log("ê³¨ë“œ ë¶€ì¡±");
+        }
+    }
+
+    public void OnClickAuto() //ë ˆë²¨ ì—… ë²„íŠ¼ ëˆ„ë¥´ë©´ ìë™ê³µê²© ë ˆë²¨ 1ì”© ì¦ê°€
+    {
+        if (GameManager.Instance.playerData.gold >= statTable.auto[autoLevel].cost_a && autoLevel < 99)
+        {
+            GameManager.Instance.playerData.gold -= statTable.auto[autoLevel].cost_a;
             autoLevel++;
-            var auto = statTable.auto[autoLevel - 1];
+            var auto = statTable.auto[autoLevel];
             UpdateUI();
-            Debug.Log($"[ÀÚµ¿°ø°İ ·¹º§ ¾÷!] ÇöÀç ·¹º§: {auto.level}, ÃÊ´ç ÀÚµ¿°ø°İ È½¼ö: {auto.autoAttackCycle}");
+            GameManager.Instance.UpdateGoldUI();
+            clickAttack.ApplyStatsToClickAttack(); // ìë™ê³µê²© ì£¼ê¸° ì—…ë°ì´íŠ¸ ë° ì¬ì‹œì‘
+            Debug.Log($"[ìë™ê³µê²© ë ˆë²¨ ì—…!] í˜„ì¬ ë ˆë²¨: {auto.level}, ì´ˆë‹¹ ìë™ê³µê²© íšŸìˆ˜: {auto.autoAttackCycle}");
+        }
+        else
+        {
+            Debug.Log("ê³¨ë“œ ë¶€ì¡±");
         }
     }
 
-    public void OnClickGold() //·¹º§ ¾÷ ¹öÆ° ´©¸£¸é Ä¡¸íÅ¸ ·¹º§ 1¾¿ Áõ°¡
+    public void OnClickGold() //ë ˆë²¨ ì—… ë²„íŠ¼ ëˆ„ë¥´ë©´ ê³¨ë“œ íšë“ ë ˆë²¨ 1ì”© ì¦ê°€
     {
-        if (playerData.gold >= statTable.gold[goldLevel - 1].cost_g)
+        if (GameManager.Instance.playerData.gold >= statTable.gold[goldLevel].cost_g && goldLevel < 99)
         {
-            playerData.gold -= (goldLevel * 10);
+            GameManager.Instance.playerData.gold -= statTable.gold[goldLevel].cost_g;
             goldLevel++;
-            var gold = statTable.gold[goldLevel - 1];
+            var gold = statTable.gold[goldLevel];
             UpdateUI();
-            Debug.Log($"[°ñµåÈ¹µæ ·¹º§ ¾÷!] ÇöÀç ·¹º§: {gold.level}, °ñµå È¹µæ·®: {gold.getGoldAmount}");
+            GameManager.Instance.UpdateGoldUI();
+            Debug.Log($"[ê³¨ë“œíšë“ ë ˆë²¨ ì—…!] í˜„ì¬ ë ˆë²¨: {gold.level}, ê³¨ë“œ íšë“ëŸ‰: {gold.getGoldAmount}");
+        }
+        else
+        {
+            Debug.Log("ê³¨ë“œ ë¶€ì¡±");
         }
     }
 

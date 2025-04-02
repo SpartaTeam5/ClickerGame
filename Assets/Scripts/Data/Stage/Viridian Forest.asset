@@ -18,17 +18,26 @@ MonoBehaviour:
   monsters:
   - MonsterData:
     - {fileID: 11400000, guid: b331486fe503c0d4092a338b1dc1ef90, type: 2}
+    - {fileID: 11400000, guid: b331486fe503c0d4092a338b1dc1ef90, type: 2}
+    - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
+    - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
+  - MonsterData:
+    - {fileID: 11400000, guid: b331486fe503c0d4092a338b1dc1ef90, type: 2}
+    - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
     - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
     - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
+    - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
+  - MonsterData:
+    - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
+    - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
+    - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
+    - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
+    - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: fb46e5acd5bf5b940868e48b96cf9185, type: 2}
     - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
     - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
-  - MonsterData:
     - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
-    - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
-  - MonsterData:
-    - {fileID: 11400000, guid: bbb1cc409eed95142a43412207ed2b6b, type: 2}
     - {fileID: 11400000, guid: 133abea821bbddf469271e61bae35433, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: ae942a475d2ca584fb0e724b3562d766, type: 2}

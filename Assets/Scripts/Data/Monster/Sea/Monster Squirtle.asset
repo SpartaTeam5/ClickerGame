@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster Squirtle
   m_EditorClassIdentifier: 
   MonsterName: "\uAF2C\uBD80\uAE30"
-  health: 100
-  maxhealth: 100
-  money: 80
+  health: 2000
+  maxhealth: 2000
+  money: 1000
   sprite: {fileID: 21300000, guid: d5f74e44a750fca45b724d9c89ddac79, type: 3}

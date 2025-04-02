@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster Vulpix
   m_EditorClassIdentifier: 
   MonsterName: "\uC2DD\uC2A4\uD14C\uC77C"
-  health: 200
-  maxhealth: 200
-  money: 200
+  health: 7000
+  maxhealth: 7000
+  money: 2000
   sprite: {fileID: 21300000, guid: dec9cf2a3293e724998da66fc91b1a5b, type: 3}

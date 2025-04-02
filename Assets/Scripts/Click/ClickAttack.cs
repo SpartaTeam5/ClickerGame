@@ -2,140 +2,210 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.EventSystems; // ui °¨Áö¸¦ À§ÇØ ÇÊ¿ä
+using UnityEngine.EventSystems; // ui ê°ì§€ë¥¼ ìœ„í•´ í•„ìš”
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class ClickAttack : MonoBehaviour
 {
-    [SerializeField] float click_Damage = 1.0f;
-    [SerializeField] float autoAttackInterval = 1.0f;
-    [SerializeField] bool isAutoAttackEnabled = true;
-    [SerializeField] MonsterData[] pokemonMonster;
+    [SerializeField] float click_Damage;
+    private float autoAttackInterval = 1f;
+    public float autaAttackCycle;
+    public bool isAutoAttackEnabled = false; // ì´ˆê¸° ìë™ê³µê²© ë¹„í™œì„±í™”
+    [SerializeField] public float criticalPercent;
+    [SerializeField] public float criticalMultiplier;
 
-    private Camera mainCamera;
+    private WeaponDataTable weaponData; // ë¬´ê¸° ë°ì´í„° í˜¸ì¶œ
+
     public PlayerInput playerInput;
-    private InputAction _clickAction;
     public bool isOptionUIOpen = false;
-
-    //UIStage uIStage;
     public Monster monster;
+
+    private InputAction _clickAction;
+    private Particle particleEffect;
+    private bool lastAttCriticalCheck;
+
+    private Coroutine autoCoroutine;
 
     private void Awake()
     {
-        mainCamera = Camera.main; // ÇöÀç¾ÀÀÇ Ä«¸Ş¶ó °¡Á®¿À±â
         playerInput = GetComponent<PlayerInput>();
         _clickAction = playerInput.actions["ClickAtt"];
-
-        //uIStage = FindObjectOfType<UIStage>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        _clickAction.performed += OnClickAttack;
-        _clickAction.Enable();
-        //StartCoroutine(AutoAttack());         // ÀÏÁ¤ Á¶°ÇÀÏ¶§ »ç¿ëÇÏ±â -> Start¿¡¼­ ½ÇÇà
+        particleEffect = FindObjectOfType<Particle>();
+        monster = FindObjectOfType<Monster>();
+        weaponData = GameManager.Instance.weaponDataTable;
+        UpdateStat();
+
+        if (monster == null)
+        {
+            return;
+        }
+
+        if (!isOptionUIOpen)
+        {
+            _clickAction.performed += OnClickAttack;
+            _clickAction.Enable();
+
+            // ìë™ê³µê²© ë ˆë²¨ì´ 1 ì´ìƒì¼ ë•Œë§Œ ìë™ê³µê²© ì‹œì‘
+            if (isAutoAttackEnabled)
+            {
+                autoCoroutine = StartCoroutine(AutoAttack());
+            }
+        }
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        _clickAction.performed -= OnClickAttack;
-        _clickAction.Disable();
-        StopCoroutine(AutoAttack());
+        if (isOptionUIOpen) // ì˜µì…˜ ì°½ì´ ì—´ë¦¬ë©´ ì…ë ¥ ë¹„í™œì„±í™” ë° ê³µê²© ì¤‘ì§€
+        {
+            _clickAction.performed -= OnClickAttack;
+            _clickAction.Disable();
+
+            StopCoroutine(autoCoroutine);
+        }
+    }
+
+    public void UpdateStat()
+    {
+        click_Damage = StatManager.Instance.GetFinalDamage();
+        autaAttackCycle = StatManager.Instance.GetAutoDamage(); // ì´ˆë‹¹ ê³µê²© íšŸìˆ˜ë¡œ ë³€í™˜
+        criticalPercent = StatManager.Instance.GetCriticalChance();
+        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
     }
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
+        UpdateStat();
+
         if (isOptionUIOpen)
         {
-            Debug.Log("¿É¼Çui°¡ ¿­·ÁÀÖÀ½ °ø°İºÒ°¡");
+            Debug.Log("?ë“­ë€¡uiåª›Â€ ?ëŒ€ì ®?ë‰ì“¬ æ€¨ë“¦êº½éºë‡?");
             return;
         }
 
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        { 
-         // UI¿ä¼Ò À§¿¡¼­ Å¬¸¯µÇ¾ú´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö,EventSystem.current °¡ Á¸ÀçÇÏ¸é UI Å¬¸¯ °¨Áö °¡´É
-            
+        {
+            // UIìš”ì†Œ ìœ„ì—ì„œ í´ë¦­ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜,EventSystem.current ê°€ ì¡´ì¬í•˜ë©´ UI í´ë¦­ ê°ì§€ ê°€ëŠ¥
             GameObject clickMonterUI = GetClickMonsterUI(Mouse.current.position.ReadValue());
             if (clickMonterUI != null)
             {
-                Debug.Log("UI ¸ó½ºÅÍ Å¬¸¯! °ø°İ");
                 AttackMonster(click_Damage);
+                return;
             }
-
-            Debug.Log("ui Å¬¸¯ °ø°İ ½ÇÇà ¾ÈµÊ");
             return;
         }
+    }
+    public void ApplyStatsToClickAttack()
+    {
+        int autoLevel = GameManager.Instance.player.autoLevel;
+        int critLevel = GameManager.Instance.player.critLevel;
+        if (autoLevel > 0) // ìë™ê³µê²© ë ˆë²¨ì´ 1 ì´ìƒì¼ ë•Œë§Œ ìë™ê³µê²© í™œì„±í™”
+        {
+            AutoAttackData auto = GameManager.Instance.playerStatTable.auto[autoLevel];
+            autaAttackCycle = auto.autoAttackCycle; // ìë™ê³µê²© ì£¼ê¸° ì„¤ì •
+            isAutoAttackEnabled = true; // ìë™ê³µê²© í™œì„±í™”
+            RestartAutoAttack(); // ìë™ê³µê²© ì¬ì‹œì‘
+        }
+        else
+        {
+            isAutoAttackEnabled = false; // ìë™ê³µê²© ë¹„í™œì„±í™”
+        }
 
-        //Vector2 mousePosition = Mouse.current.position.ReadValue(); // Å¬¸¯À§Ä¡°ª °¡Á®¿À±â
-        //Vector2 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition); // È­¸é ÁÂÇ¥¸¦ ¿ùµåÁÂÇ¥·Î º¯È¯
-        //RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-        // 2D¿¡¼­ ´õ Á¤È®ÇÑ Raycast ÀÛµ¿ (Physics2D.Raycast´Â ¹æÇâÀÌ ÇÊ¿ä ¾ø´Ù)
-
-        //if (hit.collider != null )
-        //{
-        //    MonsterData monster = hit.collider.GetComponent<MonsterData>();
-
-        //    if (monster != null)
-        //    {
-        //        AttackMonster(click_Damage);
-        //        return;
-        //    }
-        //}
-        Debug.Log("¸ó½ºÅÍ¸¦ Å¬¸¯ÇÏÁö ¾ÊÀ½");
-
+        CritData crit = GameManager.Instance.playerStatTable.crit[critLevel];
+        criticalPercent = crit.critChance; // ì¹˜ëª…íƒ€ í™•ë¥  ì„¤ì •
+        criticalMultiplier = crit.critDamage; // ì¹˜ëª…íƒ€ ë°ë¯¸ì§€ ì„¤ì •
     }
 
-    IEnumerator AutoAttack()
+    public IEnumerator AutoAttack()    // ìë™ ì–´íƒ
     {
+        UpdateStat();
         while (true)
         {
-            if(isAutoAttackEnabled && !isOptionUIOpen)
+            if (isAutoAttackEnabled && !isOptionUIOpen)
             {
                 AttackMonster(click_Damage);
             }
-            yield return new WaitForSeconds(autoAttackInterval);
+            yield return new WaitForSeconds(autoAttackInterval / autaAttackCycle);
         }
     }
 
     public void AttackMonster(float damage)
     {
-        if (pokemonMonster != null)
+        if (monster.isDie == false)
         {
-            //uIStage.TakeDamage(damage);
-            //Debug.Log($"¸ó½ºÅÍ¸¦ {damage}¸¸Å­ °ø°İ! ³²Àº Ã¼·Â: {uIStage.GetPercentage() * 100}%");
-            monster.TakeDamage(damage);
-            Debug.Log($"¸ó½ºÅÍ¸¦ {damage}¸¸Å­ °ø°İ! ³²Àº Ã¼·Â: {monster.GetPercentage() * 100}%");
+            UpdateStat();
+
+            //float critChance = weaponData.critChance / 100f; // ë¬´ê¸° ì¹˜ëª…íƒ€ í™•ë¥ 
+            float critChance = criticalPercent / 100f; // ë¬´ê¸° ì¹˜ëª…íƒ€ í™•ë¥ 
+            lastAttCriticalCheck = Random.value < critChance; // ì¹˜ëª…íƒ€ í™•ë¥  ê³„ì‚°
+
+            float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
+            Debug.Log($"{weaponData.critChance}");
+            Debug.Log(lastAttCriticalCheck ? "ì¹˜ëª…íƒ€" : "ì¼ë°˜ê³µê²©");
+
+            if (monster != null)
+            {
+                monster.TakeDamage(finalDamage);
+
+                float clickGold = finalDamage * Random.value; // ê³µê²©ë ¥ì´ ê°•í•´ì§ˆìˆ˜ë¡ ì–»ëŠ”ê³¨ë“œ ì¦ê°€
+                GameManager.Instance.AddGold(clickGold);
+            }
+
+            Particle particleEffect = FindObjectOfType<Particle>();
+
+            if (particleEffect != null)
+            {
+                particleEffect.PlayParticleSystem(lastAttCriticalCheck);
+            }
         }
     }
 
+    public void RestartAutoAttack()
+    {
+        // ëª¨ë“  ì½”ë£¨í‹´ ì •ì§€ í›„ ìë™ ê³µê²© ì½”ë£¨í‹´ ì¬ì‹œì‘
+        if (autoCoroutine != null)
+        {
+            StopCoroutine(autoCoroutine);
+        }
+        // ì˜µì…˜ UIê°€ ì—´ë ¤ìˆì§€ ì•Šì€ ê²½ìš°ë§Œ ìë™ ê³µê²© ì‹¤í–‰
+        if (!isOptionUIOpen && isAutoAttackEnabled)
+        {
+            autoCoroutine = StartCoroutine(AutoAttack());
+        }
+    }
+
+    
     private GameObject GetClickMonsterUI(Vector2 screenPosition)
     {
         EventSystem eventSystem = EventSystem.current ?? FindObjectOfType<EventSystem>();
-        if (eventSystem == null) return null; // EventSystemÀÌ ¾øÀ¸¸é null ¹İÈ¯
-        // EventSystemÀ» Ã£°í, ¾øÀ¸¸é nullÀ» ¹İÈ¯
+        if (eventSystem == null) return null; // EventSystemì´ ì—†ìœ¼ë©´ null ë°˜í™˜
+                                              // EventSystemì„ ì°¾ê³ , ì—†ìœ¼ë©´ nullì„ ë°˜í™˜
 
         PointerEventData eventData = new PointerEventData(eventSystem)
         {
-        // PointerEventData ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÏ¸é¼­ È­¸é À§Ä¡ ¼³Á¤
-            position = screenPosition // Å¬¸¯µÈ È­¸é À§Ä¡¸¦ ¼³Á¤
+            // PointerEventData ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•˜ë©´ì„œ í™”ë©´ ìœ„ì¹˜ ì„¤ì •
+            position = screenPosition // í´ë¦­ëœ í™”ë©´ ìœ„ì¹˜ë¥¼ ì„¤ì •
         };
 
         List<RaycastResult> results = new List<RaycastResult>();
-        // ·¹ÀÌÄ³½ºÆ® °á°ú¸¦ ÀúÀåÇÒ ¸®½ºÆ®
+        // ë ˆì´ìºìŠ¤íŠ¸ ê²°ê³¼ë¥¼ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
 
         GraphicRaycaster uiRaycaster = FindObjectOfType<GraphicRaycaster>();
-        // ¾À¿¡¼­ GraphicRaycaster ÄÄÆ÷³ÍÆ®¸¦ Ã£À½ (UI ·¹ÀÌÄ³½ºÆ® ¿ëµµ)
+        // ì”¬ì—ì„œ GraphicRaycaster ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ìŒ (UI ë ˆì´ìºìŠ¤íŠ¸ ìš©ë„)
 
         if (uiRaycaster == null) return null;
-        // ¸¸¾à GraphicRaycaster°¡ ¾ø´Ù¸é, nullÀ» ¹İÈ¯ (UI°¡ ¾ø´Ù´Â ÀÇ¹Ì)
+        // ë§Œì•½ GraphicRaycasterê°€ ì—†ë‹¤ë©´, nullì„ ë°˜í™˜ (UIê°€ ì—†ë‹¤ëŠ” ì˜ë¯¸)
 
         uiRaycaster.Raycast(eventData, results);
-        // ·¹ÀÌÄ³½ºÆ®¸¦ ½ÇÇàÇÏ¿© °á°ú¸¦ results ¸®½ºÆ®¿¡ ÀúÀå
+        // ë ˆì´ìºìŠ¤íŠ¸ë¥¼ ì‹¤í–‰í•˜ì—¬ ê²°ê³¼ë¥¼ results ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 
         foreach (var result in results)
-        // ·¹ÀÌÄ³½ºÆ® °á°ú¸¦ ¹İº¹ÇÏ¸é¼­ "Monster" ÅÂ±×°¡ ºÙÀº GameObject¸¦ Ã£À½
+        // ë ˆì´ìºìŠ¤íŠ¸ ê²°ê³¼ë¥¼ ë°˜ë³µí•˜ë©´ì„œ "Monster" íƒœê·¸ê°€ ë¶™ì€ GameObjectë¥¼ ì°¾ìŒ
         {
             if (result.gameObject.CompareTag("Monster"))
             {

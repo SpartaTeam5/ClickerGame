@@ -3923,7 +3923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statTable: {fileID: 11400000, guid: 14b980fd4e2fe214f90c2695e1ec63e0, type: 2}
-  playerData:
+  playerdata:
     stage: 1
     gold: 100000
     clickPower: 1
@@ -8659,8 +8659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
-  player: {fileID: 2500383356470340713}
-  playerData:
+  playerdata:
     stage: 1
     gold: 0
     clickPower: 1

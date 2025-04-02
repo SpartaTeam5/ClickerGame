@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class WeaponEnhanceUI : MonoBehaviour
 {
     public WeaponDataTable weaponTable;
-    public Player player;
-    public PlayerData playerData;
+    //public PlayerData playerdata;
 
+    
     public GameObject weapon1;
     public GameObject weapon2;
     public GameObject weapon3;
@@ -49,6 +49,7 @@ public class WeaponEnhanceUI : MonoBehaviour
         buy1.SetActive(true);
         buy2.SetActive(true);
         buy3.SetActive(true);
+        Debug.Log($"{GameManager.Instance.playerData.gold}");
     }
 
     public void UpdateEnhanceUI()
@@ -75,50 +76,72 @@ public class WeaponEnhanceUI : MonoBehaviour
         weapon4Chancetext.text = "치명타 확률 " + w4.critChance.ToString();
 
         weapon1Enhancetext.text = w1.costEnhance.ToString();
-        if (playerData.gold < w1.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (GameManager.Instance.playerData.gold < w1.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon1Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon1Enhancetext.color = Color.black;
+        }
         weapon2Enhancetext.text = w2.costEnhance.ToString();
-        if (playerData.gold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (GameManager.Instance.playerData.gold < w2.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon2Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon2Enhancetext.color = Color.black;
+        }
         weapon3Enhancetext.text = w3.costEnhance.ToString();
-        if (playerData.gold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (GameManager.Instance.playerData.gold < w3.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon3Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon3Enhancetext.color = Color.black;
+        }
         weapon4Enhancetext.text = w4.costEnhance.ToString();
-        if (playerData.gold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
+        if (GameManager.Instance.playerData.gold < w4.costEnhance) // 골드 부족하면 빨간색으로 표시
         {
             weapon4Enhancetext.color = Color.red;
         }
+        else
+        {
+            weapon4Enhancetext.color = Color.black;
+        }
 
-        
+
     }
 
     public void OnClickBuy1()
     {
-        if(playerData.gold >= 1000)
+        if(GameManager.Instance.playerData.gold >= 1000)
         {
+            GameManager.Instance.playerData.gold -= 1000;
             buy1.SetActive(false);
+            GameManager.Instance.UpdateGoldUI();
         }
     }
 
     public void OnClickBuy2()
     {
-        if (playerData.gold >= 2000)
+        if (GameManager.Instance.playerData.gold >= 3000)
         {
+            GameManager.Instance.playerData.gold -= 3000;
             buy2.SetActive(false);
+            GameManager.Instance.UpdateGoldUI();
         }
     }
 
     public void OnClickBuy3()
     {
-        if (playerData.gold >= 3000)
+        if (GameManager.Instance.playerData.gold >= 5000)
         {
+            GameManager.Instance.playerData.gold -= 5000;
             buy3.SetActive(false);
+            GameManager.Instance.UpdateGoldUI();
         }
     }
 }

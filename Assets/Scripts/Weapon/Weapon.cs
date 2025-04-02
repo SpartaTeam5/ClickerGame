@@ -10,7 +10,9 @@ public class Weapon : MonoBehaviour
     public WeaponDataTable weaponTable;
     public WeaponEnhanceUI weaponEnhance;
     public Player player;
-    public PlayerData playerData;
+    //public PlayerData playerData;
+
+    public Image monsterImage; // 몬스터 이미지
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -42,8 +44,6 @@ public class Weapon : MonoBehaviour
         weapon1.GetComponent<WeaponData>().isEquipped = true;
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-        Debug.Log($"{playerData.gold}");
-
     }
 
     public void UpdateUI()
@@ -64,6 +64,7 @@ public class Weapon : MonoBehaviour
             if (weaponData.isEquipped)
             {
                 weaponTable = weaponData.weapondata;
+                GameManager.Instance.weaponDataTable = weaponTable;
                 weaponText.text = weaponTable.weaponName;
                 weaponLevelText.text = "Lv " + weaponTable.weaponLevel.ToString();
                 weaponAtkText.text = "공격력 " + weaponTable.baseAttack.ToString();
@@ -103,6 +104,7 @@ public class Weapon : MonoBehaviour
                 break;
             }
         }
+        monsterImage.raycastTarget = false; // 강화창 활성시
         weaponEnhanceUI.SetActive(true);
     }
 
@@ -112,18 +114,18 @@ public class Weapon : MonoBehaviour
         WeaponData weaponData = weapon.GetComponent<WeaponData>();
         weaponTable = weaponData.weapondata;
 
-        if (playerData.gold >= weaponTable.costEnhance && weaponTable.weaponLevel < weaponTable.weaponaMaxLevel)
+        if (GameManager.Instance.playerData.gold >= weaponTable.costEnhance && weaponTable.weaponLevel < weaponTable.weaponaMaxLevel)
         {
             weaponTable.weaponLevel++;
             weaponTable.baseAttack += weaponTable.atkIncrease;
             weaponTable.critChance += weaponTable.critChanceIncrease;
-            playerData.gold -= weaponTable.costEnhance;
-            weaponTable.costEnhance *= 2f;
+            GameManager.Instance.playerData.gold -= weaponTable.costEnhance;
+            weaponTable.costEnhance += 100f;
 
             Debug.Log($"[강화됨] {weaponTable.weaponName} → Lv.{weaponTable.weaponLevel}, 공격력: {weaponTable.baseAttack}, 치명타: {weaponTable.critChance}%");
         }
 
-        if (playerData.gold < weaponTable.costEnhance)
+        if (GameManager.Instance.playerData.gold < weaponTable.costEnhance)
             Debug.Log("골드 부족");
         if(weaponTable.weaponLevel == weaponTable.weaponaMaxLevel)
         {
@@ -132,7 +134,7 @@ public class Weapon : MonoBehaviour
 
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
-
+        GameManager.Instance.UpdateGoldUI();
 
     }
 
@@ -141,6 +143,7 @@ public class Weapon : MonoBehaviour
     public void OnClickBack()
     {
         weaponEnhanceUI.SetActive(false);
+        monsterImage.raycastTarget = true; // 비활성 시
     }
 
 
