@@ -52,7 +52,7 @@ public class BGMManager : MonoBehaviour
 
         switch (sceneName)
         {
-            case "TestScenes":
+            case "MainScene":
                 PlayBGM(battleBGM);
                 break;
             case "EndingScene":
