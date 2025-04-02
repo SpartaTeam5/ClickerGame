@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Inspector에서 값을 볼 수 있도록
+//Inspector에서 값을 볼 수 있도록 하기 
 [Serializable]
 public class PlayerData
 {
