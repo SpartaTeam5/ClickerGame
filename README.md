@@ -51,9 +51,7 @@
 
 |텍스트 데미지|오브젝트 풀링|
 |:---:|:---:|
-|![objectpool](https://github.com/user-attachments/assets/47c14e6e-69a9-4dee-9b24-d773a2f455ca)
-|![MonsterDamage](https://github.com/user-attachments/assets/b12490e5-34eb-4d15-b0b5-f91ba2b8d170)
-|
+|![objectpool](https://github.com/user-attachments/assets/47c14e6e-69a9-4dee-9b24-d773a2f455ca)|![MonsterDamage](https://github.com/user-attachments/assets/b12490e5-34eb-4d15-b0b5-f91ba2b8d170)|
 
 ### 텍스트 데미지
 - 큐를 이용한 오브젝트 풀링을 적용
