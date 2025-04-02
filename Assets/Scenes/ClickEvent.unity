@@ -992,6 +992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea47d0e9e3fd744483d1eeddf58cd8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 20
+  nextSceneName: TitleScene
 --- !u!114 &54925203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12248,6 +12250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6845dbba3ded9b47816d58be73c71d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1780043766 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2075299370169777638, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+  m_PrefabInstance: {fileID: 2008446748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1786430215
 GameObject:
   m_ObjectHideFlags: 0
@@ -13680,6 +13687,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: moveWithCustomTransform
+      value: 
+      objectReference: {fileID: 1780043766}
     - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
       propertyPath: ShapeModule.randomPositionAmount
       value: 0
