@@ -146,7 +146,7 @@ public class ClickAttack : MonoBehaviour
 
             float finalDamage = lastAttCriticalCheck ? damage * criticalMultiplier : damage;
             Debug.Log($"{weaponData.critChance}");
-            Debug.Log(lastAttCriticalCheck ? "移섎챸?" : "?쇰컲 怨듦꺽");
+            Debug.Log(lastAttCriticalCheck ? "치명타" : "일반공격");
 
             if (monster != null)
             {
