@@ -15,6 +15,10 @@ public class SceneChanger : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        int height = 900;
+        int width = (int)(height * (9f / 16f));
+        Screen.SetResolution(width, height, false);
     }
     public void SceneChange(string sceneName)   // 게임 시작 씬
     {
