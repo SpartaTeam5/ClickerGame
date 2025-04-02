@@ -1,45 +1,45 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
 {
     public static BGMManager instance;
     public AudioSource bgmPlayer; //BGM
-    public AudioSource sfxPlayer;   // È¿°úÀ½
+    public AudioSource sfxPlayer;   // íš¨ê³¼ìŒ
 
     [Header("BGM Clips")]
-    public AudioClip titleBGM;  // ±âº» BGM(Å¸ÀÌÆ²)
-    public AudioClip battleBGM;   // ÀüÅõ ¾À BGM
+    public AudioClip titleBGM;  // ê¸°ë³¸ BGM(íƒ€ì´í‹€)
+    public AudioClip battleBGM;   // ì „íˆ¬ ì”¬ BGM
 
     private void Awake()
     {
 
-        // ½Ì±ÛÅæ ÆĞÅÏ Àû¿ë (Áßº¹ ¹æÁö)
+        // ì‹±ê¸€í†¤ íŒ¨í„´ ì ìš© (ì¤‘ë³µ ë°©ì§€)
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À ÀÌµ¿ÇØµµ À¯Áö
+            DontDestroyOnLoad(gameObject); // ì”¬ ì´ë™í•´ë„ ìœ ì§€
 
-            // »õ·Î¿î BGM ¿ÀºêÁ§Æ® »ı¼º
+            // ìƒˆë¡œìš´ BGM ì˜¤ë¸Œì íŠ¸ ìƒì„±
             GameObject bgmObject = new GameObject("BGMPlayer");
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
 
-            // AudioSource ±âº» ¼³Á¤
+            // AudioSource ê¸°ë³¸ ì„¤ì •
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
             bgmObject.transform.parent = transform;
 
-            // »õ·Î¿î SFX ¿ÀºêÁ§Æ® »ı¼º
+            // ìƒˆë¡œìš´ SFX ì˜¤ë¸Œì íŠ¸ ìƒì„±
             GameObject sfxObject = new GameObject("SFXPlayer");
             sfxPlayer = sfxObject.AddComponent<AudioSource>();
             sfxPlayer.loop = true;
             sfxPlayer.playOnAwake = false;
             sfxObject.transform.parent = transform;
 
-            // ¾À º¯°æ °¨Áö ¸®½º³Ê Ãß°¡
+            // ì”¬ ë³€ê²½ ê°ì§€ ë¦¬ìŠ¤ë„ˆ ì¶”ê°€
             SceneManager.sceneLoaded += OnSceneLoaded;
 
-            //PlayerPrefs¿¡¼­ ÀúÀåµÈ º¼·ı °ª ºÒ·¯¿À±â
+            //PlayerPrefsì—ì„œ ì €ì¥ëœ ë³¼ë¥¨ ê°’ ë¶ˆëŸ¬ì˜¤ê¸°
             float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
             float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
             SetBGMVolume(savedBGMVolume);
@@ -61,7 +61,7 @@ public class BGMManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ¾À ÀÌ¸§¿¡ µû¶ó BGM º¯°æ
+        // ì”¬ ì´ë¦„ì— ë”°ë¼ BGM ë³€ê²½
         switch (scene.name)
         {
             case "TestScenes":
@@ -75,7 +75,7 @@ public class BGMManager : MonoBehaviour
 
     public void PlayBGM(AudioClip clip)
     {
-        if (bgmPlayer.clip == clip) return; // µ¿ÀÏÇÑ BGMÀÌ¸é º¯°æ ¾È ÇÔ
+        if (bgmPlayer.clip == clip) return; // ë™ì¼í•œ BGMì´ë©´ ë³€ê²½ ì•ˆ í•¨
 
         bgmPlayer.Stop();
         bgmPlayer.clip = clip;
@@ -92,18 +92,19 @@ public class BGMManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        sfxPlayer.PlayOneShot(clip); // È¿°úÀ½ Àç»ı
+        sfxPlayer.PlayOneShot(clip); // íš¨ê³¼ìŒ ì¬ìƒ
     }
 
     public void SetBGMVolume(float volume)
     {
-        bgmPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 »çÀÌ °ªÀ¸·Î º¼·ı ¼³Á¤
-        PlayerPrefs.SetFloat("BGMVolume", volume);  //º¼·ı °ª ÀúÀå
+        bgmPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 ì‚¬ì´ ê°’ìœ¼ë¡œ ë³¼ë¥¨ ì„¤ì •
+        PlayerPrefs.SetFloat("BGMVolume", volume);  //ë³¼ë¥¨ ê°’ ì €ì¥
     }
 
     public void SetSFXVolume(float volume)
     {
-        sfxPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 »çÀÌ °ªÀ¸·Î º¼·ı ¼³Á¤
-        PlayerPrefs.SetFloat("SFXVolume", volume);  //º¼·ı °ª ÀúÀå
+        sfxPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 ì‚¬ì´ ê°’ìœ¼ë¡œ ë³¼ë¥¨ ì„¤ì •
+        PlayerPrefs.SetFloat("SFXVolume", volume);  //ë³¼ë¥¨ ê°’ ì €ì¥
     }
 }
+
