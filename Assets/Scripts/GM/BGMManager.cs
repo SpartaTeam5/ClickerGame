@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
@@ -18,20 +18,21 @@ public class BGMManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 이동해도 유지
+            //(gameObject); // 씬 이동해도 유지
 
             // 새로운 BGM 오브젝트 생성
             GameObject bgmObject = new GameObject("BGMPlayer");
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
+
+            // 새로운 SFX 오브젝트 생성
+            GameObject sfxObject = new GameObject("SFXPlayer");
+            sfxPlayer = sfxObject.AddComponent<AudioSource>();
 
             // AudioSource 기본 설정
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
             bgmObject.transform.parent = transform;
 
-            // 새로운 SFX 오브젝트 생성
-            GameObject sfxObject = new GameObject("SFXPlayer");
-            sfxPlayer = sfxObject.AddComponent<AudioSource>();
             sfxPlayer.loop = true;
             sfxPlayer.playOnAwake = false;
             sfxObject.transform.parent = transform;
@@ -45,18 +46,23 @@ public class BGMManager : MonoBehaviour
             SetBGMVolume(savedBGMVolume);
             SetSFXVolume(savedSFXVolume);
         }
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+
     }
 
     private void Start()
     {
-        if (titleBGM != null)
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        switch (sceneName)
         {
-            PlayBGM(titleBGM);
+            case "TestScenes":
+                PlayBGM(battleBGM);
+                break;
+            default:
+                PlayBGM(titleBGM);
+                break;
         }
+
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -92,6 +98,18 @@ public class BGMManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
+
+        if (clip == null)
+        {
+            Debug.LogWarning("PlaySFX: 재생할 AudioClip이 null입니다!");
+            return;
+        }
+
+        if (sfxPlayer == null)
+        {
+            Debug.LogError("PlaySFX: AudioSource가 존재하지 않습니다!");
+            return;
+        }
         sfxPlayer.PlayOneShot(clip); // 효과음 재생
     }
 
