@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.playerData.gold >= statTable.crit[critLevel].cost_c)
         {
-            GameManager.Instance.playerData.gold -= (critLevel * 10);
+            GameManager.Instance.playerData.gold -= statTable.crit[critLevel].cost_c;
             critLevel++;
             var crit = statTable.crit[critLevel];
             UpdateUI();
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.playerData.gold >= statTable.auto[autoLevel].cost_a)
         {
-            GameManager.Instance.playerData.gold -= (autoLevel * 10);
+            GameManager.Instance.playerData.gold -= statTable.auto[autoLevel].cost_a;
             autoLevel++;
             var auto = statTable.auto[autoLevel];
             UpdateUI();
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.playerData.gold >= statTable.gold[goldLevel].cost_g)
         {
-            GameManager.Instance.playerData.gold -= (goldLevel * 10);
+            GameManager.Instance.playerData.gold -= statTable.gold[goldLevel].cost_g;
             goldLevel++;
             var gold = statTable.gold[goldLevel];
             UpdateUI();

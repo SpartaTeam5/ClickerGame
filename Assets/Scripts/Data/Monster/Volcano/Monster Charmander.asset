@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster Charmander
   m_EditorClassIdentifier: 
   MonsterName: "\uD30C\uC774\uB9AC"
-  health: 9
-  maxhealth: 200
-  money: 200
+  health: 5500
+  maxhealth: 5500
+  money: 3000
   sprite: {fileID: 21300000, guid: a8c08eab3dc6a4841a61c5b8da8edf6b, type: 3}

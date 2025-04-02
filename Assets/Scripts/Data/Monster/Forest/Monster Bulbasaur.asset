@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster Bulbasaur
   m_EditorClassIdentifier: 
   MonsterName: "\uC774\uC0C1\uD574\uC528"
-  health: 30
-  maxhealth: 100
-  money: 65
+  health: 150
+  maxhealth: 150
+  money: 200
   sprite: {fileID: 21300000, guid: 7e378f5e0976a694e876cc39d7d1c479, type: 3}

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: MasterBall
   m_EditorClassIdentifier: 
   weaponName: "\uB9C8\uC2A4\uD130\uBCFC"
-  baseAttack: 20
+  baseAttack: 35
   critChance: 28
   weaponLevel: 1
   weaponaMaxLevel: 25
   atkIncrease: 5
   critChanceIncrease: 3
-  costEnhance: 30
+  costEnhance: 800
   isInitialized: 1

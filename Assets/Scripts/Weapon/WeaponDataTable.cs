@@ -52,37 +52,37 @@ public class WeaponDataTable : ScriptableObject
         monsterBall.critChance = 10;
         monsterBall.atkIncrease = 1;
         monsterBall.critChanceIncrease = 3;
-        monsterBall.costEnhance = 10f;
+        monsterBall.costEnhance = 100f;
         
 
         superBall.weaponName = "슈퍼볼";
-        superBall.baseAttack = 10;
+        superBall.baseAttack = 12;
         superBall.weaponLevel = 1;
         superBall.weaponaMaxLevel = 25;
         superBall.critChance = 15;
         superBall.atkIncrease = 2;
         superBall.critChanceIncrease = 3;
-        superBall.costEnhance = 15f;
+        superBall.costEnhance = 200f;
         
 
         ultraBall.weaponName = "울트라볼";
-        ultraBall.baseAttack = 15;
+        ultraBall.baseAttack = 20;
         ultraBall.weaponLevel = 1;
         ultraBall.weaponaMaxLevel = 25;
         ultraBall.critChance = 23;
         ultraBall.atkIncrease = 5;
         ultraBall.critChanceIncrease = 3;
-        ultraBall.costEnhance = 20f;
+        ultraBall.costEnhance = 500f;
         
 
         masterBall.weaponName = "마스터볼";
-        masterBall.baseAttack = 20;
+        masterBall.baseAttack = 35;
         masterBall.weaponLevel = 1;
         masterBall.weaponaMaxLevel = 25;
         masterBall.critChance = 28;
         masterBall.atkIncrease = 5;
         masterBall.critChanceIncrease = 3;
-        masterBall.costEnhance = 30f;
+        masterBall.costEnhance = 800f;
         
 
         // 저장
