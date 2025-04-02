@@ -5,40 +5,44 @@ public class BGMManager : MonoBehaviour
 {
     public static BGMManager instance;
     public AudioSource bgmPlayer; //BGM
-    public AudioSource sfxPlayer;   // È¿°úÀ½
+    public AudioSource sfxPlayer;   // È¿ï¿½ï¿½ï¿½ï¿½
 
     [Header("BGM Clips")]
-    public AudioClip titleBGM;  // ±âº» BGM(Å¸ÀÌÆ²)
-    public AudioClip battleBGM;   // ÀüÅõ ¾À BGM
+    public AudioClip titleBGM;  // ï¿½âº» BGM(Å¸ï¿½ï¿½Æ²)
+    public AudioClip battleBGM;   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ BGM
 
     private void Awake()
     {
-        // ½Ì±ÛÅæ ÆÐÅÏ Àû¿ë (Áßº¹ ¹æÁö)
+
+        // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½)
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À ÀÌµ¿ÇØµµ À¯Áö
+            DontDestroyOnLoad(gameObject); // ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Øµï¿½ ï¿½ï¿½ï¿½ï¿½
 
-            // »õ·Î¿î BGM ¿ÀºêÁ§Æ® »ý¼º
+            // ï¿½ï¿½ï¿½Î¿ï¿½ BGM ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             GameObject bgmObject = new GameObject("BGMPlayer");
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
 
             GameObject sfxObject = new GameObject("SFXPlayer");
             sfxPlayer = sfxObject.AddComponent<AudioSource>();
 
-            // AudioSource ±âº» ¼³Á¤
+            // AudioSource ï¿½âº» ï¿½ï¿½ï¿½ï¿½
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
             bgmObject.transform.parent = transform;
 
+            // ï¿½ï¿½ï¿½Î¿ï¿½ SFX ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+            GameObject sfxObject = new GameObject("SFXPlayer");
+            sfxPlayer = sfxObject.AddComponent<AudioSource>();
             sfxPlayer.loop = true;
             sfxPlayer.playOnAwake = false;
             sfxObject.transform.parent = transform;
 
-            // ¾À º¯°æ °¨Áö ¸®½º³Ê Ãß°¡
+            // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
             SceneManager.sceneLoaded += OnSceneLoaded;
 
-            //PlayerPrefs¿¡¼­ ÀúÀåµÈ º¼·ý °ª ºÒ·¯¿À±â
+            //PlayerPrefsï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
             float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
             float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
             SetBGMVolume(savedBGMVolume);
@@ -60,7 +64,7 @@ public class BGMManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ¾À ÀÌ¸§¿¡ µû¶ó BGM º¯°æ
+        // ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ BGM ï¿½ï¿½ï¿½ï¿½
         switch (scene.name)
         {
             case "TestScenes":
@@ -74,7 +78,7 @@ public class BGMManager : MonoBehaviour
 
     public void PlayBGM(AudioClip clip)
     {
-        if (bgmPlayer.clip == clip) return; // µ¿ÀÏÇÑ BGMÀÌ¸é º¯°æ ¾È ÇÔ
+        if (bgmPlayer.clip == clip) return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BGMï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 
         bgmPlayer.Stop();
         bgmPlayer.clip = clip;
@@ -91,18 +95,18 @@ public class BGMManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        sfxPlayer.PlayOneShot(clip); // È¿°úÀ½ Àç»ý
+        sfxPlayer.PlayOneShot(clip); // È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     }
 
     public void SetBGMVolume(float volume)
     {
-        bgmPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 »çÀÌ °ªÀ¸·Î º¼·ý ¼³Á¤
-        PlayerPrefs.SetFloat("BGMVolume", volume);  //º¼·ý °ª ÀúÀå
+        bgmPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        PlayerPrefs.SetFloat("BGMVolume", volume);  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void SetSFXVolume(float volume)
     {
-        sfxPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 »çÀÌ °ªÀ¸·Î º¼·ý ¼³Á¤
-        PlayerPrefs.SetFloat("SFXVolume", volume);  //º¼·ý °ª ÀúÀå
+        sfxPlayer.volume = Mathf.Clamp01(volume); // 0 ~ 1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        PlayerPrefs.SetFloat("SFXVolume", volume);  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
