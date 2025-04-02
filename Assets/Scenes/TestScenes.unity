@@ -316,6 +316,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: ShapeModule.randomPositionAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: ShapeModule.randomDirectionAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226452759968119084, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
+      propertyPath: ShapeModule.sphericalDirectionAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2075299370169777638, guid: a0c6778790f831e4492d80302a5b5647, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
