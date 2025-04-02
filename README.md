@@ -22,8 +22,8 @@
 ## 플레이방법
 클릭하나로 돈을 벌고 전투를 하며 무기와 능력치를 성장시켜 더욱 강한 포켓몬을 쓰러트리자!
 
-## 피그마
-https://www.figma.com/design/Fl0Gz1G1VNm9v80fmbXlM3/Untitled?node-id=0-1&p=f&t=hds6vrXMMNpBhaLV-0
+## 순서도
+![Frame 14](https://github.com/user-attachments/assets/08288113-9aea-470a-8fb7-a0fa67bbc26d)
 
 ## 기능
 
