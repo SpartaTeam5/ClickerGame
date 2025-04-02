@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIStage : MonoBehaviour
@@ -98,7 +99,7 @@ public class UIStage : MonoBehaviour
         }
         else
         {
-            Debug.Log("모든 스테이지를 완료했습니다.");
+            SceneManager.LoadScene("EndingScene");
         }
     }
 

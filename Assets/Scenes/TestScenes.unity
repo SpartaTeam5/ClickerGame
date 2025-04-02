@@ -1378,7 +1378,7 @@ PrefabInstance:
       objectReference: {fileID: 1710060651}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerData.gold
-      value: 100
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerStatTable
