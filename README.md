@@ -49,7 +49,7 @@
 - 적 처치 시 재화 획득
 - 적 공격 받을 시 부드럽게 체력 감소
 
-|텍스트 데미지|오브젝트 풀링|
+|오브젝트 풀링|텍스트 데미지|
 |:---:|:---:|
 |![objectpool](https://github.com/user-attachments/assets/47c14e6e-69a9-4dee-9b24-d773a2f455ca)|![MonsterDamage](https://github.com/user-attachments/assets/b12490e5-34eb-4d15-b0b5-f91ba2b8d170)|
 
