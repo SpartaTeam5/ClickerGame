@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public float delayTime = 20f; // 전환 대기 시간 (초)
-    public string nextSceneName; // 전환할 씬 이름
+    public string nextSceneName = "TitleScene"; // 전환할 씬 이름
 
     //void Start()
     //{

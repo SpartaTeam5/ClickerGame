@@ -13,7 +13,7 @@ public class UIStage : MonoBehaviour
     public TextMeshProUGUI stageName;       // 스테이지 이름
 
     public Monster monster; // 몬스터 관리 객체
-    private SceneChanger sceneChanger;
+    public SceneChanger sceneChanger;
 
     //임시용 인덱스 - > 게임 매니저에서 관리하기
     public int stageIndex = 0;
