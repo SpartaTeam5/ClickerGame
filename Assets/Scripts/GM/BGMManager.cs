@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
@@ -24,14 +24,15 @@ public class BGMManager : MonoBehaviour
             GameObject bgmObject = new GameObject("BGMPlayer");
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
 
+            // 새로운 SFX 오브젝트 생성
+            GameObject sfxObject = new GameObject("SFXPlayer");
+            sfxPlayer = sfxObject.AddComponent<AudioSource>();
+
             // AudioSource 기본 설정
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
             bgmObject.transform.parent = transform;
 
-            // 새로운 SFX 오브젝트 생성
-            GameObject sfxObject = new GameObject("SFXPlayer");
-            sfxPlayer = sfxObject.AddComponent<AudioSource>();
             sfxPlayer.loop = true;
             sfxPlayer.playOnAwake = false;
             sfxObject.transform.parent = transform;
