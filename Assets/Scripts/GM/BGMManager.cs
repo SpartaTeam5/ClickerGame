@@ -10,6 +10,7 @@ public class BGMManager : MonoBehaviour
     [Header("BGM Clips")]
     public AudioClip titleBGM;  // 기본 BGM(타이틀)
     public AudioClip battleBGM;   // 전투 씬 BGM
+    public AudioClip enemyBGM;  // 엔딩 BGM
 
     private void Awake()
     {
@@ -54,6 +55,9 @@ public class BGMManager : MonoBehaviour
             case "TestScenes":
                 PlayBGM(battleBGM);
                 break;
+            case "EndingScene":
+                PlayBGM(enemyBGM);
+                break;
             default:
                 PlayBGM(titleBGM);
                 break;
@@ -67,7 +71,6 @@ public class BGMManager : MonoBehaviour
         {
             Debug.LogWarning("bgmPlayer가 null 상태입니다. 다시 생성합니다.");
             GameObject bgmObject = new GameObject("BGMPlayer");
-            //DontDestroyOnLoad(bgmObject);
             bgmPlayer = bgmObject.AddComponent<AudioSource>();
             bgmPlayer.loop = true;
             bgmPlayer.playOnAwake = false;
@@ -81,7 +84,6 @@ public class BGMManager : MonoBehaviour
         if (sfxPlayer == null)
         {
             GameObject sfxObject = new GameObject("SFXPlayer");
-            //DontDestroyOnLoad(sfxObject); // sfxPlayer 유지
             sfxPlayer = sfxObject.AddComponent<AudioSource>();
             sfxObject.transform.parent = transform;
         }
@@ -103,7 +105,6 @@ public class BGMManager : MonoBehaviour
             bgmPlayer.Stop();
         }
     }
-
     public void PlaySFX(AudioClip clip)
     {
 

@@ -1449,6 +1449,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
     - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
+      propertyPath: weaponEnhanceUI
+      value: 
+      objectReference: {fileID: 6174830117649240757}
+    - target: {fileID: 571025445233479076, guid: ba4e3cc8c165b77488415e6338c1a4f9, type: 3}
       propertyPath: playerData.stage
       value: 1
       objectReference: {fileID: 0}

@@ -5,17 +5,18 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;// ½Ì±ÛÅÏ ÀÎ½ºÅÏ½º Á¢±Ù
-    public PlayerData playerData = new PlayerData();// ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ¸¦ ÀÎ½ºÆåÅÍ¿¡¼­ È®ÀÎ °¡´ÉÇÏµµ·Ï publicÀ¸·Î ¼±¾ğ
+    public static GameManager Instance;// ì‹±ê¸€í„´ ì¸ìŠ¤í„´ìŠ¤ ì ‘ê·¼
+    public PlayerData playerData = new PlayerData();// í”Œë ˆì´ì–´ ë°ì´í„°ë¥¼ ì¸ìŠ¤í™í„°ì—ì„œ í™•ì¸ ê°€ëŠ¥í•˜ë„ë¡ publicìœ¼ë¡œ ì„ ì–¸
     public Player player;
 
     [Header("UI Elements")]
-    public TextMeshProUGUI goldText;//°ñµå Ç¥½Ã
-    public GameObject warningMessage;// °ñµå ºÎÁ· ½Ã °æ°í
+    public TextMeshProUGUI goldText;//ê³¨ë“œ í‘œì‹œ
+    public GameObject warningMessage;// ê³¨ë“œ ë¶€ì¡± ì‹œ ê²½ê³ 
     public PlayerStatTable playerStatTable;
 
     [Header("Weapon")]
-    public WeaponDataTable weaponDataTable; // µ¥ÀÌÅÍ Á¤º¸ °¡Á®¿À±â
+    public WeaponEnhanceUI weaponEnhanceUI;
+    public WeaponDataTable weaponDataTable; // ë°ì´í„° ì •ë³´ ê°€ì ¸ì˜¤ê¸°
     public Weapon weapon;
     public GameObject weapon1;
     public GameObject weapon2;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        // ¾À ÀüÈ¯ ½Ã¿¡µµ »èÁ¦X
+        // ì”¬ ì „í™˜ ì‹œì—ë„ ì‚­ì œX
         DontDestroyOnLoad(gameObject);
     }
 
@@ -50,46 +51,46 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // ½ÃÀÛ ½Ã °ñµå UI ¾÷µ¥ÀÌÆ®
+        // ì‹œì‘ ì‹œ ê³¨ë“œ UI ì—…ë°ì´íŠ¸
         UpdateGoldUI();
 
     }
 
-    // °ñµå Ãß°¡ ÈÄ UI ¾÷µ¥ÀÌÆ®
+    // ê³¨ë“œ ì¶”ê°€ í›„ UI ì—…ë°ì´íŠ¸
     public void AddGold(float amount)
     {
         playerData.AddGold(amount);
         UpdateGoldUI();
     }
 
-    // °ñµå »ç¿ë ½Ã, »ç¿ë ¼º°ø ¿©ºÎ¿¡ µû¶ó UI Ã³¸® ¶Ç´Â °æ°í ¸Ş½ÃÁö Ãâ·Â
+    // ê³¨ë“œ ì‚¬ìš© ì‹œ, ì‚¬ìš© ì„±ê³µ ì—¬ë¶€ì— ë”°ë¼ UI ì²˜ë¦¬ ë˜ëŠ” ê²½ê³  ë©”ì‹œì§€ ì¶œë ¥
     public void TrySpendGold(float amount)
     {
         if (!playerData.SpendGold(amount))
         {
-            // °ñµå°¡ ºÎÁ·ÇÒ °æ¿ì °æ°í ¸Ş½ÃÁö Ãâ·Â (ÄÚ·çÆ¾ »ç¿ë)
-            StartCoroutine(ShowWarning("°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù!"));
+            // ê³¨ë“œê°€ ë¶€ì¡±í•  ê²½ìš° ê²½ê³  ë©”ì‹œì§€ ì¶œë ¥ (ì½”ë£¨í‹´ ì‚¬ìš©)
+            StartCoroutine(ShowWarning("ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤!"));
         }
         else
         {
-            // »ç¿ë ¼º°ø ½Ã UI ¾÷µ¥ÀÌÆ®
+            // ì‚¬ìš© ì„±ê³µ ì‹œ UI ì—…ë°ì´íŠ¸
             UpdateGoldUI();
         }
     }
 
-    // °æ°í ¸Ş½ÃÁö¸¦ Àá½Ã º¸¿©ÁÖ´Â ÄÚ·çÆ¾
+    // ê²½ê³  ë©”ì‹œì§€ë¥¼ ì ì‹œ ë³´ì—¬ì£¼ëŠ” ì½”ë£¨í‹´
     private IEnumerator ShowWarning(string message)
     {
-        // °æ°í ¸Ş½ÃÁö È°¼ºÈ­ ¹× ÅØ½ºÆ® ¼³Á¤
+        // ê²½ê³  ë©”ì‹œì§€ í™œì„±í™” ë° í…ìŠ¤íŠ¸ ì„¤ì •
         warningMessage.SetActive(true);
         warningMessage.GetComponent<Text>().text = message;
-        // 2ÃÊ°£ ´ë±â
+        // 2ì´ˆê°„ ëŒ€ê¸°
         yield return new WaitForSeconds(2f);
-        // °æ°í ¸Ş½ÃÁö ºñÈ°¼ºÈ­
+        // ê²½ê³  ë©”ì‹œì§€ ë¹„í™œì„±í™”
         warningMessage.SetActive(false);
     }
 
-    // °ñµå UI ¾÷µ¥ÀÌÆ®: °ñµå ÅØ½ºÆ®¸¦ ÃÖ½Å µ¥ÀÌÅÍ·Î °»½Å
+    // ê³¨ë“œ UI ì—…ë°ì´íŠ¸: ê³¨ë“œ í…ìŠ¤íŠ¸ë¥¼ ìµœì‹  ë°ì´í„°ë¡œ ê°±ì‹ 
     public void UpdateGoldUI()
     {
         //goldText.text = $"Gold: {playerData.gold:F1}";
