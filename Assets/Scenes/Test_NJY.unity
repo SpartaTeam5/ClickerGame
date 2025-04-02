@@ -502,6 +502,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478613840}
   m_CullTransparentMesh: 1
+--- !u!114 &569998803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7708373642543042736, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
+  m_PrefabInstance: {fileID: 90832636}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4158086fcaf21654f9cbbd10ab040e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &678622328
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +582,7 @@ MonoBehaviour:
   goldLevelText: {fileID: 2837693622885748991}
   goldAmountText: {fileID: 457082055700838539}
   goldCostText: {fileID: 3351675579699305908}
+  clickAttack: {fileID: 0}
 --- !u!1 &699536891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,9 +2957,41 @@ PrefabInstance:
     m_TransformParent: {fileID: 1182831232}
     m_Modifications:
     - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1222779281}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 569998803}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: BGMManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 44d2d947642b5e24e977281777e42041, type: 3}
+    - target: {fileID: 3778767898990897844, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4727479145665594241, guid: 529c075e0f49da946900156f5e2a0d1a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9999,6 +10043,7 @@ MonoBehaviour:
   weaponTable: {fileID: 11400000, guid: e9d8041a26820064eb6e2d62c57b6e12, type: 2}
   weaponEnhance: {fileID: 6174830117649240757}
   player: {fileID: 678622330}
+  monsterImage: {fileID: 0}
   weapon1: {fileID: 5216262268570337194}
   weapon2: {fileID: 8992403813641366262}
   weapon3: {fileID: 1258057228289097547}

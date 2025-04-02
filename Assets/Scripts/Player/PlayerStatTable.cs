@@ -19,12 +19,12 @@ public class PlayerStatTable : ScriptableObject
 
         for(int i = 0; i < maxlevel; i++)
         {
-            int level = i + 1;
+            int level = i;
 
             crit[i] = new CritData
             {
                 level = level,
-                critDamage =  1.5f + (i * 0.5f),
+                critDamage =  1f + (i * 0.5f),
                 cost_c = 10 + (i * 10)
             };
 

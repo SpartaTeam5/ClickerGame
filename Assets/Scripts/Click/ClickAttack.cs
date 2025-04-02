@@ -10,11 +10,11 @@ using UnityEngine.UIElements;
 public class ClickAttack : MonoBehaviour
 {
     [SerializeField] float click_Damage;
-    public float autoAttackInterval;
+    private float autoAttackInterval = 1f;
+    public float autaAttackCycle;
     public bool isAutoAttackEnabled = false; // 초기 자동공격 비활성화
     [SerializeField] public float criticalPercent;
     [SerializeField] public float criticalMultiplier;
-    [SerializeField] MonsterData[] pokemonMonster;
 
     private WeaponDataTable weaponData; // 무기 데이터 호출
 
@@ -27,6 +27,7 @@ public class ClickAttack : MonoBehaviour
     private bool lastAttCriticalCheck;
 
     private Coroutine autoCoroutine;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -37,12 +38,8 @@ public class ClickAttack : MonoBehaviour
     {
         particleEffect = FindObjectOfType<Particle>();
         monster = FindObjectOfType<Monster>();
-        click_Damage = StatManager.Instance.GetFinalDamage();
-        criticalPercent = StatManager.Instance.GetCriticalChance();
-        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
-
         weaponData = GameManager.Instance.weaponDataTable;
-
+        UpdateStat();
 
         if (monster == null)
         {
@@ -73,14 +70,17 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
-    //public bool IsCriticalHit()
-    //{
-    //    return Random.value < criticalPercent;
-    //}
+    public void UpdateStat()
+    {
+        click_Damage = StatManager.Instance.GetFinalDamage();
+        autaAttackCycle = StatManager.Instance.GetAutoDamage(); // 초당 공격 횟수로 변환
+        criticalPercent = StatManager.Instance.GetCriticalChance();
+        criticalMultiplier = StatManager.Instance.GetCriticalDamage();
+    }
 
     public void OnClickAttack(InputAction.CallbackContext context)
     {
-        click_Damage = StatManager.Instance.GetFinalDamage();
+        UpdateStat();
 
         if (isOptionUIOpen)
         {
@@ -100,16 +100,37 @@ public class ClickAttack : MonoBehaviour
             return;
         }
     }
-
-    IEnumerator AutoAttack()    // 자동 어택
+    public void ApplyStatsToClickAttack()
     {
+        int autoLevel = GameManager.Instance.player.autoLevel;
+        int critLevel = GameManager.Instance.player.critLevel;
+        if (autoLevel > 0) // 자동공격 레벨이 1 이상일 때만 자동공격 활성화
+        {
+            AutoAttackData auto = GameManager.Instance.playerStatTable.auto[autoLevel - 1];
+            autaAttackCycle = auto.autoAttackCycle; // 자동공격 주기 설정
+            isAutoAttackEnabled = true; // 자동공격 활성화
+            RestartAutoAttack(); // 자동공격 재시작
+        }
+        else
+        {
+            isAutoAttackEnabled = false; // 자동공격 비활성화
+        }
+
+        CritData crit = GameManager.Instance.playerStatTable.crit[critLevel - 1];
+        criticalPercent = crit.critChance; // 치명타 확률 설정
+        criticalMultiplier = crit.critDamage; // 치명타 데미지 설정
+    }
+
+    public IEnumerator AutoAttack()    // 자동 어택
+    {
+        UpdateStat();
         while (true)
         {
             if (isAutoAttackEnabled && !isOptionUIOpen)
             {
                 AttackMonster(click_Damage);
             }
-            yield return new WaitForSeconds(autoAttackInterval);
+            yield return new WaitForSeconds(autoAttackInterval / autaAttackCycle);
         }
     }
 
@@ -117,7 +138,7 @@ public class ClickAttack : MonoBehaviour
     {
         if (monster.isDie == false)
         {
-            //lastAttCriticalCheck = IsCriticalHit();
+            UpdateStat();
 
             float critChance = weaponData.critChance / 100f; // 무기 치명타 확률
             lastAttCriticalCheck = Random.value < critChance; // 치명타 확률 계산
@@ -154,6 +175,7 @@ public class ClickAttack : MonoBehaviour
         }
     }
 
+    
     private GameObject GetClickMonsterUI(Vector2 screenPosition)
     {
         EventSystem eventSystem = EventSystem.current ?? FindObjectOfType<EventSystem>();
