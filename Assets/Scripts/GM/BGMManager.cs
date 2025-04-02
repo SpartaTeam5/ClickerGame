@@ -13,6 +13,7 @@ public class BGMManager : MonoBehaviour
 
     private void Awake()
     {
+
         // 싱글톤 패턴 적용 (중복 방지)
         if (instance == null)
         {
@@ -28,6 +29,13 @@ public class BGMManager : MonoBehaviour
             bgmPlayer.playOnAwake = false;
             bgmObject.transform.parent = transform;
 
+            // 새로운 SFX 오브젝트 생성
+            GameObject sfxObject = new GameObject("SFXPlayer");
+            sfxPlayer = sfxObject.AddComponent<AudioSource>();
+            sfxPlayer.loop = true;
+            sfxPlayer.playOnAwake = false;
+            sfxObject.transform.parent = transform;
+
             // 씬 변경 감지 리스너 추가
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -37,10 +45,10 @@ public class BGMManager : MonoBehaviour
             SetBGMVolume(savedBGMVolume);
             SetSFXVolume(savedSFXVolume);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void Start()
