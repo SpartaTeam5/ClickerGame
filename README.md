@@ -81,7 +81,7 @@
 
 ### 음악
 
-https://soundlibrary.pokemon.co.jp/asia-en/playlists/memories_of_151
+- https://soundlibrary.pokemon.co.jp/asia-en/playlists/memories_of_151
 
 ## 🔧 설치 및 실행 방법  
 
