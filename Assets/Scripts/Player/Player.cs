@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
         else
         {
             return;
-            Debug.Log("골드 부족");
         }
     }
 
