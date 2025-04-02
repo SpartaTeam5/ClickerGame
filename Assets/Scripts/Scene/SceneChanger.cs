@@ -12,6 +12,10 @@ public class SceneChanger : MonoBehaviour
     //{
     //    StartCoroutine(ChangeSceneAfterDelay());
     //}
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     public void SceneChange(string sceneName)   // 게임 시작 씬
     {
         SceneManager.LoadScene("Testscenes");
@@ -24,12 +28,13 @@ public class SceneChanger : MonoBehaviour
     public void EndSceneChanage()   // 엔딩
     {
         SceneManager.LoadScene("EndingScene");
-        StartCoroutine(ChangeSceneAfterDelay());
+        //StartCoroutine(ChangeSceneAfterDelay());
     }
 
-    IEnumerator ChangeSceneAfterDelay()
-    {
-        yield return new WaitForSeconds(delayTime);
-        SceneManager.LoadScene("TitleScene");
-    }
+    //IEnumerator ChangeSceneAfterDelay()
+    //{
+    //    Debug.Log("ChangeScene");
+    //    yield return new WaitForSeconds(delayTime);
+    //    SceneManager.LoadScene("TitleScene");
+    //}
 }

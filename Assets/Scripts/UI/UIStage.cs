@@ -8,37 +8,37 @@ using UnityEngine.UI;
 public class UIStage : MonoBehaviour
 {
     [Header("Stage Info")]
-    public Image backGround;                // ¹è°æ ÀÌ¹ÌÁö
-    public TextMeshProUGUI stageKillCount;  // °¢ ½ºÅ×ÀÌÁö¿¡¼­ Á×Àº Àû Ä«¿îÆ®
-    public TextMeshProUGUI stageName;       // ½ºÅ×ÀÌÁö ÀÌ¸§
+    public Image backGround;                // ë°°ê²½ ì´ë¯¸ì§€
+    public TextMeshProUGUI stageKillCount;  // ê° ìŠ¤í…Œì´ì§€ì—ì„œ ì£½ì€ ì  ì¹´ìš´íŠ¸
+    public TextMeshProUGUI stageName;       // ìŠ¤í…Œì´ì§€ ì´ë¦„
 
-    public Monster monster; // ¸ó½ºÅÍ °ü¸® °´Ã¼
-    private SceneChanger sceneChanger;
+    public Monster monster; // ëª¬ìŠ¤í„° ê´€ë¦¬ ê°ì²´
+    public SceneChanger sceneChanger;
 
-    //ÀÓ½Ã¿ë ÀÎµ¦½º - > °ÔÀÓ ¸Å´ÏÀú¿¡¼­ °ü¸®ÇÏ±â
+    //ì„ì‹œìš© ì¸ë±ìŠ¤ - > ê²Œì„ ë§¤ë‹ˆì €ì—ì„œ ê´€ë¦¬í•˜ê¸°
     public int stageIndex = 0;
     public int waveIndex = 0;
     public int monsterIndex = 0;
 
-    public List<StageData> stageDataList;   // ÀüÃ¼ ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ ÀúÀåÇÏ±â
+    public List<StageData> stageDataList;   // ì „ì²´ ìŠ¤í…Œì´ì§€ ë°ì´í„° ì €ì¥í•˜ê¸°
 
     void Start()
     {
-        LoadStage(stageIndex);      // °ÔÀÓ ½ÃÀÛ ½Ã ½ºÅ×ÀÌÁö ºÒ·¯¿À±â
-        UpdateUI();                 // UI ¾÷µ¥ÀÌÆ®
+        LoadStage(stageIndex);      // ê²Œì„ ì‹œì‘ ì‹œ ìŠ¤í…Œì´ì§€ ë¶ˆëŸ¬ì˜¤ê¸°
+        UpdateUI();                 // UI ì—…ë°ì´íŠ¸
     }
 
     public void UpdateUI()
     {
-        StageData stageData = stageDataList[stageIndex];    // Çö ½ºÅ×ÀÌÁö °¡Á®¿À±â
-        // ÇöÀç ¸ó½ºÅÍ °¡Á®¿À±â
+        StageData stageData = stageDataList[stageIndex];    // í˜„ ìŠ¤í…Œì´ì§€ ê°€ì ¸ì˜¤ê¸°
+        // í˜„ì¬ ëª¬ìŠ¤í„° ê°€ì ¸ì˜¤ê¸°
         MonsterData monsterData = stageData.monsters[waveIndex].MonsterData[monsterIndex];  
 
-        if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)    // ÀüÃ¼ ¸ó½ºÅÍ°¡ Ã³¸® ½Ã
+        if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)    // ì „ì²´ ëª¬ìŠ¤í„°ê°€ ì²˜ë¦¬ ì‹œ
         {
-            monster.Init(monsterData);      // ¸ó½ºÅÍ ÃÊ±âÈ­
+            monster.Init(monsterData);      // ëª¬ìŠ¤í„° ì´ˆê¸°í™”
 
-            // »õ ¸ó½ºÅÍ·Î ClickAttackÀÇ ÂüÁ¶ °»½Å ¹× ÀÚµ¿ °ø°İ Àç½ÃÀÛ
+            // ìƒˆ ëª¬ìŠ¤í„°ë¡œ ClickAttackì˜ ì°¸ì¡° ê°±ì‹  ë° ìë™ ê³µê²© ì¬ì‹œì‘
             ClickAttack clickAttack = FindObjectOfType<ClickAttack>();
             if (clickAttack != null)
             {
@@ -46,35 +46,35 @@ public class UIStage : MonoBehaviour
                 clickAttack.RestartAutoAttack();
             }
 
-            backGround.sprite = stageData.backGround;       // ¹è°æ ÀÌ¹ÌÁö º¯°æ
-            KillMonster();      // ÇöÀç Ã³Ä¡ÇÑ ¸ó½ºÅÍ ¼ö UI °»½Å
-            stageName.text = $"{stageData.stageName} - {waveIndex + 1}";    // ½ºÅ×ÀÌÁö ÀÌ¸§ ¹× ¿şÀÌºê Ç¥½Ã
+            backGround.sprite = stageData.backGround;       // ë°°ê²½ ì´ë¯¸ì§€ ë³€ê²½
+            KillMonster();      // í˜„ì¬ ì²˜ì¹˜í•œ ëª¬ìŠ¤í„° ìˆ˜ UI ê°±ì‹ 
+            stageName.text = $"{stageData.stageName} - {waveIndex + 1}";    // ìŠ¤í…Œì´ì§€ ì´ë¦„ ë° ì›¨ì´ë¸Œ í‘œì‹œ
         }
     }
-    // ¸ó½ºÅÍ Ã³Ä¡ Á¤º¸¸¦ UI¿¡ ¹İ¿µ
+    // ëª¬ìŠ¤í„° ì²˜ì¹˜ ì •ë³´ë¥¼ UIì— ë°˜ì˜
     public void KillMonster()
     {
         StageData stageData = stageDataList[stageIndex];
         stageKillCount.text = $"{stageData.curKillCount} / {stageData.monsters[waveIndex].MonsterData.Length}";
     }
-    // ¸ó½ºÅÍ »ç¸Á ½Ã È£ÃâµÇ´Â ¸Ş¼­µå
+    // ëª¬ìŠ¤í„° ì‚¬ë§ ì‹œ í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œ
     public void OnMonsterDeath()
     {
         StageData stageData = stageDataList[stageIndex];
         stageData.curKillCount++;
         monsterIndex++;
 
-        // ´ÙÀ½ ¸ó½ºÅÍÀÇ Á¤º¸¸¦ °¡Á®¿Í¼­ UI¸¦ ¾÷µ¥ÀÌÆ®
+        // ë‹¤ìŒ ëª¬ìŠ¤í„°ì˜ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ UIë¥¼ ì—…ë°ì´íŠ¸
         if (monsterIndex < stageData.monsters[waveIndex].MonsterData.Length)
         {
             Invoke("UpdateUI", 1f);
         }
         else
         {
-            Invoke("NextWave", 1f); // ¸ğµç ¸ó½ºÅÍ Ã³Ä¡ ½Ã ´ÙÀ½ ¿şÀÌºê ½ÃÀÛ
+            Invoke("NextWave", 1f); // ëª¨ë“  ëª¬ìŠ¤í„° ì²˜ì¹˜ ì‹œ ë‹¤ìŒ ì›¨ì´ë¸Œ ì‹œì‘
         }
     }
-    // ´ÙÀ½ ¿şÀÌºê·Î ÀÌµ¿ÇÏ´Â ¸Ş¼­µå
+    // ë‹¤ìŒ ì›¨ì´ë¸Œë¡œ ì´ë™í•˜ëŠ” ë©”ì„œë“œ
     private void NextWave()
     {
         waveIndex++;
@@ -89,13 +89,13 @@ public class UIStage : MonoBehaviour
             NextStage();
         }
     }
-    // ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ÇÏ´Â ¸Ş¼­µå
+    // ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™í•˜ëŠ” ë©”ì„œë“œ
     private void NextStage()
     {
         stageIndex++;
         if (stageIndex < stageDataList.Count)
         {
-            LoadStage(stageIndex);  // »õ ½ºÅ×ÀÌÁö ·Îµå
+            LoadStage(stageIndex);  // ìƒˆ ìŠ¤í…Œì´ì§€ ë¡œë“œ
             UpdateUI();
         }
         else
@@ -106,10 +106,10 @@ public class UIStage : MonoBehaviour
 
     private void LoadStage(int stageIndex)
     {
-        // À¯È¿ÇÏÁö ¾ÊÀº ÀÎµ¦½º ¿¹¿Ü Ã³¸®
+        // ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ë±ìŠ¤ ì˜ˆì™¸ ì²˜ë¦¬
         if (stageDataList == null || stageIndex >= stageDataList.Count)
         {
-            Debug.LogError($" À¯È¿ÇÏÁö ¾ÊÀº stageIndex ({stageIndex}). µ¥ÀÌÅÍ¸¦ È®ÀÎÇÏ¼¼¿ä.");
+            Debug.LogError($" ìœ íš¨í•˜ì§€ ì•Šì€ stageIndex ({stageIndex}). ë°ì´í„°ë¥¼ í™•ì¸í•˜ì„¸ìš”.");
             return;
         }
 
