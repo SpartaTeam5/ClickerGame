@@ -150,6 +150,9 @@ public class ClickAttack : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeDamage(finalDamage);
+
+                float clickGold = finalDamage * Random.value; // 공격력이 강해질수록 얻는골드 증가
+                GameManager.Instance.AddGold(clickGold);
             }
 
             Particle particleEffect = FindObjectOfType<Particle>();
