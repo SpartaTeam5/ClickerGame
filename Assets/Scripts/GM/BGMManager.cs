@@ -18,7 +18,7 @@ public class BGMManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject); // 씬 이동해도 유지
+            //(gameObject); // 씬 이동해도 유지
 
             // 새로운 BGM 오브젝트 생성
             GameObject bgmObject = new GameObject("BGMPlayer");
@@ -46,10 +46,7 @@ public class BGMManager : MonoBehaviour
             SetBGMVolume(savedBGMVolume);
             SetSFXVolume(savedSFXVolume);
         }
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
+
     }
 
     private void Start()
@@ -101,6 +98,18 @@ public class BGMManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
+
+        if (clip == null)
+        {
+            Debug.LogWarning("PlaySFX: 재생할 AudioClip이 null입니다!");
+            return;
+        }
+
+        if (sfxPlayer == null)
+        {
+            Debug.LogError("PlaySFX: AudioSource가 존재하지 않습니다!");
+            return;
+        }
         sfxPlayer.PlayOneShot(clip); // 효과음 재생
     }
 
