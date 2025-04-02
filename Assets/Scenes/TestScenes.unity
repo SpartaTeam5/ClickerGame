@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 20
+  nextSceneName: TitleScene
 --- !u!114 &244381835 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3878684135222106746, guid: da1f6b08a8459674b817a29010a1cb8f, type: 3}
@@ -718,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 20
+  nextSceneName: TitleScene
 --- !u!1 &678622328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,6 +3465,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313786458885255450, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060258283693108309, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: waveIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060258283693108309, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: stageIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060258283693108309, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}
+      propertyPath: monsterIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7060258283693108309, guid: 1278f465c3c92fc4c92cdb6c33223d2b, type: 3}

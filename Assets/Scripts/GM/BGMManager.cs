@@ -11,42 +11,83 @@ public class BGMManager : MonoBehaviour
     public AudioClip titleBGM;  // 기본 BGM(타이틀)
     public AudioClip battleBGM;   // 전투 씬 BGM
 
+    //private void Awake()
+    //{
+
+    //    // 싱글톤 패턴 적용 (중복 방지)
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //        //(gameObject); // 씬 이동해도 유지
+
+    //        // 새로운 BGM 오브젝트 생성
+    //        GameObject bgmObject = new GameObject("BGMPlayer");
+    //        bgmPlayer = bgmObject.AddComponent<AudioSource>();
+
+    //        // 새로운 SFX 오브젝트 생성
+    //        GameObject sfxObject = new GameObject("SFXPlayer");
+    //        sfxPlayer = sfxObject.AddComponent<AudioSource>();
+
+    //        // AudioSource 기본 설정
+    //        bgmPlayer.loop = true;
+    //        bgmPlayer.playOnAwake = false;
+    //        bgmObject.transform.parent = transform;
+
+    //        sfxPlayer.loop = true;
+    //        sfxPlayer.playOnAwake = false;
+    //        sfxObject.transform.parent = transform;
+
+    //        // 씬 변경 감지 리스너 추가
+    //        SceneManager.sceneLoaded += OnSceneLoaded;
+
+    //        //PlayerPrefs에서 저장된 볼륨 값 불러오기
+    //        float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
+    //        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
+    //        SetBGMVolume(savedBGMVolume);
+    //        SetSFXVolume(savedSFXVolume);
+    //    }
+
+    //}
     private void Awake()
     {
-
-        // 싱글톤 패턴 적용 (중복 방지)
         if (instance == null)
         {
             instance = this;
-            //(gameObject); // 씬 이동해도 유지
+            DontDestroyOnLoad(gameObject); // BGMManager 자체를 유지
 
-            // 새로운 BGM 오브젝트 생성
-            GameObject bgmObject = new GameObject("BGMPlayer");
-            bgmPlayer = bgmObject.AddComponent<AudioSource>();
+            // bgmPlayer 초기화
+            if (bgmPlayer == null)
+            {
+                GameObject bgmObject = new GameObject("BGMPlayer");
+                DontDestroyOnLoad(bgmObject); // bgmPlayer 유지
+                bgmPlayer = bgmObject.AddComponent<AudioSource>();
+                bgmPlayer.loop = true;
+                bgmPlayer.playOnAwake = false;
+                bgmObject.transform.parent = transform;
+            }
 
-            // 새로운 SFX 오브젝트 생성
-            GameObject sfxObject = new GameObject("SFXPlayer");
-            sfxPlayer = sfxObject.AddComponent<AudioSource>();
+            // sfxPlayer 초기화
+            if (sfxPlayer == null)
+            {
+                GameObject sfxObject = new GameObject("SFXPlayer");
+                DontDestroyOnLoad(sfxObject); // sfxPlayer 유지
+                sfxPlayer = sfxObject.AddComponent<AudioSource>();
+                sfxObject.transform.parent = transform;
+            }
 
-            // AudioSource 기본 설정
-            bgmPlayer.loop = true;
-            bgmPlayer.playOnAwake = false;
-            bgmObject.transform.parent = transform;
-
-            sfxPlayer.loop = true;
-            sfxPlayer.playOnAwake = false;
-            sfxObject.transform.parent = transform;
-
-            // 씬 변경 감지 리스너 추가
+            // 씬 로드 이벤트 등록
             SceneManager.sceneLoaded += OnSceneLoaded;
 
-            //PlayerPrefs에서 저장된 볼륨 값 불러오기
+            // 볼륨 설정
             float savedBGMVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
             float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
             SetBGMVolume(savedBGMVolume);
             SetSFXVolume(savedSFXVolume);
         }
-
+        else
+        {
+            Destroy(gameObject); // 중복된 BGMManager 제거
+        }
     }
 
     private void Start()
@@ -65,9 +106,34 @@ public class BGMManager : MonoBehaviour
 
     }
 
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    // 씬 이름에 따라 BGM 변경
+    //    switch (scene.name)
+    //    {
+    //        case "TestScenes":
+    //            PlayBGM(battleBGM);
+    //            break;
+    //        default:
+    //            PlayBGM(titleBGM);
+    //            break;
+    //    }
+    //}
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 씬 이름에 따라 BGM 변경
+        // bgmPlayer 유효성 검사
+        if (bgmPlayer == null)
+        {
+            Debug.LogWarning("bgmPlayer가 null 상태입니다. 다시 생성합니다.");
+            GameObject bgmObject = new GameObject("BGMPlayer");
+            DontDestroyOnLoad(bgmObject);
+            bgmPlayer = bgmObject.AddComponent<AudioSource>();
+            bgmPlayer.loop = true;
+            bgmPlayer.playOnAwake = false;
+            bgmObject.transform.parent = transform;
+        }
+
         switch (scene.name)
         {
             case "TestScenes":
@@ -110,6 +176,7 @@ public class BGMManager : MonoBehaviour
             Debug.LogError("PlaySFX: AudioSource가 존재하지 않습니다!");
             return;
         }
+
         sfxPlayer.PlayOneShot(clip); // 효과음 재생
     }
 

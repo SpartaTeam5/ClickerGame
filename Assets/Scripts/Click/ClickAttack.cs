@@ -106,7 +106,7 @@ public class ClickAttack : MonoBehaviour
         int critLevel = GameManager.Instance.player.critLevel;
         if (autoLevel > 0) // 자동공격 레벨이 1 이상일 때만 자동공격 활성화
         {
-            AutoAttackData auto = GameManager.Instance.playerStatTable.auto[autoLevel - 1];
+            AutoAttackData auto = GameManager.Instance.playerStatTable.auto[autoLevel];
             autaAttackCycle = auto.autoAttackCycle; // 자동공격 주기 설정
             isAutoAttackEnabled = true; // 자동공격 활성화
             RestartAutoAttack(); // 자동공격 재시작
@@ -116,7 +116,7 @@ public class ClickAttack : MonoBehaviour
             isAutoAttackEnabled = false; // 자동공격 비활성화
         }
 
-        CritData crit = GameManager.Instance.playerStatTable.crit[critLevel - 1];
+        CritData crit = GameManager.Instance.playerStatTable.crit[critLevel];
         criticalPercent = crit.critChance; // 치명타 확률 설정
         criticalMultiplier = crit.critDamage; // 치명타 데미지 설정
     }
