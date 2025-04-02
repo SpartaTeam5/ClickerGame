@@ -160,7 +160,7 @@ public class ClickAttack : MonoBehaviour
 
             if (particleEffect != null)
             {
-                particleEffect.PlayParticleSystem(lastAttCriticalCheck);
+                particleEffect.PlayParticleSystem(lastAttCriticalCheck, monster.transform.position);
             }
         }
     }
