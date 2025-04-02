@@ -45,6 +45,12 @@ https://www.figma.com/design/Fl0Gz1G1VNm9v80fmbXlM3/Untitled?node-id=0-1&p=f&t=h
 ### 적 / 스테이지
 
 ### 사운드 / 씬 관리
+- BGM 볼륨 조절
+- 효과음 볼륨 조절
+- 타이틀 화면으로 돌아가기
+
+- 맵 배경을 스테이지에 따라 변경합니다.
+- BGM을 스테이지에 맞게 변경하여 몰입감을 높입니다.
 
 ### 파티클
 
