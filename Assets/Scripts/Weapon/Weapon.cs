@@ -120,7 +120,7 @@ public class Weapon : MonoBehaviour
             weaponTable.baseAttack += weaponTable.atkIncrease;
             weaponTable.critChance += weaponTable.critChanceIncrease;
             GameManager.Instance.playerData.gold -= weaponTable.costEnhance;
-            weaponTable.costEnhance *= 2f;
+            weaponTable.costEnhance += 100f;
 
             Debug.Log($"[강화됨] {weaponTable.weaponName} → Lv.{weaponTable.weaponLevel}, 공격력: {weaponTable.baseAttack}, 치명타: {weaponTable.critChance}%");
         }

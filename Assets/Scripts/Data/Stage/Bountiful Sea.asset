@@ -13,16 +13,31 @@ MonoBehaviour:
   m_Name: Bountiful Sea
   m_EditorClassIdentifier: 
   stageName: "\uD48D\uC694\uC758 \uBC14\uB2E4"
-  curKillCount: 0
+  curKillCount: 3
   backGround: {fileID: 21300000, guid: bc60c5f6e64885642a96b4a025c3cefc, type: 3}
   monsters:
   - MonsterData:
     - {fileID: 11400000, guid: cbbe5d0493667cc4aa3fbb74cc012415, type: 2}
+    - {fileID: 11400000, guid: cbbe5d0493667cc4aa3fbb74cc012415, type: 2}
+    - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
   - MonsterData:
+    - {fileID: 11400000, guid: cbbe5d0493667cc4aa3fbb74cc012415, type: 2}
+    - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
+    - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
     - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
   - MonsterData:
     - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
-  - MonsterData:
+    - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
+    - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
+    - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
     - {fileID: 11400000, guid: c8840be096195a648b233a4c1c1af87e, type: 2}
   - MonsterData:
+    - {fileID: 11400000, guid: f7fa0f838b56efa4eb8aa8fc8d3ec937, type: 2}
+    - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
+    - {fileID: 11400000, guid: 55b554363dbce44429e5dc51601263b2, type: 2}
+    - {fileID: 11400000, guid: c8840be096195a648b233a4c1c1af87e, type: 2}
+    - {fileID: 11400000, guid: c8840be096195a648b233a4c1c1af87e, type: 2}
+  - MonsterData:
+    - {fileID: 11400000, guid: c8840be096195a648b233a4c1c1af87e, type: 2}
+    - {fileID: 11400000, guid: 3f756b7b5619e5b4db287482a0338906, type: 2}
     - {fileID: 11400000, guid: 3f756b7b5619e5b4db287482a0338906, type: 2}

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: UltraBall
   m_EditorClassIdentifier: 
   weaponName: "\uC6B8\uD2B8\uB77C\uBCFC"
-  baseAttack: 15
+  baseAttack: 20
   critChance: 23
   weaponLevel: 1
   weaponaMaxLevel: 25
   atkIncrease: 5
   critChanceIncrease: 3
-  costEnhance: 20
+  costEnhance: 500
   isInitialized: 1

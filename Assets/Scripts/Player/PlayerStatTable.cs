@@ -25,21 +25,21 @@ public class PlayerStatTable : ScriptableObject
             {
                 level = level,
                 critDamage =  1f + (i * 0.5f),
-                cost_c = 10 + (i * 10)
+                cost_c = 100 + (i * 100)
             };
 
             auto[i] = new AutoAttackData
             {
                 level = level,
                 autoAttackCycle = 0f + i,
-                cost_a = 10 + (i * 10)
+                cost_a = 100 + (i * 100)
             };
 
             gold[i] = new GoldData
             {
                 level = level,
-                getGoldAmount = 100f + (i * 100f),
-                cost_g = 10 + (i * 10)
+                getGoldAmount = 100f + (i * 10f),
+                cost_g = 100 + (i * 100)
             };
         }
     }
