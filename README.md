@@ -27,3 +27,13 @@
 
 ## 피그마
 https://www.figma.com/design/Fl0Gz1G1VNm9v80fmbXlM3/Untitled?node-id=0-1&p=f&t=hds6vrXMMNpBhaLV-0
+
+## 기능
+
+### 클릭 공격 / 자동 공격
+
+### 무기 / 강화 시스템
+
+### 적 / 스테이지
+
+### 사운드 / 씬 관리
