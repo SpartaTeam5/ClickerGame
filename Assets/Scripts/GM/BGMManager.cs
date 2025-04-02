@@ -18,7 +18,7 @@ public class BGMManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 이동해도 유지
+            //DontDestroyOnLoad(gameObject); // 씬 이동해도 유지
 
             // 새로운 BGM 오브젝트 생성
             GameObject bgmObject = new GameObject("BGMPlayer");
@@ -54,10 +54,18 @@ public class BGMManager : MonoBehaviour
 
     private void Start()
     {
-        if (titleBGM != null)
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        switch (sceneName)
         {
-            PlayBGM(titleBGM);
+            case "TestScenes":
+                PlayBGM(battleBGM);
+                break;
+            default:
+                PlayBGM(titleBGM);
+                break;
         }
+
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
