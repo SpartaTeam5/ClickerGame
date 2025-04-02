@@ -1,23 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "WeaponDataTable", menuName = "Scriptable/WeaponDataTable", order = 1)]
 public class WeaponDataTable : ScriptableObject
 {
-    public string weaponName; //¹«±â ÀÌ¸§
+    public string weaponName; //ë¬´ê¸° ì´ë¦„
 
-    public int baseAttack;  //±âº» °ø°İ·Â
-    public int critChance;  //Ä¡¸íÅ¸ È®·ü
-    public int weaponLevel;  //¹«±â ·¹º§
-    public int weaponaMaxLevel=25; //¹«±â ÃÖ´ë ·¹º§
+    public int baseAttack;  //ê¸°ë³¸ ê³µê²©ë ¥
+    public int critChance;  //ì¹˜ëª…íƒ€ í™•ë¥ 
+    public int weaponLevel;  //ë¬´ê¸° ë ˆë²¨
+    public int weaponaMaxLevel=25; //ë¬´ê¸° ìµœëŒ€ ë ˆë²¨
 
-    public int atkIncrease; //°­È­ ½Ã °ø°İ·Â Áõ°¡·®
-    public int critChanceIncrease; //°­È­ ½Ã Ä¡¸íÅ¸ È®·ü Áõ°¡·®
-    public float costEnhance; // °­È­ ºñ¿ë
+    public int atkIncrease; //ê°•í™” ì‹œ ê³µê²©ë ¥ ì¦ê°€ëŸ‰
+    public int critChanceIncrease; //ê°•í™” ì‹œ ì¹˜ëª…íƒ€ í™•ë¥  ì¦ê°€ëŸ‰
+    public float costEnhance; // ê°•í™” ë¹„ìš©
     
-    public bool isInitialized = false; // ÃÊ±âÈ­ ¿©ºÎ Ã¼Å©¿ë
+    public bool isInitialized = false; // ì´ˆê¸°í™” ì—¬ë¶€ ì²´í¬ìš©
 
     public void WeaponData(string weaponname, int baseattack, int critchance, int weaponlevel, int maxlevel, int atkincrease, int critchanceincrease, float costenhance)
     {
@@ -34,18 +36,25 @@ public class WeaponDataTable : ScriptableObject
     
 #if UNITY_EDITOR
     /// <summary>
-    /// Editor¿¡¼­ ÃÊ±â°ª ¼¼ÆÃÇÏ´Â ÇÔ¼ö (¸Ş´º ¹öÆ°À¸·Î ½ÇÇà °¡´É)
+    /// Editorì—ì„œ ì´ˆê¸°ê°’ ì„¸íŒ…í•˜ëŠ” í•¨ìˆ˜ (ë©”ë‰´ ë²„íŠ¼ìœ¼ë¡œ ì‹¤í–‰ ê°€ëŠ¥)
     /// </summary>
     [MenuItem("Tools/Initialize Weapon Data")]
+#endif
     public void InitializeWeaponData()
     {
-        WeaponDataTable monsterBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/PokeBall.asset");
-        WeaponDataTable superBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/GreatBall.asset");
-        WeaponDataTable ultraBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/UltraBall.asset");
-        WeaponDataTable masterBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/MasterBall.asset");
-
-        // °¢ ¹«±âÀÇ ÃÊ±â °ª ¼³Á¤
-        monsterBall.weaponName = "¸ó½ºÅÍº¼";
+//#if UNITY_EDITOR
+//        WeaponDataTable monsterBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/PokeBall.asset");
+//        WeaponDataTable superBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/GreatBall.asset");
+//        WeaponDataTable ultraBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/UltraBall.asset");
+//        WeaponDataTable masterBall = AssetDatabase.LoadAssetAtPath<WeaponDataTable>("Assets/Prefabs/Weapon/MasterBall.asset");
+//#else
+        WeaponDataTable monsterBall = Resources.Load<WeaponDataTable>("Weapon/PokeBall");
+        WeaponDataTable superBall = Resources.Load<WeaponDataTable>("Weapon/GreatBall");
+        WeaponDataTable ultraBall = Resources.Load<WeaponDataTable>("Weapon/UltraBall");
+        WeaponDataTable masterBall = Resources.Load<WeaponDataTable>("Weapon/MasterBall");
+//#endif
+        // ê° ë¬´ê¸°ì˜ ì´ˆê¸° ê°’ ì„¤ì •
+        monsterBall.weaponName = "ëª¬ìŠ¤í„°ë³¼";
         monsterBall.baseAttack = 5;
         monsterBall.weaponLevel = 1;
         monsterBall.weaponaMaxLevel = 25;
@@ -55,7 +64,7 @@ public class WeaponDataTable : ScriptableObject
         monsterBall.costEnhance = 100f;
         
 
-        superBall.weaponName = "½´ÆÛº¼";
+        superBall.weaponName = "ìŠˆí¼ë³¼";
         superBall.baseAttack = 12;
         superBall.weaponLevel = 1;
         superBall.weaponaMaxLevel = 25;
@@ -65,7 +74,7 @@ public class WeaponDataTable : ScriptableObject
         superBall.costEnhance = 200f;
         
 
-        ultraBall.weaponName = "¿ïÆ®¶óº¼";
+        ultraBall.weaponName = "ìš¸íŠ¸ë¼ë³¼";
         ultraBall.baseAttack = 20;
         ultraBall.weaponLevel = 1;
         ultraBall.weaponaMaxLevel = 25;
@@ -75,7 +84,7 @@ public class WeaponDataTable : ScriptableObject
         ultraBall.costEnhance = 500f;
         
 
-        masterBall.weaponName = "¸¶½ºÅÍº¼";
+        masterBall.weaponName = "ë§ˆìŠ¤í„°ë³¼";
         masterBall.baseAttack = 35;
         masterBall.weaponLevel = 1;
         masterBall.weaponaMaxLevel = 25;
@@ -83,22 +92,14 @@ public class WeaponDataTable : ScriptableObject
         masterBall.atkIncrease = 5;
         masterBall.critChanceIncrease = 3;
         masterBall.costEnhance = 800f;
-        
 
-        // ÀúÀå
+#if UNITY_EDITOR
+        // ì €ì¥
         EditorUtility.SetDirty(monsterBall);
         EditorUtility.SetDirty(superBall);
         EditorUtility.SetDirty(ultraBall);
         EditorUtility.SetDirty(masterBall);
         AssetDatabase.SaveAssets();
-    }
-
-
 #endif
-
-
+    }
 }
-
-
-
-

@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
     }
     public void SceneChange(string sceneName)   // 게임 시작 씬
     {
-        SceneManager.LoadScene("Testscenes");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void ExitGame(string sceneName)  // 게임 종료

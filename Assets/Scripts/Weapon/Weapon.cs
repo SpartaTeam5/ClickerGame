@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     public Player player;
     //public PlayerData playerData;
 
-    public Image monsterImage; // ¸ó½ºÅÍ ÀÌ¹ÌÁö
+    public Image monsterImage; // ëª¬ìŠ¤í„° ì´ë¯¸ì§€
 
     public GameObject weapon1;
     public GameObject weapon2;
@@ -37,11 +37,12 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI weaponAtkText;
     public TextMeshProUGUI weaponCritText;
 
-   
+
     public void Start()
     {
         weaponTable.InitializeWeaponData();
         weapon1.GetComponent<WeaponData>().isEquipped = true;
+        OnClickEquip(weapon1);
         UpdateUI();
         weaponEnhance.UpdateEnhanceUI();
     }
@@ -67,11 +68,9 @@ public class Weapon : MonoBehaviour
                 GameManager.Instance.weaponDataTable = weaponTable;
                 weaponText.text = weaponTable.weaponName;
                 weaponLevelText.text = "Lv " + weaponTable.weaponLevel.ToString();
-                weaponAtkText.text = "°ø°İ·Â " + weaponTable.baseAttack.ToString();
-                weaponCritText.text = "Ä¡¸íÅ¸ È®·ü " + weaponTable.critChance.ToString();
+                weaponAtkText.text = "ê³µê²©ë ¥ " + weaponTable.baseAttack.ToString();
+                weaponCritText.text = "ì¹˜ëª…íƒ€ í™•ë¥  " + weaponTable.critChance.ToString();
             }
-
-
         }
     }
 
@@ -92,7 +91,7 @@ public class Weapon : MonoBehaviour
 
     public void OpenWeaponEnhance()
     {
-        // ÇöÀç ÀåÂøµÈ ¹«±â Ã£¾Æ¼­ º¹»çº» ³Ñ±â±â
+        // í˜„ì¬ ì¥ì°©ëœ ë¬´ê¸° ì°¾ì•„ì„œ ë³µì‚¬ë³¸ ë„˜ê¸°ê¸°
         GameObject[] weapons = { weapon1, weapon2, weapon3, weapon4 };
 
         foreach (GameObject weapon in weapons)
@@ -104,11 +103,11 @@ public class Weapon : MonoBehaviour
                 break;
             }
         }
-        monsterImage.raycastTarget = false; // °­È­Ã¢ È°¼º½Ã
+        monsterImage.raycastTarget = false; // ê°•í™”ì°½ í™œì„±ì‹œ
         weaponEnhanceUI.SetActive(true);
     }
 
-    public void onClickEnhance(GameObject weapon) //°­È­ ¹öÆ° ´©¸£¸é ·¹º§ Áõ°¡
+    public void onClickEnhance(GameObject weapon) //ê°•í™” ë²„íŠ¼ ëˆ„ë¥´ë©´ ë ˆë²¨ ì¦ê°€
     {
 
         WeaponData weaponData = weapon.GetComponent<WeaponData>();
@@ -122,14 +121,14 @@ public class Weapon : MonoBehaviour
             GameManager.Instance.playerData.gold -= weaponTable.costEnhance;
             weaponTable.costEnhance += 100f;
 
-            Debug.Log($"[°­È­µÊ] {weaponTable.weaponName} ¡æ Lv.{weaponTable.weaponLevel}, °ø°İ·Â: {weaponTable.baseAttack}, Ä¡¸íÅ¸: {weaponTable.critChance}%");
+            Debug.Log($"[ê°•í™”ë¨] {weaponTable.weaponName} â†’ Lv.{weaponTable.weaponLevel}, ê³µê²©ë ¥: {weaponTable.baseAttack}, ì¹˜ëª…íƒ€: {weaponTable.critChance}%");
         }
 
         if (GameManager.Instance.playerData.gold < weaponTable.costEnhance)
-            Debug.Log("°ñµå ºÎÁ·");
+            Debug.Log("ê³¨ë“œ ë¶€ì¡±");
         if(weaponTable.weaponLevel == weaponTable.weaponaMaxLevel)
         {
-            Debug.Log("ÃÖ´ë ·¹º§ ´Ş¼º");
+            Debug.Log("ìµœëŒ€ ë ˆë²¨ ë‹¬ì„±");
         }
 
         UpdateUI();
@@ -143,7 +142,7 @@ public class Weapon : MonoBehaviour
     public void OnClickBack()
     {
         weaponEnhanceUI.SetActive(false);
-        monsterImage.raycastTarget = true; // ºñÈ°¼º ½Ã
+        monsterImage.raycastTarget = true; // ë¹„í™œì„± ì‹œ
     }
 
 
