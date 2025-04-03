@@ -26,6 +26,17 @@
                     "action": "ClickAtt",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fcc6ba3-6337-45a9-92ba-d8fe13d0fe98",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickAtt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

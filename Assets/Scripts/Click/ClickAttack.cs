@@ -93,7 +93,7 @@ public class ClickAttack : MonoBehaviour
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
             // UI요소 위에서 클릭되었는지 확인하는 함수,EventSystem.current 가 존재하면 UI 클릭 감지 가능
-            GameObject clickMonterUI = GetClickMonsterUI(Mouse.current.position.ReadValue());
+            GameObject clickMonterUI = GetClickMonsterUI(Input.mousePosition);
             if (clickMonterUI != null)
             {
                 AttackMonster(click_Damage);
