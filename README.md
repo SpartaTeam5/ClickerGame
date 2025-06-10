@@ -95,7 +95,7 @@
 ## 🔧 설치 및 실행 방법  
 
 1️⃣ **게임 다운로드**  
-   - [GitHub Releases](https://github.com/BeautifulMaple/ClickerGame/releases) 페이지에서 최신 버전을 다운로드하세요.  
+   - [GitHub Releases](https://github.com/SpartaTeam5/ClickerGame/releases/tag/V1.0.2) 페이지에서 최신 버전을 다운로드하세요.  
    - `ClickMon X.X.X.zip` 파일을 받습니다.  
 
 2️⃣ **압축 해제**  
